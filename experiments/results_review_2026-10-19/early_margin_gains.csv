@@ -1,0 +1,5 @@
+model,global_region_life,local_region_life,gain_cycles,global_region_events,local_region_events
+GBR,175.76,180.23,4.469999999999999,0,0
+LGBM,175.23,182.17,6.939999999999998,0,0
+RF,177.78,182.48,4.699999999999989,0,0
+XGB,174.99,181.22,6.22999999999999,0,0

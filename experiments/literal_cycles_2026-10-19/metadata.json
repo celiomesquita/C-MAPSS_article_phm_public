@@ -1,0 +1,34 @@
+{
+  "finished_utc": "2026-10-19T20:25:40.156431+00:00",
+  "seconds": 26.06677590002073,
+  "seed": 20261019,
+  "replicates": 2000,
+  "xi": 1.0,
+  "horizon_flights": 32000.0,
+  "llp": 20000.0,
+  "rho": 1.0,
+  "ic": "mature",
+  "sources": {
+    "pilot_policy_selection_13a": {
+      "original_sha256": "902e349ce0ebbc2ddb4c841e3601d0d6b1344b185c73636d01c17f3eeb54e7f5",
+      "selected_sha256": "e54eeac1e5d023d05c774b5538db08690333072cf35a533bd19d8a30ffdc4474",
+      "rows": 6000
+    },
+    "confirmation_19a": {
+      "original_sha256": "80ff0d7ae580c1da9745ca17f1f6dbb590d1af603325602aa98309c2626b5015",
+      "selected_sha256": "4687b1c472a953b21e0be23a488652017cc171f0e97a4c482d2c69a8a78f96f3",
+      "rows": 10470
+    }
+  },
+  "validation": {
+    "max_llp_disagreement": 0.0,
+    "max_probability_error": 2.220446049250313e-16,
+    "stationary_max_abs_z": 2.3035115895022678,
+    "passed": true
+  },
+  "python": "3.13.7",
+  "numpy": "2.4.4",
+  "pandas": "3.0.2",
+  "cells": 264,
+  "interpretation": "Monte Carlo errors conditional on archived empirical engine pools; not population risk"
+}

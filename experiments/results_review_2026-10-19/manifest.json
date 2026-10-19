@@ -1,0 +1,107 @@
+{
+  "scope": "post-confirmation review of archived aggregate results; no refitting or simulation",
+  "script_sha256": "ce9fd235aebd759aded2ab13535c7eb5dfb0754537b4b1bd4f6607cd725dd697",
+  "inputs": {
+    "pilot_fd001_05/bootstrap.csv": {
+      "sha256": "d0ce90d760c26fdbb40bab49c502608d742d9dbf9b20003e78ca476977edd845",
+      "rows": 2
+    },
+    "pilot_fd003_06/bootstrap.csv": {
+      "sha256": "03d1b33e6ea28d5f62836661a9a408415f7815999e5305da525fa1752a0dcb07",
+      "rows": 5
+    },
+    "pilot_hi_landmark_07/paired_comparisons.csv": {
+      "sha256": "17841d7d22e3d86cc7c9d7dea95710a173551599a220c5873f0e24d9b6e028bf",
+      "rows": 144
+    },
+    "pilot_hi_trajectory_08/contrasts.csv": {
+      "sha256": "4f97faf4b781acc945907dfaedefeeb9d87eed33d42f90aa11524b1824d01a80",
+      "rows": 432
+    },
+    "pilot_f_uncertainty_09/contrasts.csv": {
+      "sha256": "b25fd05ffdae6c7e871619efeb9ae28f3aad6157840c4dd55f822806bb01563d",
+      "rows": 120
+    },
+    "pilot_f_uncertainty_10/contrasts.csv": {
+      "sha256": "06ebcc1ce92d0dd5d94ee058284ed73208b6606b767485d58a180027a959a571",
+      "rows": 60
+    },
+    "pilot_removal_11/contrasts.csv": {
+      "sha256": "b3fe54075d48b9ab0b805d5ca7ae05b26bcab3752e11f634837c5be8ede7c0e5",
+      "rows": 144
+    },
+    "pilot_landmark_control_11a/contrasts.csv": {
+      "sha256": "a7cfe0e25a1bfae535629f551ed08e3c04f6012cbc111ccf6869753e653ec600",
+      "rows": 156
+    },
+    "pilot_policy_selection_13a/contrasts.csv": {
+      "sha256": "1ede7be37b34fabcbb0038748cb205dc439c89cdb65e79e88f2ba66369e276f4",
+      "rows": 48
+    },
+    "pilot_hi_chain_13e/contrasts.csv": {
+      "sha256": "b8968d1387d161d64e9319fb110e8f00f1f75ff34586c4b6f50d5fe2629da86e",
+      "rows": 72
+    },
+    "pilot_fd001_02/decision_summary.csv": {
+      "sha256": "d5f50e93086a97ceda1ca0221704627bd8eabcd4e6f6039a743d42756dea9099",
+      "rows": 16
+    },
+    "pilot_f_uncertainty_09/band_summary.csv": {
+      "sha256": "ae4380a772f5b426c4cdbac3025e624ad5032043552fb4c858c84dfeb857037a",
+      "rows": 144
+    },
+    "pilot_hi_stabilization_13d/summary.csv": {
+      "sha256": "11463bc35e6c6f808304eee67c12a765032a39fb0a83b5816734abd7577c860c",
+      "rows": 2
+    },
+    "pilot_hi_chain_13e/prognosis_summary.csv": {
+      "sha256": "9c6d1826cac3dc1104fe1741f9838d35e062755339153ab8971cca85344ec4e5",
+      "rows": 24
+    },
+    "pilot_removal_11/summary.csv": {
+      "sha256": "dd41ab38b34b77539cdd8a2986c3f0e831de45b3245cbd5457d3347171ab7774",
+      "rows": 312
+    },
+    "confirmation_19a/summary.csv": {
+      "sha256": "f6addcd8c4e7ca6119fee24d280427d1464a83bb8d82b030d976b5501e262961",
+      "rows": 120
+    },
+    "pilot_inspection_17b/summary.csv": {
+      "sha256": "ef4ac2389b2b32bf4c3a6c5c9ef662cbe7ce3afe089463a666eda3e53f48059e",
+      "rows": 1920
+    },
+    "pilot_hi_trajectory_08/summary.csv": {
+      "sha256": "4e36a748a55199827894b828fb4654836e2bcf8fabb49f9affd0132780cc57eb",
+      "rows": 432
+    },
+    "pilot_hi_landmark_07/summary.csv": {
+      "sha256": "7241edcc3fb95600811f66ee9602bc154bbd251db9ba63988884176f069eac27",
+      "rows": 54
+    },
+    "pilot_twenty_year_20a/cells_central.csv": {
+      "sha256": "79e59abfcff475c59dd3b061616fc5a5652cb456d8c87a9ab704a4f229b8d0f8",
+      "rows": 132,
+      "selection": "central scenario, execution lead 1",
+      "original_cells_sha256": "c98c8f8391377e3d7b303c5b7e847b22a08dec257073583a2f2619d487d75aa1"
+    }
+  },
+  "contrasts": 1531,
+  "experimental_series": 32,
+  "outputs": {
+    "chain_prognosis.csv": "e52e28dbf1364ca0ceb346aee073c814b898e5cd826efad7d99e3058a18f2485",
+    "confirmation_sensitivities.csv": "91df97caa2a50e03d8948dbd983aebdcc50496e091ad2d9e2cb0f8280dd0e765",
+    "contrast_ledger.csv": "9fe8b3f532262789bd3e17f1ab6231ab8af45e05e37d8f58dbfa0264f8bc46f6",
+    "cycle_scale.csv": "868e10a04e928f9bf94f4235054833d6fce689bc39cfc15d86be212c85720264",
+    "direct_sensor_gains.csv": "1135769ceb1dae7c4be8560a88d5f4555f78b8d897c3d036e80a759339ecc887",
+    "early_margin_gains.csv": "2446b161b6b0f296f967066201f751f72843709740c0cc5149eb04a2ffbe2f10",
+    "experiment_coverage.csv": "f257f681bf9f74d263cd5cdf73cbd7bfdd031a95a49d832a25e3485371fd6f93",
+    "inspection_scenarios.csv": "43ad41160bd6f468566c9f8f364718445d50aaf46bb6d06c0705cc05b7f4a1bc",
+    "internal_stabilisation.csv": "2ef0977dbcf1c4643651a26879165fbe38dcf84b57ef0edd601544732ffcc901",
+    "long_term_restoration_costs.csv": "f6828a0595e705043bab57510d6fa57781ace71ebe2217350af8fc09ac653430",
+    "point_vs_path_calibration.csv": "6fcaa927c40a21c547beae4590ee071b6f377bed52b7d8d64625b994899fd445",
+    "removal_sensitivities.csv": "b59ec6d584348ee62df7ed1e6caffd1851a20758ea733deb31552238e6a3abef",
+    "reviewed_source_inventory.csv": "c82f1fc77efc0dda7b39bc895931a31d5a6d8a0a78a7b29868d17137fd464f04"
+  },
+  "script_sha256_original": "926f6a4cf805ee04e5f41f76a85e9aad093a0cd284764e5e83553bbc55de60b9",
+  "script_amendment": "19/10/2026: excluded folders extended to the P21 break-even series so that the 32-series check still holds; no change in computations or outputs"
+}

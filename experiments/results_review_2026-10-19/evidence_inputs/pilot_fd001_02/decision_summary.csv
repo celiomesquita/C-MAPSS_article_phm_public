@@ -1,0 +1,17 @@
+model,variant,engines,endpoints,mean_unused,mean_exposure
+GBR,global,100,0,71.98,134.33
+GBR,global_gate30,100,0,30.55,175.76
+GBR,local_gate30,100,0,26.08,180.23
+GBR,raw,100,4,9.5,196.81
+LGBM,global,100,0,86.89,119.42
+LGBM,global_gate30,100,0,31.08,175.23
+LGBM,local_gate30,100,0,24.14,182.17
+LGBM,raw,100,0,9.6,196.71
+RF,global,100,0,88.52,117.79
+RF,global_gate30,100,0,28.53,177.78
+RF,local_gate30,100,0,23.83,182.48
+RF,raw,100,1,9.47,196.84
+XGB,global,100,0,91.31,115.0
+XGB,global_gate30,100,0,31.32,174.99
+XGB,local_gate30,100,0,25.09,181.22
+XGB,raw,100,1,9.78,196.53

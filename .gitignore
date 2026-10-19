@@ -34,6 +34,16 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
+# Reviewed, small public evidence package and companion PDFs
+!appendix/early_pilots.pdf
+!appendix/supplementary.pdf
+!experiments/results_review_2026-10-19/*.csv
+!experiments/results_review_2026-10-19/evidence_inputs/**/*.csv
+
+# Literal-flight scenario: small selected inputs and verified outputs
+!experiments/literal_cycles_2026-10-19/*.csv
+!experiments/literal_cycles_2026-10-19/evidence_inputs/*.csv
+
 # P21.1/P21.2 break-even analyses: archived inputs and verified outputs
 !experiments/artifacts/pilot_break_even_21a/*.csv
 !experiments/artifacts/pilot_break_even_cost_21b/*.csv

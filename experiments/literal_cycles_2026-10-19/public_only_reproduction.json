@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "compared_outputs": [
+    "cells.csv",
+    "summary.csv",
+    "contrasts.csv",
+    "validation_stationary.csv",
+    "verification_replicates.csv"
+  ],
+  "tolerance": 1e-12,
+  "no_private_archive": true,
+  "no_raw_data": true,
+  "independent_verifier": {
+    "passed": true,
+    "arms_checked": 264,
+    "scalar_replicates_per_arm": 12,
+    "outcome_atoms_checked": 121406,
+    "deterministic_age_new_and_mature": true,
+    "unchanged_numerical_functions": 8
+  }
+}

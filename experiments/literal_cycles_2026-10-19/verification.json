@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "arms_checked": 264,
+  "scalar_replicates_per_arm": 12,
+  "outcome_atoms_checked": 121406,
+  "deterministic_age_new_and_mature": true,
+  "unchanged_numerical_functions": 8
+}

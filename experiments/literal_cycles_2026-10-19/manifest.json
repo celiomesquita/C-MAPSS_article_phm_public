@@ -1,0 +1,20 @@
+{
+  "cells.csv": "5b6fd29ef96693c4464920caffeeace43481ebbee74d191264aa2b25afd47c2f",
+  "contrasts.csv": "75643c2e871bd1548b1b9e1830bde6f50305234fcbdf04805301186a4f0f462c",
+  "evidence_inputs/confirmation_19a.csv": "4687b1c472a953b21e0be23a488652017cc171f0e97a4c482d2c69a8a78f96f3",
+  "evidence_inputs/pilot_policy_selection_13a.csv": "e54eeac1e5d023d05c774b5538db08690333072cf35a533bd19d8a30ffdc4474",
+  "manuscript_table_page_30.png": "7ba60f8b7a34ed188624f68adacdc513f97a770e560d1daae43e4673d9ecf387",
+  "manuscript_table_page_31.png": "d2ccf25e26f5ac34d12e0fc475c90296daf665aee05c174a4023ac5fe857b0f1",
+  "metadata.json": "f60867daae07ce2282703bc2ae80acce48090c2b8829685eb15ea10ef402edcb",
+  "protocolo_vinte_anos_20b_literal.md": "449a339d9e691644961b5baafc273109ddbc04a73d30ec7381288a53c3f5426a",
+  "public_only_reproduction.json": "a21cb9630af5480a58417e09b089aa3be9a5d118ce147fc2ddaac01a17244a76",
+  "README.md": "ab7eaa1defb7dc89d791fe061eebd1a52f0639c1ebdeee5ec6be8014e105d6a5",
+  "reference_twenty_year_20a.py": "4549870928704a62e3e5e4e03510076bfcd2ae891278b8a68e7d9ad16eedb980",
+  "renewal_core_20b.py": "78bf9fccb164eb8914190fdd140729f48a3aad46fdf280e191d1c7ed7fc481e0",
+  "summary.csv": "0f9a3c11611ebe631a0da7256bc84baed27f6a6cc246c1ea61ff65b55dd5b5ba",
+  "twenty_year_20b_literal.py": "ab7f31f35bf79bac56ec458cfa7d28b689448097c7983e38f63697336a53b5df",
+  "validation_stationary.csv": "bbe36a9e441fed822bcbbec9bbbb8f32480fbe554918aa9edac643f342311c4f",
+  "verification.json": "d8d9b6044cc04eadbfff89c0e3c78ad1ec5d81bce2faf3bfa596b2fcfe209bcf",
+  "verification_replicates.csv": "9ec4c6371e9c664f78a5b7274cdc9f7f9dca0f197501e4c36b08aca4aea4741c",
+  "verify_twenty_year_20b_literal.py": "eab3bd060f6212b2352e4f91c709303e5f218f6c11788ab9318255e18e1535d7"
+}

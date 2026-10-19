@@ -1,0 +1,33 @@
+series,experiment,coverage_before,coverage_after,positive_or_local_result,non_gain_or_limit,primary_evidence
+P01,pilot_fd001_01,public appendix only,main and early appendix,Margins removed observed endpoint events,Excessive unused life; immediate execution,relatorio.md
+P02,pilot_fd001_02,public appendix only,main and S3,Local calibration gained 4.47-6.94 mean cycles; selected LGBM 196.71 with zero events,Different immediate-action contract; no validated risk,decision_summary.csv
+P03,pilot_fd001_03,HI diagnostics only,main and S3,Individual removal dates invariant across 18 detector settings with fixed forecasts,P timing unstable; no physical detection labels,relatorio.md
+P04,pilot_fd001_04,partial,main HI table and S3,Initial tolerance reduced initial departures,First-zero dates invariant; terminal anchoring unresolved,selected_summary.csv
+P05,pilot_fd001_05,main,main and contrast ledger,Point RMSE below margin control,Descriptive paired intervals include zero; physical HI unvalidated,bootstrap.csv
+P06,pilot_fd003_06,points but partial paired evidence,main and S3,Refitted empirical and AAKR beat margin control in FD003 paired intervals,Implementation-specific and exploratory; direct transfer poor,bootstrap.csv
+P07,pilot_hi_landmark_07,partial,main and S3,Five-cycle updates reduced RMSE; complete-landmark availability,Common-cycle comparison reduced apparent gains; truncated coverage limited,paired_comparisons.csv
+P08,pilot_hi_trajectory_08,HI-history points only,main and S3,Direct sensor history improves FD003 landmark errors; some ablation gains,No universal history benefit; no last-observation improvement; Ridge worsens,contrasts.csv
+P09,pilot_f_uncertainty_09,not explicit,main and S3,Slope beats current-HI RF in FD003; path calibration improves path coverage,ISO not consistently beaten; wider bands and limited lead,band_summary.csv
+P10,pilot_f_uncertainty_10,main,main and S3,Finite 98% development quantiles and reported coverage,Coverage and lead vary; RF no conclusive landmark advantage,band_summary.csv
+P11,pilot_removal_11,primary rules only,main and S3,Conservative rules avoid development events; 12/95 sensitivities add life,No validated policy risk; central rules have events,summary.csv
+P11.1,pilot_landmark_control_11a,main ISO,main and S3,Landmark explains most gains; small positive ISO and RF increments,Incremental gain constrained by entry; small practical effect,contrasts.csv
+P11.2,pilot_loss_decomposition_11b,main,main and S3,Loss located after signal under oracle comparison,Oracle loss is not fully recoverable life,summary.csv
+P12.1,pilot_renewal_12a,main,main and S4,Simulator agrees with analytic rate; conditional-rule savings,Calendar scaling needed; selected and point rules have events,conclusoes.md
+P12.2,pilot_scale_bridge_12b,main summary,main and S4,Most rule orderings robust over scale and renewal scenarios,Small differences indistinguishable; conditional bridge,conclusoes.md
+P13.1,pilot_policy_selection_13a,main,main and S3,Selected threshold and waiting rules gain life,Endpoint events and four infeasible internal choices,contrasts.csv
+P13.2,pilot_explainability_13b,main,main and S3,Faithful reconstruction of 9600 actions,No whole-prefix support; perturbations not physical validation,conclusoes.md
+P13.3,pilot_hi_influence_13c,main extremes,main and S3,Identified orientation/coefficient influence; smaller FD001 sensitivity,Large FD003 shifts; no numerical-failure explanation,summary.csv
+P13.4,pilot_hi_stabilization_13d,qualitative only,main and S3,Internal FD003 p95 5 to 3 and largest shift 223 to 45,Some maxima worsened; not externally validated,summary.csv
+P13.5,pilot_hi_chain_13e,failed-transfer result only,main and S3,ISO life gains and 11/12 lower landmark errors,Later landmarks confound error; new FD003 events; criterion failed,contrasts.csv
+P14.1,pilot_long_life_14a,main,main and S3,No increase in relative spread with life,Partial absolute concentration; events in shorter lives,conclusoes.md
+P15.1,pilot_fallback_15a,cap summary only,main and S3,Higher age quantiles recover some life and cap suppresses some events,Superseded semantics; loss of PHM life; age itself has events,conclusoes.md
+P15.2,pilot_conservative_age_15b,adopted age only,main and S3,Conservative age reference estimated,In-sample; rejected parametric fits; not risk validation,conclusoes.md
+P15.3,pilot_fallback_15c,cap summary only,main and S3,Conservative caps suppress events in examined data,By construction and erase most PHM benefit,conclusoes.md
+P15.4,pilot_fallback_15d,main age/cap,main and S3,Single gate permits common-age comparison,Constructed absence of events; not evidence of safety,conclusoes.md
+P16.1,pilot_extension_16a,main,main and S3,Condition-based life extension and savings under monitoring-loss scenarios,Detected independent losses assumed; earlier PHM removals can precede 127,conclusoes.md
+P17.1,pilot_inspection_17b,headline and partial sensitivities,main and S3 plus complete public tables,"Inspection reduces events, including conservative FD004; full curves retained",Restoration penalty and no borescope calibration; cost zero by contract,summary.csv
+P17.2,pilot_inspection_latent_17c,main,main and S3,Low point-anchor events persist with latent effects,Visibility increases penalties; shape has little effect,summary.csv
+P18.1,pilot_regime_synthetic_18a,main,main and S3,Normalisation restores synthetic multi-regime performance,Simple separable regimes; interactions not validated,conclusoes.md
+P19.1,confirmation_19a,main primary,main and S3 plus all sensitivity rows,Frozen age criterion passes; no conservative FD002 events; small sensitivity gains,FD004 events persist; unavailable paths and infinite margins,summary.csv
+P19.2,pilot_coefficient_stability_19b,main,main and S3,All-domain coefficient stability quantified,Only moderate stability; no physical causal importance,summary.csv
+P20.1,pilot_twenty_year_20a,visits and events only,main monetary table and S4,Three-arm restoration expenditure and conditional demand savings,Scale/renewal/fixed-cost assumptions; failed initial run excluded,cells.csv.gz

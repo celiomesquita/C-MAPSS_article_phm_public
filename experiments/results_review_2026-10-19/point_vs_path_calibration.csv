@@ -1,0 +1,7 @@
+subset,dataset,repeat,method,scope,alpha,total,path_available,point_available,finite_abs_fraction,finite_late_fraction,path_coverage,path_lower_coverage,point_coverage,point_lower_coverage,median_width,collapsed_point_fraction,conservative_lead_median,calibration_n_min
+FD003,complete,1,RF_SLOPE,path,0.1,100,100,100,1.0,1.0,0.9,0.83,0.97,0.99,50.63893188362553,0.12,12.181668230710956,20
+FD003,complete,1,RF_SLOPE,point,0.1,100,100,100,1.0,1.0,0.82,0.76,0.91,0.95,45.67598273228921,0.06,15.691319324345258,20
+FD003,complete,2,RF_SLOPE,path,0.1,100,100,100,1.0,1.0,0.86,0.86,0.96,0.98,48.71584484649637,0.15,11.030713122616504,20
+FD003,complete,2,RF_SLOPE,point,0.1,100,100,100,1.0,1.0,0.6,0.58,0.88,0.88,37.01482622980862,0.05,18.45292105142373,20
+FD003,complete,3,RF_SLOPE,path,0.1,100,100,100,1.0,1.0,0.87,0.93,0.96,1.0,50.52420688715744,0.09,9.784406034692609,20
+FD003,complete,3,RF_SLOPE,point,0.1,100,100,100,1.0,1.0,0.75,0.82,0.94,0.97,45.15463266659406,0.04,15.205552762123702,20
