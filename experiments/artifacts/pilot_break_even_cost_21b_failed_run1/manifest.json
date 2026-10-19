@@ -1,0 +1,14 @@
+{
+  "contrast_summary.csv": "de407947e082ef259098789c131f3e1cecfe7da33b3c0e99ae87745ab6aa3ca8",
+  "contrasts.csv": "106e7bf6c5b3edf72c863d0cab6edd18833a8fee1e010c02220f669dcbd1350b",
+  "execution_start.json": "690b9468bbb4416d89fa8b7521bcddd36323e5e5d977cf45b72ae94bea548171",
+  "frontier.csv": "c22d65f6902533ed14cad8b73d47da89ccad24925440942cd5dfff8c9cc82ac9",
+  "metadata.json": "fe4a8e8328a5c592c322c613af09be29e3d44e26b8cf36722f254cb3a7d4872a",
+  "preference_curves.csv": "9c6748e6b661b74e0e3a45c2335143018a7848b4c6c7303cf152f519baebac08",
+  "rates.csv": "dc4e33785eb6d6251ec4bdd056a3395d7c96aae3335199ae83c9f774258bf156",
+  "source_break_even_cost_21b.py": "c5826c28504826588e59cdcbd7cad737bb94fdeb8d9bd541de085f760b6d47ab",
+  "source_protocolo_custo_inspecao_21b.md": "6f75a0019b83c4e3a707152502e37998b8115e6dffe317de3b21ef8677ebc591",
+  "source_test_break_even_cost_21b.py": "9707c3db938f122fa38401a91932f6acb29b3598b8a14c9448be7374e2d16024",
+  "source_verify_break_even_cost_21b.py": "f81ace681fff21e8dff9115442591b3de0d2e9b78e8d8a1739c505f541626c01",
+  "validation.json": "a9d9ad1303c02bb35d1e8adde2503e1a7b28db8ca1468839351ee79a93d5c429"
+}

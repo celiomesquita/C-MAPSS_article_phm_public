@@ -13,6 +13,7 @@ Public reproducibility repository for the article:
 | `LaTeX/` | Manuscript LaTeX source, highlights, cover letter, title page |
 | `appendix/` | Early-pilot specification, results and information constraints (removed from the article to meet the journal word limit; compiled standalone as `early_pilots.tex`) |
 | `experiments/` | Experiment scripts (`.py`), protocols and planning documents (`.md`), frozen-protocol directory, and artifact summaries (`.md`, `.json` — no binary model files or large CSVs) |
+| `experiments/BREAK_EVEN_README.md`, `experiments/artifacts/pilot_break_even_21a/`, `experiments/artifacts/pilot_break_even_cost_21b/` | Break-even cost of end-of-life events (P21.1) and its sensitivity to the inspection cost (P21.2): protocols, code, tests, independent verifiers, archived inputs, outputs with hashes and written conclusions. |
 
 ## Data
 
@@ -53,3 +54,14 @@ python confirmation_19a.py --rehearsal   # dry run on FD001/FD003
 
 The code is released under the MIT licence. The manuscript text is copyright
 of the author; preprint sharing follows Elsevier's article sharing policy.
+
+## Break-even analyses (P21.1, P21.2)
+
+```text
+python experiments/break_even_21a.py
+python experiments/break_even_cost_21b.py
+python experiments/verify_break_even_21a.py
+python experiments/verify_break_even_cost_21b.py
+```
+
+The archived inputs are included; no raw NASA trajectories or fitted models are needed. See `experiments/BREAK_EVEN_README.md` for definitions, scope and limitations. This repository has no DOI; the version used for the paper is identified by its commit hash.

@@ -1,0 +1,87 @@
+confirmation FD002 1 2s
+confirmation FD002 2 3s
+confirmation FD002 3 4s
+confirmation FD004 1 5s
+confirmation FD004 2 6s
+confirmation FD004 3 7s
+development FD001 1 8s
+development FD001 2 9s
+development FD001 3 10s
+development FD003 1 11s
+development FD003 2 12s
+development FD003 3 14s
+{
+  "q0_rows_unmatched": 1536,
+  "q0_max_rel_diff": {
+    "rate_A": 1.6218219085950286e-16,
+    "rate_B": 1.6202506003537562e-16,
+    "event_rate_A": 6.045049173313105e-13,
+    "event_rate_B": 2.903716582326453e-16,
+    "dW": 2.7628283539819213e-14,
+    "dE": 4.706755023472331e-13,
+    "dW_low": 7.359489368066583e-15,
+    "dW_high": 3.022009315100405e-14,
+    "dE_low": 3.3180058549718667e-13,
+    "dE_high": 7.250089356345715e-13,
+    "beta0": 2.3109776403311324e-14,
+    "beta0_low": 3.360430207871094e-15,
+    "beta0_high": 4.796884774469503e-16,
+    "boot_A_dominates": 0.0,
+    "boot_B_dominates": 0.0,
+    "boot_A_above": 0.0,
+    "boot_A_below": 0.0,
+    "boot_tie": 0.0
+  },
+  "q0_class_mismatch": 0,
+  "q0_bounded_mismatch": 0,
+  "q0_pass": false,
+  "p17b_inspections_unmatched": 120,
+  "p17b_inspections_max_rel_diff": 4.440892098500626e-16,
+  "p17b_inspections_pass": false,
+  "non_hybrid_inspections_max": 0.0,
+  "monotone_in_q": true,
+  "contrasts_per_cell_delay_q": [
+    108
+  ],
+  "cells_delays_q": 96
+}
+{
+  "finished": "2026-10-19T21:50:16.166660+00:00",
+  "seconds": 16.604663372039795,
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "numpy": "2.4.4",
+  "pandas": "3.0.2",
+  "boot": 4000,
+  "seed": 20261021,
+  "betas": [
+    0.0,
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    5.0,
+    10.0,
+    20.0,
+    50.0,
+    100.0
+  ],
+  "qs": [
+    0.0,
+    0.005,
+    0.01,
+    0.02
+  ],
+  "rows": {
+    "rates": 13152,
+    "contrasts": 10368,
+    "summary": 3456,
+    "preference_curves": 114048,
+    "frontier": 1152
+  }
+}
+
+real	0m17.518s
+user	0m0.000s
+sys	0m0.000s

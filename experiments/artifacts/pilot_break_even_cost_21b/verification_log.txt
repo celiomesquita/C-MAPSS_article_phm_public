@@ -1,0 +1,14 @@
+ok   manifest hashes
+ok   configuration (B, seed, q grid)
+ok   108 contrasts per cell, delay and q
+ok   no duplicated contrast
+ok   10368 contrast rows rebuilt from raw sources (all q)
+ok   preference curves rebuilt
+ok   13152 arm rates rebuilt
+ok   frontier dominance recomputed
+ok   repeat ranges summarised correctly
+ok   q=0 reproduces P21.1
+ok   inspection counts reproduce P17.1 summary
+ok   non-hybrid arms have no inspections
+ok   restoration-equivalent cost of the hybrid arm is monotone in q
+P21.2 verification passed

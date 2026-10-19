@@ -1,0 +1,16 @@
+{
+  "started": "2026-10-19T21:22:53.313149+00:00",
+  "inputs": {
+    "experiments\\artifacts\\pilot_inspection_17b\\expectations.csv.gz": "f7ce6b0647deddf1cf2241cb3cf63e2d6fb17c4d7dc553a32891dcde917ecd60",
+    "experiments\\artifacts\\pilot_inspection_latent_17c\\expectations.csv.gz": "3bfdf83cc0b797eeeb03a531af81e9f1cafedf1063e9cfc2a48c21a1ba21114c",
+    "experiments\\artifacts\\pilot_policy_selection_13a\\decisions.csv": "902e349ce0ebbc2ddb4c841e3601d0d6b1344b185c73636d01c17f3eeb54e7f5",
+    "experiments\\artifacts\\pilot_inspection_17b\\summary.csv": "ef4ac2389b2b32bf4c3a6c5c9ef662cbe7ce3afe089463a666eda3e53f48059e",
+    "experiments\\literal_cycles_2026-10-19\\cells.csv": "5b6fd29ef96693c4464920caffeeace43481ebbee74d191264aa2b25afd47c2f"
+  },
+  "modules": {
+    "protocolo_equilibrio_eventos_21a.md": "fbda10bccbe1f29b3992fd4e57317a609ed7f7892b06816f90d80e4f98e6baf5",
+    "break_even_21a.py": "e27ce5a200569fa6fbb1ab824ab86529e63032e42e4ed72ce2eb696260d0bb55",
+    "test_break_even_21a.py": "69734c3aaf702b3e173a99f21fae7f66f0924565654450799aae0819bb8761ea",
+    "verify_break_even_21a.py": "14ba435b5792d85a864c6b024eefba6df26bcd78feb22aa0f8aee570d4084ad5"
+  }
+}

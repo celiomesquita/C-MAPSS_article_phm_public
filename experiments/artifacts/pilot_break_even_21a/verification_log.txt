@@ -1,0 +1,23 @@
+ok   manifest hashes
+ok   bootstrap configuration
+ok   108 contrasts per cell and delay
+ok   no duplicated contrast
+ok   2592 contrast rows rebuilt from raw sources
+ok   preference curves (point and bootstrap) rebuilt
+ok   3288 arm rates rebuilt (selected rules from archived columns)
+ok   frontier dominance recomputed
+ok   repeat ranges summarised correctly
+ok   P17.1 rates reproduced to 1e-9
+ok   P20.2 total visits agree within 1%
+ok   PHM independent of the inspection scenario
+{
+  "p17b_max_rel_diff_hybrid": 1.3322676295501878e-15,
+  "p17b_max_rel_diff_phm": 1.1102230246251565e-15,
+  "p20b_max_rel_diff_total_visits": 0.00736692562478336,
+  "p20b_max_rel_diff_degradation_visits": 0.005487238366382652
+}
+P21.1 verification passed
+
+real	3m47.221s
+user	0m0.000s
+sys	0m0.015s

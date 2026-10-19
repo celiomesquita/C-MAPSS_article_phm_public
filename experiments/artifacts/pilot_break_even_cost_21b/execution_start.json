@@ -1,0 +1,22 @@
+{
+  "started": "2026-10-19T21:51:00.979196+00:00",
+  "qs": [
+    0.0,
+    0.005,
+    0.01,
+    0.02
+  ],
+  "inputs": {
+    "experiments\\artifacts\\pilot_inspection_17b\\expectations.csv.gz": "f7ce6b0647deddf1cf2241cb3cf63e2d6fb17c4d7dc553a32891dcde917ecd60",
+    "experiments\\artifacts\\pilot_inspection_latent_17c\\expectations.csv.gz": "3bfdf83cc0b797eeeb03a531af81e9f1cafedf1063e9cfc2a48c21a1ba21114c",
+    "experiments\\artifacts\\pilot_policy_selection_13a\\decisions.csv": "902e349ce0ebbc2ddb4c841e3601d0d6b1344b185c73636d01c17f3eeb54e7f5",
+    "experiments\\artifacts\\pilot_inspection_17b\\summary.csv": "ef4ac2389b2b32bf4c3a6c5c9ef662cbe7ce3afe089463a666eda3e53f48059e",
+    "experiments\\artifacts\\pilot_break_even_21a\\contrasts.csv": "62e5a5f07d45db04175d5fd8a550b41d18458e0350bf7594b8964ac4650af8f0"
+  },
+  "modules": {
+    "protocolo_custo_inspecao_21b.md": "6f75a0019b83c4e3a707152502e37998b8115e6dffe317de3b21ef8677ebc591",
+    "break_even_cost_21b.py": "20feb9ef62e6eb929a31357c3c2f1fa06a52508594d3da0f4031ed747adb030b",
+    "test_break_even_cost_21b.py": "9707c3db938f122fa38401a91932f6acb29b3598b8a14c9448be7374e2d16024",
+    "verify_break_even_cost_21b.py": "f81ace681fff21e8dff9115442591b3de0d2e9b78e8d8a1739c505f541626c01"
+  }
+}

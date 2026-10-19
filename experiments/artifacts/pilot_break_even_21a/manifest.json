@@ -1,0 +1,15 @@
+{
+  "conclusoes.md": "dbe63f3cee9f4d905ade712c17b8371753acfda50047beafc377abf5cb9fe2e7",
+  "contrast_summary.csv": "ecced75184a109e1d4e58721ad2ff0fccec6ffefc2a8913411e2e3b34a38f31f",
+  "contrasts.csv": "62e5a5f07d45db04175d5fd8a550b41d18458e0350bf7594b8964ac4650af8f0",
+  "execution_start.json": "f75f6e4cafe133fe90a9e2eecc51398320b3f3dde4f0915c5f505d1edd1de947",
+  "frontier.csv": "c352588a8f03df59b347bbbb5a9996263c6519aee510113cf5f6e9bb4cd603d6",
+  "metadata.json": "bcc112fd3bd5da2e310790b47df27d6600f671d88f1535d423e0522ad4f37e6d",
+  "preference_curves.csv": "e059dcdbf2c0b1c50a21a4c65c99e6a0d4fc2b491a23174df2a210f4a615d89b",
+  "rates.csv": "afdf55bd6efd805a3649a0e85cbb9c2fd31f5c674ba0137234d83a5c86e7a2e6",
+  "source_break_even_21a.py": "e27ce5a200569fa6fbb1ab824ab86529e63032e42e4ed72ce2eb696260d0bb55",
+  "source_protocolo_equilibrio_eventos_21a.md": "fbda10bccbe1f29b3992fd4e57317a609ed7f7892b06816f90d80e4f98e6baf5",
+  "source_test_break_even_21a.py": "69734c3aaf702b3e173a99f21fae7f66f0924565654450799aae0819bb8761ea",
+  "source_verify_break_even_21a.py": "14ba435b5792d85a864c6b024eefba6df26bcd78feb22aa0f8aee570d4084ad5",
+  "validation.json": "5e609f72b350bc028b7aaa66b25fdbf0d9a6c67a0fd3fa95a6006ba6d21040c8"
+}

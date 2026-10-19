@@ -1,0 +1,109 @@
+confirmation FD002 1 1s
+confirmation FD002 2 1s
+confirmation FD002 3 2s
+confirmation FD004 1 2s
+confirmation FD004 2 3s
+confirmation FD004 3 3s
+development FD001 1 3s
+development FD001 2 4s
+development FD001 3 4s
+development FD003 1 4s
+development FD003 2 5s
+development FD003 3 5s
+{
+  "p17b_rows": 1920,
+  "p17b_unmatched_hybrid": 0,
+  "p17b_unmatched_phm": 0,
+  "p17b_max_rel_diff_hybrid": 1.3322676295501878e-15,
+  "p17b_max_rel_diff_phm": 1.1102230246251565e-15,
+  "p17b_pass": true,
+  "p20b_rows": 264,
+  "p20b_unmatched": 0,
+  "p20b_max_rel_diff_total_visits": 0.00736692562478336,
+  "p20b_max_rel_diff_degradation_visits": 0.005487238366382652,
+  "p20b_tolerance": 0.01,
+  "p20b_pass_total": true,
+  "p20b_worst": [
+    {
+      "subset": "FD003",
+      "repeat": 3,
+      "arm": "RF_SLOPE_POINT_M15",
+      "kind": "PHM",
+      "delay": 1,
+      "total_rel": 0.00736692562478336
+    },
+    {
+      "subset": "FD003",
+      "repeat": 3,
+      "arm": "RF_SLOPE_POINT_M15",
+      "kind": "PHM",
+      "delay": 2,
+      "total_rel": 0.007356136248906964
+    },
+    {
+      "subset": "FD003",
+      "repeat": 3,
+      "arm": "ISO_POINT_M15",
+      "kind": "PHM",
+      "delay": 2,
+      "total_rel": 0.007346046399864026
+    },
+    {
+      "subset": "FD003",
+      "repeat": 3,
+      "arm": "ISO_POINT_M15",
+      "kind": "PHM",
+      "delay": 1,
+      "total_rel": 0.007181409933065375
+    },
+    {
+      "subset": "FD003",
+      "repeat": 3,
+      "arm": "ISO_POINT_M15",
+      "kind": "HYB",
+      "delay": 1,
+      "total_rel": 0.007075615463211116
+    }
+  ],
+  "phm_scenario_independence_max_abs_diff": 0.0,
+  "contrasts_per_cell_delay": [
+    108
+  ],
+  "contrasts_per_cell_delay_expected": 108,
+  "cells_delays": 24,
+  "inputs_ok": true
+}
+{
+  "finished": "2026-10-19T21:22:59.213984+00:00",
+  "seconds": 5.906400442123413,
+  "python": "3.13.7 (tags/v3.13.7:bcee1c3, Aug 14 2025, 14:15:11) [MSC v.1944 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "numpy": "2.4.4",
+  "pandas": "3.0.2",
+  "boot": 4000,
+  "seed": 20261021,
+  "betas": [
+    0.0,
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    5.0,
+    10.0,
+    20.0,
+    50.0,
+    100.0
+  ],
+  "rows": {
+    "rates": 3288,
+    "contrasts": 2592,
+    "summary": 864,
+    "preference_curves": 28512,
+    "frontier": 288
+  }
+}
+
+real	0m6.767s
+user	0m0.000s
+sys	0m0.015s

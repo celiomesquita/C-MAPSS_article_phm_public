@@ -1,0 +1,16 @@
+{
+  "conclusoes.md": "d25c86b2f1b71147b0e8978244ce0f99c8991215255359cc7973ba7cd12ff4b2",
+  "contrast_summary.csv": "de407947e082ef259098789c131f3e1cecfe7da33b3c0e99ae87745ab6aa3ca8",
+  "contrasts.csv": "106e7bf6c5b3edf72c863d0cab6edd18833a8fee1e010c02220f669dcbd1350b",
+  "execution_start.json": "a788b96a54f4118c4ddf4374db04bb8a6b3028068e4d965c3a0dff8856686be4",
+  "frontier.csv": "c22d65f6902533ed14cad8b73d47da89ccad24925440942cd5dfff8c9cc82ac9",
+  "metadata.json": "57a2dec0934fe3cc47321ea3b9a69f87eda24418fe09f82dd658a5dd1286364e",
+  "preference_curves.csv": "9c6748e6b661b74e0e3a45c2335143018a7848b4c6c7303cf152f519baebac08",
+  "rates.csv": "dc4e33785eb6d6251ec4bdd056a3395d7c96aae3335199ae83c9f774258bf156",
+  "source_break_even_cost_21b.py": "20feb9ef62e6eb929a31357c3c2f1fa06a52508594d3da0f4031ed747adb030b",
+  "source_protocolo_custo_inspecao_21b.md": "6f75a0019b83c4e3a707152502e37998b8115e6dffe317de3b21ef8677ebc591",
+  "source_test_break_even_cost_21b.py": "9707c3db938f122fa38401a91932f6acb29b3598b8a14c9448be7374e2d16024",
+  "source_verify_break_even_cost_21b.py": "f81ace681fff21e8dff9115442591b3de0d2e9b78e8d8a1739c505f541626c01",
+  "table_cost.tex": "3400df7494fd0300565862e6ab2f8f0cb96ed44ebeb6a3ccaa7a57511283b975",
+  "validation.json": "65f356ab310a80b0ad13f0386b8a8413a8605f3a4712532c50ba98e4d7e74f9f"
+}

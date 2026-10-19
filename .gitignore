@@ -33,3 +33,9 @@ __pycache__/
 # OS files
 .DS_Store
 Thumbs.db
+
+# P21.1/P21.2 break-even analyses: archived inputs and verified outputs
+!experiments/artifacts/pilot_break_even_21a/*.csv
+!experiments/artifacts/pilot_break_even_cost_21b/*.csv
+!experiments/artifacts/pilot_inspection_17b/summary.csv
+!experiments/artifacts/pilot_policy_selection_13a/decisions.csv

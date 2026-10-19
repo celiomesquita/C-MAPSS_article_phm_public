@@ -1,0 +1,63 @@
+{
+  "p17b_rows": 1920,
+  "p17b_unmatched_hybrid": 0,
+  "p17b_unmatched_phm": 0,
+  "p17b_max_rel_diff_hybrid": 1.3322676295501878e-15,
+  "p17b_max_rel_diff_phm": 1.1102230246251565e-15,
+  "p17b_pass": true,
+  "p20b_rows": 264,
+  "p20b_unmatched": 0,
+  "p20b_max_rel_diff_total_visits": 0.00736692562478336,
+  "p20b_max_rel_diff_degradation_visits": 0.005487238366382652,
+  "p20b_tolerance": 0.01,
+  "p20b_pass_total": true,
+  "p20b_worst": [
+    {
+      "subset": "FD003",
+      "repeat": 3,
+      "arm": "RF_SLOPE_POINT_M15",
+      "kind": "PHM",
+      "delay": 1,
+      "total_rel": 0.00736692562478336
+    },
+    {
+      "subset": "FD003",
+      "repeat": 3,
+      "arm": "RF_SLOPE_POINT_M15",
+      "kind": "PHM",
+      "delay": 2,
+      "total_rel": 0.007356136248906964
+    },
+    {
+      "subset": "FD003",
+      "repeat": 3,
+      "arm": "ISO_POINT_M15",
+      "kind": "PHM",
+      "delay": 2,
+      "total_rel": 0.007346046399864026
+    },
+    {
+      "subset": "FD003",
+      "repeat": 3,
+      "arm": "ISO_POINT_M15",
+      "kind": "PHM",
+      "delay": 1,
+      "total_rel": 0.007181409933065375
+    },
+    {
+      "subset": "FD003",
+      "repeat": 3,
+      "arm": "ISO_POINT_M15",
+      "kind": "HYB",
+      "delay": 1,
+      "total_rel": 0.007075615463211116
+    }
+  ],
+  "phm_scenario_independence_max_abs_diff": 0.0,
+  "contrasts_per_cell_delay": [
+    108
+  ],
+  "contrasts_per_cell_delay_expected": 108,
+  "cells_delays": 24,
+  "inputs_ok": true
+}
