@@ -1,0 +1,275 @@
+\documentclass[12pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,booktabs,tabularx}
+\usepackage{longtable}
+\newcommand{\tablenotes}[1]{\par\smallskip\begin{minipage}{\linewidth}\footnotesize\raggedright\setlength{\parindent}{0pt}#1\end{minipage}}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage[hidelinks]{hyperref}
+\newcommand{\RUL}{\mathrm{RUL}}
+\renewcommand{\thesection}{S\arabic{section}}
+\title{Supplementary material: Incremental value of failure forecasts beyond a health-index landmark in conservative turbofan removal on C-MAPSS}
+\author{Antonio C. P. Mesquita}
+\date{}
+\begin{document}
+\maketitle
+This supplement specifies the development comparators and empirical-support diagnostics used in the turbofan removal comparison.
+\section{Health-index development comparators}
+The development identifiers P03--P06 refer to archived exploratory pilots: minimum departures (P03), initial tolerance (P04), empirical and terminal-reconstruction comparisons (P05), and transfer/refitting in FD003 (P06). These pilots precede the main-protocol freeze.
+
+For sensor $j$, the causal summary is $\bar x_{ij,15}(t)=15^{-1}\sum_{u=t-14}^{t}x_{ij}(u)$. Orientations, population scales and fitted coefficients are learned outside the evaluation engines; each engine supplies its own initial sensor reference. P03 investigates sensitivity of the detection assumptions while holding prognostic predictions fixed, together with an initial HI proxy. P04 introduces a tolerance for initial sensor variation. For oriented departure $a_{ij}(t)=d_j[\bar x_{ij,15}(t)-b_{ij}]$, with $b_{ij}=\bar x_{ij,15}(20)$ and $d_j\in\{-1,1\}$ learned from fitting engines, the margin-based candidates take the form
+\[
+\widehat H_i^{\min}(t)=\min_j\operatorname{clip}
+\left(1-\frac{[a_{ij}(t)-A_j]_+}{B_j-A_j},0,1\right),
+\qquad t\geq20.
+\]
+Here $[u]_+=\max(0,u)$, $A_j$ is a statistical initial tolerance and $B_j>A_j$ is an empirical terminal reference learned from fitting engines. Neither is a certified operational limit. For fixed references and channels, the margin reaches zero if and only if $a_{ij}(t)\geq B_j$; increasing $A_j$ alone cannot correct terminal anchoring. The HI is unavailable before its initial reference, and P is not used to impose its shape.
+
+The terminal-reconstruction comparator uses patterns $\mathcal V_k$ from the final observed cycles of fitting engines. Its reconstruction and residual are
+\[
+\begin{aligned}
+\mathcal K_h(\mathbf z,\mathbf v)
+&=\exp\left[-\frac{1}{2h^2}\sum_j\frac{(z_j-v_j)^2}{\nu_j^2}\right],\\
+\widehat{\mathbf z}_F(\mathbf z)
+&=\frac{\sum_{\mathbf v\in\mathcal V_k}\mathcal K_h(\mathbf z,\mathbf v)\mathbf v}
+{\sum_{\mathbf v\in\mathcal V_k}\mathcal K_h(\mathbf z,\mathbf v)},\qquad
+D_F(\mathbf z)=\|\mathbf z-\widehat{\mathbf z}_F(\mathbf z)\|_2,\\
+\widehat H_i^{\mathrm{AAKR}}(t)
+&=\operatorname{clip}\left(\frac{D_F(\mathbf z_i(t))-c_F}{c_H-c_F},0,1\right),
+\qquad c_H>c_F.
+\end{aligned}
+\]
+The scales $\nu_j$ describe terminal-pattern dispersion. The initial anchor $c_H$ is the residual at the initial reference; $c_F$ is the median fitting-engine endpoint residual obtained while excluding that engine's patterns from reconstruction and metric estimation. Causal summaries and deterministic sensor-subset candidates replace the original study's feature-extraction and evolutionary-search components. Accordingly, the experiment compares an adaptation of terminal AAKR \cite{Baraldi2018HI}, not the complete published method.
+
+\section{Empirical support and perturbation replays}
+
+The empirical-support diagnostic uses consecutive raw sensor increments, not HI values or moving averages. For each fitting engine, let $\Delta\mathbf x_i(t)=\mathbf x_i(t)-\mathbf x_i(t-1)$ and $\mathbf m_i=15^{-1}\sum_{t=6}^{20}\Delta\mathbf x_i(t)$. Pool the residuals $\mathbf r_i(t)=\Delta\mathbf x_i(t)-\mathbf m_i$ over fitting engines and cycles 6--20. Their sample covariance $\mathbf V$ uses denominator $N-1$; retain channels $J=\{j:V_{jj}>10^{-12}\}$, independently of HI channel selection, and set $\nu_j=\sqrt{V_{jj}}$. The standardised fitting residuals are $\mathbf v_i(t)=(r_{ij}(t)/\nu_j)_{j\in J}$. Let $\mathbf R$ be their sample covariance and $\mathbf P$ its inverse restricted to eigenvalues greater than $10^{-12}$. With $Q_{.99}$ denoting the linearly interpolated empirical 0.99 quantile, define
+\[
+ L_M=Q_{.99}\{\mathbf v_i(t)^\top\mathbf P\mathbf v_i(t)\},
+ \qquad L_j=Q_{.99}\{|v_{ij}(t)|\}.
+\]
+For an original or perturbed evaluation trajectory $\mathbf x_i^{(v)}$, the evaluated increment is $\mathbf e_i^{(v)}(t)=([\Delta x_{ij}^{(v)}(t)-\bar m_j]/\nu_j)_{j\in J}$, where $\bar{\mathbf m}$ is the mean of the fitting-engine centres $\mathbf m_i$. Thus fitting residuals are centred per engine, whereas evaluation increments use the common fitting centre. An increment is inside if and only if
+\[
+ I_i^{(v)}(t)=\mathbf1\!\left\{
+ (\mathbf e_i^{(v)})^\top\mathbf P\mathbf e_i^{(v)}\leq L_M,
+ \quad |e_{ij}^{(v)}|\leq L_j\ \text{for every }j\in J\right\}=1.
+\]
+The global perturbation adds a fixed channel-shift vector multiplied by $g(t)=\operatorname{clip}((t-20)/20,0,1)$. The local replay ends at the original decision $C_0$, or $T_i-1$ if no original decision exists, and uses $g(t)=\mathbf1\{t>20\}\operatorname{clip}((t-C_0+19)/19,0,1)$. Both leave the initial reference unchanged. For the global replay, each trajectory's prefix ends at its own decision, or $T_i-1$ without a decision; in the local replay the fallback is $C_0$. A paired replay is wholly inside support only when
+\[
+ \prod_{t=6}^{C_0} I_i^{(0)}(t)
+ \prod_{t=6}^{C_v} I_i^{(v)}(t)=1,
+\]
+where $C_v$ is the perturbed prefix end. Destination cycle 6 and both ends are included; F is excluded. Date-shift summaries require both decisions to exist, whereas decision-presence summaries retain missing decisions. This whole-prefix condition differs from support at individual common sensitivity times. Separate 0.99 cut-offs do not imply 99\% joint or whole-prefix coverage. Exceedance denotes statistical extrapolation relative to initial increments, not physical impossibility; inclusion does not establish physical plausibility.
+
+\subsection*{Coefficient stability metrics}
+
+Stability of the coefficients is also measured between the folds of each repetition, from the stored models: the Spearman correlation of $\beta_j$, not $w_j$, over the channels retained in both folds, the share of channels with the same orientation, the Jaccard overlap of channels with $\beta_j>10^{-9}$ and the overlap of the three largest $\beta_j$ values. Ties in the latter are resolved by sensor number. This diagnostic differs from the contribution-rank comparison above. Stability is examined by excluding each fitting engine in turn, refitting orientation and coefficients, and recording the shift of the first-passage landmark. Four alternative coefficient formulations were compared on development engines only and then through the full chain; none is adopted.
+
+\section{Coverage of experimental gains and non-gains}
+
+This review covers the 32 scientific experimental series preceding the literal-flight analysis in S5, including the early pilots and the final confirmation and inspection analyses. Inventory and rehearsal outputs are technical checks; the failed first renewal run is preserved as an invalidated computation, not evidence of a maintenance benefit. The accompanying public package contains an experiment-by-experiment coverage matrix, source hashes and 1,531 directional contrast records. Some records describe different metrics of the same comparison, repeated engines or multiple exploratory contrasts; they are not independent discoveries. A descriptive interval excluding zero does not establish replication, population risk or practical relevance.
+
+\small
+\begin{longtable}{@{}p{0.12\linewidth}p{0.40\linewidth}p{0.40\linewidth}@{}}
+\toprule
+Series & Positive or local result & Non-gain and qualification \\
+\midrule
+\endfirsthead
+\toprule
+Series & Positive or local result & Non-gain and qualification \\
+\midrule
+\endhead
+P01--P03 & P01 margins removed observed endpoint events. In P02, local calibration within the same action region added 4.47--6.94 mean cycles with zero events across four regressors; selected LightGBM reached 196.71 mean cycles with zero events. P03 detector changes left individual removal dates invariant under fixed forecasts. & P01 margins discarded substantial life. Early pilots used immediate execution, different predictors and reused engines; they do not validate the later reserve contract. Detector invariance does not identify physical P. \\
+P04 & Initial tolerance reduced departure from the assumed healthy plateau: the departure fraction fell from 1.000 to 0.812 or 0.593. & The stable period is assumed. First-zero dates did not change with tolerance for fixed terminal references; terminal anchoring remained inadequate. \\
+P05--P06 & Refitted FD003 empirical and AAKR errors were 23.40 and 26.41 cycles against 32.41 for the margin control. Their paired differences had intervals below zero. & FD001 differences included zero. Direct transfer failed markedly; neither refitting nor good RUL error validates physical HI zero. \\
+P07 & Five-cycle updates reduced RMSE from 17.85 to 17.11 in FD001 and 14.84 to 14.31 in FD003. & At common observation cycles, the apparent FD003 advantage over the margin HI shrank to $-1.05$ cycles with interval including zero. The empirical HI recovered above 0.5 after crossing in 7 FD001 and 10 FD003 engines. \\
+P08 & Direct-sensor history reduced FD003 RF RMSE from 16.44 to 14.40 in complete engines and from 15.69 to 11.21 in 22 truncated engines with a landmark. In that truncated group, full sensors also improved on full HI history (15.14 to 11.21). & These are exploratory, state-conditional comparisons. Full HI history did not improve last-observation errors; Ridge worsened. HI plus slope alone gave 16.67/14.00 cycles versus 16.98/14.05 with full HI history. Individual ablation gains and losses remain in the ledger. \\
+P09 & Slope improved RF over current HI in all three FD003 repetitions, with paired intervals below zero. Path calibration improved nominal-90\% RF-slope whole-path coverage from 60--82\% to 86--90\%. & ISO was not consistently beaten. Wider bands paid for increased coverage, and useful conservative lead could collapse. \\
+P10--P11 & Finite nominal-98\% calibration was feasible in development; lower-anchor rules prevented observed endpoint events. Reserve-12 and nominal-95\% sensitivities preserved more life in the same sample. & Calibration and event risk differ. Temporal RF did not conclusively outperform ISO at the main landmark; lower leads could collapse. Sensitivity gains do not authorise weaker protection. \\
+P11.1--P11.2 & The landmark supplied at least 95.9\% of conservative ISO's development life gain. RF-slope added 0.28--1.09 mean cycles in FD001 and 0.24--0.54 in FD003 over that marker. Oracle comparison located residual loss after signal availability. & ISO's extra gain was 0--1.57 cycles. No loss to late access under the basic oracle does not make all post-landmark loss recoverable. \\
+P12.1--P12.2 & Analytic and simulated renewal rates agreed. Selected condition thresholds and waiting times reduced restoration demand relative to the marker; rule ordering usually survived the scale and renewal grid. & Gains of selected rules included endpoint events. Small ISO/RF or ISO/marker differences were often indistinguishable. Scale, LLP, starting age and restoration effectiveness govern the calendar scenario. \\
+P13.1 & Selected thresholds added 13.08--15.49 cycles in FD001 and 8.29--12.90 in FD003; waiting added 8.50--10.00 and 6.90--9.00. & Thresholds had 0--2 events per 100 and waiting 0--1; four internal choices were infeasible. \\
+P13.2--P13.3 & The computational explanation reproduced 9,600 actions. Influence diagnostics linked large shifts to orientation and coefficient learning; FD001 sensitivity was usually much smaller. & No whole decision prefix passed the initial-support restriction. RF forecasts were more sensitive to specified perturbations, but neither that contrast nor explanation fidelity establishes physical robustness. \\
+P13.4 & Internal FD003 median partition p95 shift fell from 5 to 3 cycles and the largest shift from 223 to 45. & Maxima worsened in 8/30 FD001 and 3/30 FD003 partitions. One contingency was not eligible; development stability was not externally validated. \\
+P13.5 & Conservative ISO gained 1.30--1.96 mean cycles in FD001 and 2.29--4.74 in FD003, with positive paired intervals. Landmark RMSE improved in 11/12 comparisons, nine with intervals below zero. & Later prediction times confound RMSE attribution. FD001 p95 range worsened and FD003 gained endpoint events; the joint transfer criterion failed. \\
+P14.1 & Relative landmark range did not increase with lifetime; longer-lived tails explained much absolute spread. & Absolute instability was only partly concentrated in long lives, while events were concentrated in short lives. No engine exclusion or universal age cap was justified. \\
+P15.1--P15.4 & Higher fallback ages recovered some life; conservative ages suppressed observed events when below all evaluated endpoints. & Suppression was partly by construction. Conservative caps largely erased PHM gains; extrapolating rejected lifetime distributions was unsupported. These superseded policies are not the monitoring-loss policy. \\
+P16.1 & Condition-based extension recovered 53\%/68\% of headroom in FD001/FD003 and retained some savings with detected monitoring losses. & Monitoring validity is assumed detectable. A loss-triggered removal occurs at or after the age gate, but a pre-existing PHM decision may remove earlier. \\
+P17.1 & Inspection reduced point-anchor events and FD004 conservative-rule events, with restoration-rate comparisons reported jointly. & Advancing removal costs life. Additional $\gamma=0.26$ sensitivity increased mean restoration rates by 6.8--11.8\% for lower-anchor ISO and 17.2--19.2\% for point-anchor ISO relative to no inspection. Inspection counts and all curves are archived; none is borescope-calibrated. \\
+P17.2 & Low point-anchor event levels persisted under latent visibility and shape scenarios. & Heterogeneous visibility increased restoration penalties; latent shape had little effect. These are generator-conditioned findings. \\
+P18.1 & Normalisation restored synthetic multi-regime landmark availability and near-reference error, reproducing the true-regime result. & Regimes were separable and effects simple; this does not validate regime--degradation interactions. \\
+P19.1--P19.2 & The frozen age-limit criterion passed; conservative FD002 policies had no observed events and low incremental forecast gains. Coefficient stability was quantified in all subsets. & FD004 had policy events; some margins were infinite. Reserve-12 and nominal-95\% ISO sensitivities did not alter FD004 lives or events. Coefficients remained only moderately stable. \\
+P20.1 & Three-arm 20-year restoration-demand and expenditure comparisons favour PHM over the fixed age in the declared central scenario and almost all grid contrasts. & Inspection increases restoration expenditure relative to the same PHM rule. Results depend on scale, renewal and cost assumptions; the failed initial simulation is excluded. \\
+\bottomrule
+\end{longtable}
+\normalsize
+
+The public files retain every directional contrast rather than only the favourable intervals. Gains in a prediction metric, calibration target or development stability are distinguished from gains in realised removal performance; none selects a new policy after confirmation.
+
+\section{Earlier scaled renewal scenarios and restoration expenditure}
+
+This section preserves the earlier scale-bridge analyses. They are sensitivity scenarios, not the literal-flight scenario now used in the main text. The sources concern engines of 19,500--33,000 lb thrust, whereas the benchmark engine class is 90,000 lb; the reference interval therefore does not physically calibrate the benchmark engine.
+
+The developmental scale analysis used a partition-specific age control, whereas the final three-arm comparison uses the single 127-cycle benchmark gate. They are different references. With the central scale $\xi=40.8$ in FD001 and 34.1 in FD003, 1,600 operational flight cycles per year and an LLP counter of 20,000 cycles, the earlier age control needed 6.64/7.25 visits per position over 20 years and lower-anchor ISO 5.51/5.43: reductions of 17.0\%/25.1\%. About 1.6 LLP visits were common to all rules. Without LLP, reductions stayed at 21.3--22.3\% and 29.0--29.8\% across the scale grid. ISO gains over the landmark were small; 36\% of FD003 cells were indistinguishable. A literal one-to-one interpretation in the earlier, partition-age experiment gave approximately 150--240 restorations per position; that is not the reported central scenario or a new three-arm simulation.
+
+An operational cycle is counted as engine start, flight, landing and shutdown. C-MAPSS records a snapshot per simulated flight; $\xi=L_{\mathrm{ref}}/\bar T$ rescales the degradation lifetime to a declared operational service-interval scenario. The benchmark gate therefore becomes $127\xi$ operational cycles, not 127 operational cycles. The public \texttt{cycle\_scale.csv} gives both quantities by subset. There is no simulated intra-flight start or shutdown process.
+
+All three arms share the same utilisation, horizon, initial-age condition, LLP counter and restoration assumptions. Let $N^{\pi}_{20}$ count restorations after degradation removals or forced LLP removals over 20 years. At the common illustrative cost $c_R$, expected restoration expenditure is $c_R\mathbb E[N^{\pi}_{20}]$. The central $c_R$ is US\$6 million; US\$5/7 million multiply every central cost by $5/6$ or $7/6$. The public cost table uses the unrounded archived simulation means. Costs have no discount or inflation; inspections, monitoring and downtime have no incremental charge, and endpoint events have no added consequence cost. Thus this is a comparison of restoration expenditure under a fixed-cost model, not total maintenance cost or company profit.
+
+Inspection is not assumed costless in practice. Its zero incremental cost is the experimental contract. If engineering data later justify a nonzero inspection charge or different restoration scope after different removals, the total-cost comparison must be extended. No such new scenario or optimal policy is inferred here.
+
+The earlier four-subset simulation used 5,760 cells over scale, utilisation, LLP, initial age and restoration effectiveness, with 2,000 replicates per cell. The first run failed its predeclared stationary check ($\max|z|=6.15$) because the initial life distribution misweighted stochastic outcomes. That run was preserved, the weighting corrected and a test added; the corrected run passed ($\max|z|=3.90$, long-horizon error at most 0.24\%, identical LLP counts across arms). An independent scalar implementation reproduced 192 sampled cells exactly. Across the full grid, conservative ISO versus age retained the expected sign in 11,518/11,520 comparisons, and the hybrid versus the same PHM rule in 11,519/11,520; the remaining comparisons were indistinguishable. These are scenario contrasts, not independent replications.
+
+At 1,600 flights/year, $L_{\mathrm{ref}}=8,425$, LLP 20,000, mature start, full restoration and lead one, the scaled three-arm costs were as follows (US\$ million per position over 20 years). They use the archived unrounded means and remain distinct from the new literal-flight table.
+\begin{center}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Subset & Age 127 & PHM & PHM + inspection \\
+\midrule
+FD001 & 40.56 & 33.01 & 33.94 \\
+FD002 & 40.66 & 32.91 & 33.90 \\
+FD003 & 48.90 & 32.62 & 33.62 \\
+FD004 & 48.75 & 31.46 & 33.25 \\
+\bottomrule
+\end{tabular}
+\end{center}
+These totals correspond to 6.76/6.78/8.15/8.13 age visits, 5.50/5.48/5.44/5.24 conservative ISO visits, and 5.66/5.65/5.60/5.54 hybrid visits in FD001--FD004. Conservative ISO has 0/0/0/0.0235 mean endpoint events and its hybrid 0/0/0/0.0003. Point-anchor ISO has 0.3795/0.2228/0.4930/0.6160, and its hybrid 0.0142/0.0008/0/0.0008. The archived review package retains the remaining controls and exact values. Independent renewal, scale and inspection capability remain assumptions.
+
+
+\section{Literal-flight renewal scenario}
+
+Following the author's explicit scenario choice, one C-MAPSS cycle is assumed to represent one flight per engine ($\xi=1$). A twin-engine aircraft accrues one cycle at each position per flight. At 1\,600 flights per year, each position accumulates 32\,000 cycles in 20 years; expected restoration expenditure for two equivalent positions is twice the single-position total, without implying independent engines or an aircraft-level risk estimate. The mapping is a scenario assumption, not physical calibration of the degradation rate.
+
+P20.2 uses only the archived complete-engine decisions: 100/180/100/169 engines in FD001/FD002/FD003/FD004 per repetition. Three repetitions reuse engines. All five PHM controls, their inspection variants and the age rule are retained for execution leads one and two. The central comparison keeps always-valid monitoring, full restoration, a mature initial fleet, an independent LLP counter of 20\,000 flights and the original inspection generator (entry 127, interval five, $W=60$, $\gamma=1$, $p_P=0$, $p_F=1$). Cost is US\$6 million for every restoration, including LLP, with zero incremental inspection charge and no other costs. No models, margins or removal rules were refitted or selected.
+
+The protocol was written before this execution and after confirmation. For each of 12 subset/repetition cells, 2\,000 Monte Carlo replicates share engine/outcome streams across all 22 arms. Initial lives are sampled with length weighting and residual age uniformly along the chosen life; LLP initial age is uniform on its counter. Each subsequent life draws an engine and then an outcome. The eight numerical core functions match the corrected earlier simulator. All 264 arm/cell combinations passed the stationary no-LLP check (maximum $|z|=2.3035$, threshold 4.5); LLP visits were identical between arms in each replicate. Independent scalar calculations checked 121\,406 outcome atoms and reproduced all five counts in 12 replicates per arm/cell (3\,168 comparisons). Deterministic age removal was checked at both new and mature starts without LLP.
+
+Table~\ref{tab:twenty} and Table~\ref{tab:restoration-cost} give the literal-flight totals. Conservative ISO uses 149.5--191.1 restorations per position versus about 252.8 for age removal, and the same rule with inspection 159.4--197.1. The conditional mean FD004 event count falls from 0.8855 to 0.0188 per position with inspection. Point-anchor ISO has 10.4--24.8 events without inspection and 0.0018--0.6353 with it. No event outcome is removed from the restoration count. The conditional Monte Carlo standard error of any displayed mean visit count is below 0.064; it excludes population and model-selection uncertainty. The large absolute costs reflect the short assumed flight lives of the benchmark under the literal mapping and must not be interpreted as operator forecasts. The direction of the central visit comparisons agrees with the earlier scaled scenario; this does not establish physical equivalence or accepted risk.
+
+The separate public package \texttt{literal\_cycles\_2026-10-19} contains selected decision inputs, a portable numerical core, the runner and independent verifier, results, conditional Monte Carlo errors and hashes. It is a new exploratory series following the 32-series review in S3, and is not part of that earlier 1,531-record ledger.
+
+\begin{table}[htbp]
+\centering
+\caption{Restoration visits and endpoint events per position over 20 years.}
+\label{tab:twenty}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrrrrrr@{}}
+\toprule
+ & \multicolumn{4}{c}{Visits per position} & \multicolumn{4}{c}{Endpoint events per position} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+Arm & FD001 & FD002 & FD003 & FD004 & FD001 & FD002 & FD003 & FD004 \\
+\midrule
+Age limit 127 & 252.78 & 252.79 & 252.77 & 252.79 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
+Landmark control & 192.19 & 190.04 & 155.08 & 149.50 & 0.0000 & 0.0000 & 0.0000 & 0.8855 \\
+ISO, lower 98\% & 191.14 & 189.93 & 154.70 & 149.50 & 0.0000 & 0.0000 & 0.0000 & 0.8855 \\
+ISO, lower 98\% + inspection & 197.06 & 195.97 & 159.87 & 159.45 & 0.0000 & 0.0000 & 0.0000 & 0.0188 \\
+ISO, point anchor & 167.47 & 170.30 & 138.28 & 141.60 & 18.8187 & 10.3587 & 19.1698 & 24.8033 \\
+ISO, point anchor + inspection & 188.25 & 188.65 & 153.93 & 158.10 & 0.6353 & 0.0633 & 0.0018 & 0.0662 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Literal-flight scenario ($\xi=1$), 32\,000 flights per position, execution lead 1, mean over three repetitions that reuse engines.
+
+Endpoint events are simulated mean counts of restorations following an arrival without decision, an exact arrival or a strict late schedule. Zero denotes no event in the simulated replicates, not zero population risk. Event counts are descriptive simulation means; inspection capability and the one-cycle-per-flight mapping remain hypothetical.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Illustrative restoration expenditure per position over 20 years (US\$ million).}
+\label{tab:restoration-cost}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Subset & Age 127 & PHM & PHM + inspection \\
+\midrule
+FD001 & 1516.70 & 1146.82 & 1182.36 \\
+FD002 & 1516.77 & 1139.59 & 1175.85 \\
+FD003 & 1516.61 & 928.22 & 959.22 \\
+FD004 & 1516.74 & 897.02 & 956.68 \\
+\bottomrule
+\end{tabular}
+\tablenotes{Same literal-flight scenario and ISO lower-98\% rule as Table~\ref{tab:twenty}; US\$6 million per restoration, including forced LLP visits, with zero incremental inspection cost. Values use unrounded simulation means; the largest Monte Carlo standard error for these three arms is US\$0.38 million per position. Costs of US\$5 or 7 million scale every entry linearly and preserve relative savings.}
+\end{table}
+
+\section{Break-even thresholds under alternative inspection assumptions}
+
+Table~\ref{tab:sens-cost} gives the effect of a positive inspection cost; the next two tables vary the damage window and curve with free inspection.
+
+Break-even additional cost $\beta^{\ast}$ of an end-of-life event, in overhaul units, for execution lead one (ranges over three repetitions that reuse engines). $<$ means that A is cheaper only below the threshold; $^\dagger$ marks thresholds whose avoided-event interval includes zero in at least one repetition. Latent rows use an engine-level random effect on the damage window; S1 enters inspection at $T-W$ instead of at the 127-cycle gate.
+
+\begin{table}[htbp]
+\centering
+\caption{Inspection added to the ISO point-anchor rule (A) against the same rule without inspection (B).}
+\label{tab:sens-c3}
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+Scenario & FD001 & FD002 & FD003 & FD004 \\
+\midrule
+$W=30$ & 0.23--0.38 & 0.30--0.39 & 0.16--0.22 & 0.14--0.26 \\
+$W=60$ (main) & 0.94--1.72 & 1.51--1.95 & 0.67--0.96 & 0.51--1.27 \\
+$W=80$ & 1.52--2.83 & 2.52--3.26 & 1.09--1.56 & 0.80--2.14 \\
+$\gamma=2$ & 0.54--0.96 & 0.83--1.05 & 0.38--0.55 & 0.30--0.70 \\
+$\gamma=0.26$ & 1.44--2.67 & 2.38--3.10 & 1.02--1.46 & 0.74--1.98 \\
+$p_P=0.02$ & 1.28--2.36 & 2.14--2.77 & 1.40--2.02 & 0.92--2.52 \\
+S1 entry, $W=60$ & 1.04--2.07 & 1.86--2.42 & 0.72--1.03 & 0.55--1.40 \\
+latent window $\sigma=0.25$ & 0.98--1.80 & 1.59--2.05 & 0.70--1.01 & 0.53--1.35 \\
+latent window $\sigma=0.5$ & 1.06--1.96 & 1.76--2.27 & 0.79--1.13 & 0.59--1.56 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Inspection added to the ISO lower-98\% rule (A) against the same rule without inspection (B); B dom.\ means no event is avoided.}
+\label{tab:sens-c5}
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.1cm}>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+Scenario & FD001 & FD002 & FD003 & FD004 \\
+\midrule
+$W=30$ & B dom. & B dom. & B dom. & 0.67--1.19$^\dagger$ or B dom. \\
+$W=60$ (main) & B dom. & B dom. & B dom. & 5.84--11.8$^\dagger$ or B dom. \\
+$W=80$ & B dom. & B dom. & B dom. & 11.3--23.0$^\dagger$ or B dom. \\
+$\gamma=2$ & B dom. & B dom. & B dom. & 2.74--5.75$^\dagger$ or B dom. \\
+$\gamma=0.26$ & B dom. & B dom. & B dom. & 10.2--19.9$^\dagger$ or B dom. \\
+$p_P=0.02$ & B dom. & B dom. & B dom. & 14.0--29.4$^\dagger$ or B dom. \\
+S1 entry, $W=60$ & B dom. & B dom. & B dom. & 6.71--12.6$^\dagger$ or B dom. \\
+latent window $\sigma=0.25$ & B dom. & B dom. & B dom. & 6.49--13.3$^\dagger$ or B dom. \\
+latent window $\sigma=0.5$ & B dom. & B dom. & B dom. & 8.08--16.9$^\dagger$ or B dom. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Break-even cost $\beta^{\ast}$ with a positive inspection cost $c_I=q_I c_R$ (execution lead one, main inspection scenario; ranges over three repetitions that reuse engines).}
+\label{tab:sens-cost}
+\footnotesize
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{3.1cm}r>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X@{}}
+\toprule
+A vs B & $q_I$ & FD001 & FD002 & FD003 & FD004 \\
+\midrule
+Inspection on ISO point & 0.005 & 1.33--2.48 & 2.24--2.90 & 1.23--1.76 & 0.86--2.35 \\
+ & 0.01 & 1.72--3.24 & 2.97--3.84 & 1.79--2.56 & 1.22--3.42 \\
+ & 0.02 & 2.49--4.75 & 4.43--5.73 & 2.91--4.16 & 1.93--5.57 \\
+\addlinespace
+Inspection on RF-slope point & 0.005 & 1.90--2.84 & 3.13--3.40 & 2.18--3.31 & 1.62--3.23 \\
+ & 0.01 & 2.49--3.73 & 4.17--4.56 & 3.21--4.89 & 2.35--4.73 \\
+ & 0.02 & 3.67--5.50 & 6.25--6.90 & 5.27--8.06 & 3.79--7.74 \\
+\addlinespace
+Inspection on ISO lower-98\% & 0.005 & B dom. & B dom. & B dom. & 12.9--27.0$^\dagger$ or B dom. \\
+ & 0.01 & B dom. & B dom. & B dom. & 20.0--42.1$^\dagger$ or B dom. \\
+ & 0.02 & B dom. & B dom. & B dom. & 34.1--72.4$^\dagger$ or B dom. \\
+\addlinespace
+ISO point + inspection vs lower-98\% & 0.005 & B dom. & B dom. & B dom. & 12.8--25.5$^\dagger$ or B dom. \\
+ & 0.01 & B dom. & B dom. & B dom. & 20.3--41.0$^\dagger$ or B dom. \\
+ & 0.02 & B dom. & B dom. & B dom. & 35.2--71.9$^\dagger$ or B dom. \\
+\bottomrule
+\end{tabularx}
+\par\smallskip\footnotesize B dom.: no $\beta\geq0$ favours A. $^\dagger$: the 95\% interval of the avoided events includes zero in at least one repetition. Inspection time and corrective repair remain zero. $q_I=0$ reproduces the break-even analysis of the main text.
+\end{table}
+
+\bibliographystyle{elsarticle-num}
+\bibliography{references}
+\end{document}

@@ -1,61 +1,65 @@
-# Forecast-based removal of turbofan engines — reproducibility repository
+# C-MAPSS turbofan removal: companion artifacts
 
-Public reproducibility repository for the article:
+Companion reproducibility artifacts for the manuscript:
 
-> A. C. P. de Mesquita, "Forecast-based removal of turbofan engines with
-> sensor-only prognostics and simulated borescope inspection,"
-> *Reliability Engineering & System Safety* (submitted 2026).
+> Antonio C. P. Mesquita, "Incremental value of failure forecasts beyond a health-index landmark in conservative turbofan removal on C-MAPSS", prepared for *Reliability Engineering & System Safety*.
 
 ## Contents
 
 | Directory | Contents |
 |---|---|
-| `LaTeX/` | Manuscript LaTeX source, highlights, cover letter, title page |
-| `appendix/` | Early-pilot specification, results and information constraints (removed from the article to meet the journal word limit; compiled standalone as `early_pilots.tex`) |
-| `experiments/` | Experiment scripts (`.py`), protocols and planning documents (`.md`), frozen-protocol directory, and artifact summaries (`.md`, `.json` — no binary model files or large CSVs) |
-| `experiments/BREAK_EVEN_README.md`, `experiments/artifacts/pilot_break_even_21a/`, `experiments/artifacts/pilot_break_even_cost_21b/` | Break-even cost of end-of-life events (P21.1) and its sensitivity to the inspection cost (P21.2): protocols, code, tests, independent verifiers, archived inputs, outputs with hashes and written conclusions. |
+| `appendix/` | Current supplementary methods and results (`supplementary.tex` / `.pdf`), the archived early-pilot specification and results (`early_pilots.tex` / `.pdf`), and the bibliography needed for standalone compilation. |
+| `experiments/` | Original experiment scripts, protocols and artifact summaries (the frozen-protocol directory is not distributed here). |
+| `experiments/results_review_2026-10-19/` | Coverage of 32 scientific series; 1,531 directional contrast records including non-gains; three-arm restoration-cost tables; source inventory, small aggregate evidence inputs and hashes. |
+| `experiments/literal_cycles_2026-10-19/` | Subsequent literal-flight analysis: selected archived decisions, three-arm costs/events, conditional Monte Carlo errors, portable numerical core, independent verifier and public-only reproduction. |
+| `experiments/BREAK_EVEN_README.md` and `experiments/artifacts/pilot_break_even_21a/`, `.../pilot_break_even_cost_21b/` | Break-even cost of end-of-life events (P21.1) and its sensitivity to the inspection cost (P21.2): protocols, code, tests, independent verifiers, archived inputs, outputs with hashes and written conclusions. |
+
+The review package was prepared after confirmation. It organises existing results without refitting, selecting a new policy or rerunning the experiments. The failed first 20-year run remains a provenance record and is not used as evidence of a maintenance benefit. Read the package README for scope and limitations.
+
+## Dependencies
+
+Python 3.10+ with NumPy and pandas for the post-processing and renewal analyses below; the original model-fitting pilots in `experiments/` also use SciPy and scikit-learn.
+
+## Reproduce the aggregate review
+
+With NumPy and pandas installed, run from the repository root:
+
+```text
+python experiments/review_experiment_outputs_20261019.py
+```
+
+The supplied aggregate evidence inputs reproduce the contrast and cost tables without raw NASA trajectories or model binaries. This post-processing is distinct from reproducing the original model-fitting experiments. The frozen environment and per-experiment protocols document those original runs.
+
+## Cycles and costs
+
+The current 20-year scenario assumes one benchmark cycle per flight of each engine (xi=1). A twin-engine aircraft adds one cycle to each position per flight: 32,000 cycles per position over 20 years at 1,600 flights/year. The AGE127, conservative PHM and PHM-plus-inspection comparison is in `experiments/literal_cycles_2026-10-19/`; the earlier scale-bridge scenario remains a separate sensitivity in Supplementary Material S4 and the archived review package. Expected cost for two equivalent positions is twice the per-position value; no engine independence or joint aircraft risk is inferred. Costs are fixed restoration expenditure, with zero incremental inspection charge in the main analysis (a positive inspection cost is a sensitivity in `experiments/BREAK_EVEN_README.md`), not observed total maintenance costs or company savings. The 20-year totals are an arithmetic illustration; the paper's economic comparison is the break-even cost of an end-of-life event. Read event outcomes alongside costs.
 
 ## Data
 
-The C-MAPSS benchmark data are **not included** in this repository. They are
-publicly available from the NASA Prognostics Center of Excellence Data
-Repository:
+Raw C-MAPSS data are not included. They are available from the [NASA Prognostics Data Repository](https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/). Place the extracted files under `CMAPSSData/` when reproducing the original experiments; the aggregate-review command does not require them.
 
-> A. Saxena, K. Goebel, D. Simon and N. Eklund, "Damage propagation modeling
-> for aircraft engine run-to-failure simulation," *Proc. Int. Conf. Prognostics
-> and Health Management (PHM)*, 2008.
-> <https://www.nasa.gov/intelligent-systems-division/discovery-and-systems-health/pcoe/pcoe-data-set-repository/>
+> Saxena, A., Goebel, K., Simon, D. and Eklund, N. (2008). Damage propagation modeling for aircraft engine run-to-failure simulation. International Conference on Prognostics and Health Management.
 
-Download `CMAPSSData.zip` and place its contents in a `CMAPSSData/` directory
-at the repository root before running the scripts.
+## Supplementary PDFs
 
-## Reproducing the experiments
-
-Each experiment script in `experiments/` corresponds to one or more pilots
-described in the article. The scripts are numbered to reflect the experimental
-sequence (P01–P20). Protocol documents (`.md` files) describe the design
-decisions, assumptions and evaluation criteria for each pilot.
-
-Dependencies: Python 3.10+, NumPy, SciPy, scikit-learn, pandas.
-
-Install with:
-```bash
-pip install numpy scipy scikit-learn pandas
-```
-
-Run the frozen-protocol confirmation (FD002/FD004) with:
-```bash
-cd experiments
-python confirmation_19a.py --rehearsal   # dry run on FD001/FD003
-# python confirmation_19a.py --confirm   # opens FD002/FD004 once only
-```
+From `appendix/`, compile each source with `latexmk -pdf supplementary.tex` or `latexmk -pdf early_pilots.tex`. The supplementary source uses the adjacent `references.bib` for portability.
 
 ## Licence
 
-The code is released under the MIT licence. The manuscript text is copyright
-of the author; preprint sharing follows Elsevier's article sharing policy.
+The code is released under the MIT licence. The manuscript text is copyright of the author; preprint sharing follows Elsevier's article sharing policy.
 
-## Break-even analyses (P21.1, P21.2)
+## Reproduce the literal-flight scenario
+
+Install NumPy and pandas, then use a new output directory:
+
+```text
+python experiments/twenty_year_20b_literal.py --output /path/to/new_output
+python experiments/verify_twenty_year_20b_literal.py --output /path/to/new_output
+```
+
+No raw NASA trajectories or private fitted models are needed for this renewal analysis. The archived aggregate review and this new simulation have different scopes; the earlier review retains its original scale-bridge tables.
+
+## Reproduce the break-even analyses
 
 ```text
 python experiments/break_even_21a.py

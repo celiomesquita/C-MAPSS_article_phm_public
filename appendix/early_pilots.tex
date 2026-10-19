@@ -1,6 +1,6 @@
 % !TEX spellcheck = en_GB
 %% Early-pilot specification, results and information constraints.
-%% This material was part of the manuscript submitted to RESS and is
+%% This material records archived exploratory development and is
 %% provided here for reproducibility. It describes the P01/P02 pilots
 %% that motivated the landmark-based framework used in the main article.
 %%
@@ -21,8 +21,7 @@
 \newcommand{\tablenotes}[1]{\par\smallskip\footnotesize #1}
 
 \title{Early-pilot specification, results and information constraints\\
-\large Supplementary material for ``Forecast-based removal of turbofan engines\\
-with sensor-only prognostics and simulated borescope inspection''}
+\large Supplementary material for ``Incremental value of failure forecasts beyond a health-index landmark in conservative turbofan removal on C-MAPSS''}
 \author{Antonio Celio Pereira de Mesquita}
 \date{}
 
@@ -100,7 +99,11 @@ The candidate families are Random Forest (RF), gradient boosting regressor (GBR)
 \[
 \mathcal M=\{\mathrm{RF},\mathrm{GBR},\mathrm{XGB},\mathrm{LGBM}\}.
 \]
-For $w=15$, each sensor contributes four causal summaries. With $m_{p,ij}(t)=w^{-1}\sum_{u=t-w+1}^{t}(x_{ij}(u)-\bar x_{ij,w}(t))^p$, define
+For $w=15$, each sensor contributes four causal summaries. Define the central moments
+\[
+m_{p,ij}(t)=w^{-1}\sum_{u=t-w+1}^{t}(x_{ij}(u)-\bar x_{ij,w}(t))^p
+\]
+and the following summaries:
 \[
 \begin{split}
 s_{ij}(t)&=\sqrt{\frac{w}{w-1}m_{2,ij}(t)},\qquad
