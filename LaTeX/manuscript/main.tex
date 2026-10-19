@@ -1,0 +1,719 @@
+\documentclass[preprint,12pt]{elsarticle}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+\graphicspath{{figures/}}
+
+% ---------------------------------------------------------------------------
+% Editorial markers. \revise{ID}{text}: value or statement carried over from
+% the dissertation that the committee audit flagged (IDs DCxxx refer to the
+% consistency audit, A/C/D items to the pre-defence review). \todo{text}:
+% missing information. Set \editorialfalse to hide the tags for submission.
+% ---------------------------------------------------------------------------
+\newif\ifeditorial
+\editorialtrue
+\ifeditorial
+  \newcommand{\revise}[2]{\textcolor{red}{#2}\textsuperscript{\textcolor{red}{\scriptsize[#1]}}}
+  \newcommand{\todo}[1]{\textcolor{red}{[TODO: #1]}}
+\else
+  \newcommand{\revise}[2]{#2}
+  \newcommand{\todo}[1]{}
+\fi
+
+\newcommand{\THC}{\mathrm{THC}}
+\newcommand{\RUL}{\mathrm{RUL}}
+\newcommand{\tablenotes}[1]{\par\smallskip\begin{minipage}{\linewidth}\footnotesize\raggedright\setlength{\parindent}{0pt}\setlength{\parskip}{0.35\baselineskip}\textit{Notes.} #1\end{minipage}}
+
+\journal{Reliability Engineering \& System Safety}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Forecast-based removal of turbofan engines with sensor-only prognostics and simulated borescope inspection}
+
+% Author order, affiliations and CRediT roles to be agreed by all authors.
+
+\author[ita]{Antonio C. P. Mesquita\corref{cor1}}
+\ead{celio@ita.br}
+\cortext[cor1]{Corresponding author}
+
+\affiliation[ita]{organization={Aerospace Logistics Engineering Laboratory (AeroLogLab), Instituto Tecnol\'ogico de Aeron\'autica (ITA)},
+  city={S\~ao Jos\'e dos Campos},
+  state={S\~ao Paulo},
+  country={Brazil}}
+
+
+\begin{abstract}
+Removing turbofan engines for restoration at the right cycle needs a forecast of the functional-failure endpoint (F) and an honest account of its uncertainty. Using the C-MAPSS benchmark, we build a nonnegative empirical health index (HI), take its first passage at 0.5 as a landmark for forecasting F, and calibrate a one-sided margin on held-out engines. Removal rules built on this forecast lower the restoration rate per simulated cycle by 20--30\% against a conservative age control in FD001 and FD003, but the landmark alone supplies at least 95.9\% of the life gained. A single age limit of 127 cycles applies without valid monitoring. After the protocol was frozen, FD002 and FD004 were opened once: none of 509 engines had a life of 127 cycles or less (one-sided 95\% upper bound 0.59\%), and the rules cut restorations by 24.5--25.8\% (FD002) and 40.9--41.4\% (FD004), although FD004 showed endpoint events. A simulated borescope arm, whose rejection can only advance the decision, removed nearly all endpoint events of point-anchor rules, which use the central RUL estimate without the calibrated margin. This required 10--13\% more restorations and depended strongly on the assumed damage window. The HI coefficients are only moderately stable across folds. No maintenance credit, compliance or population risk is claimed.
+\end{abstract}
+
+\begin{keyword}
+Prognostics and health management \sep
+Remaining useful life \sep
+Maintenance policy \sep
+Condition-based inspection \sep
+Explainability \sep
+Health index \sep
+Uncertainty quantification
+\end{keyword}
+
+\end{frontmatter}
+
+% ===========================================================================
+\section{Introduction}\label{sec:intro}
+% ===========================================================================
+
+Early engine removal discards usable life and increases restoration frequency; waiting for a more favourable forecast can leave too little time to act before functional failure. A remaining useful life (RUL) prediction informs maintenance only when an explicit rule translates it into a removal decision with a planning reserve and an execution lead. The resulting rule must be evaluated jointly for endpoint events and long-term restoration demand, against both an age control and a simpler condition-based rule.
+
+In this study, prognostics and health management (PHM) denotes sensor-only diagnosis and prognosis; PHM + inspection additionally uses borescope or other inspection findings. The comparison concerns removal triggers, execution leads and responses to monitoring loss, without prescribing how each information source is represented or combined.
+
+Using the Commercial Modular Aero-Propulsion System Simulation (C-MAPSS) benchmark, this study develops an engine-separated chain from a sensor-derived health index (HI) to a forecast of the functional-failure endpoint (F), a held-out one-sided margin and a removal rule. It delivers a sensor-only task formulation, a frozen-procedure confirmation in FD002 and FD004 after development in FD001 and FD003, and a simulated PHM + inspection comparison over a conditional 20-year horizon. A central control asks how much the conversion to F adds beyond acting at the HI landmark itself: that landmark supplies at least 95.9\% of the mean-life gain in development. The inspection comparison then measures the life surrendered to reduce endpoint events, including the adverse events found in FD004.
+
+The removal decision can be situated conceptually on a P--F curve: P denotes the point at which potential failure becomes detectable by the available monitoring or inspection capability, whereas F denotes the relevant functional limit. P is therefore capability-dependent rather than a universal health-index value. Condition estimation, prediction of degradation and selection of a removal cycle are distinct functions; they need not correspond to separate models. The initial pilots examined separate detection, prediction and decision components; the evaluated task uses the HI landmark as entry to prognosis and derives removal from the forecast of F.
+
+Saxena et al.\ \cite{Saxena2008} define the simulated engine HI from the minimum of the operational margins considered and terminate each degradation trajectory when that index reaches zero. The original health index and the margins used to calculate it were not explicitly provided to challenge participants, who were expected to infer health from sensor measurements. A representation based on these data must therefore distinguish the simulator's physical health index from a sensor-derived estimate or proxy. Mapping either representation onto the P--F concept requires justification; the simulated endpoint alone does not establish an operationally acceptable removal limit or an aircraft-level safety criterion.
+
+Early removal can discard usable life and increase shop-visit frequency; later removal can reduce that frequency if restoration costs and outcomes remain comparable, but may increase restoration scope, cost and unscheduled-intervention consequences. Long-term maintenance cost must therefore be assessed subject to safety and planning lead-time criteria. C-MAPSS alone does not establish repeated-restoration behaviour, shop-visit costs or operational safety limits.
+
+Issue Paper 180 (IP-180) frames this study's assessment of aircraft health monitoring within Maintenance Steering Group--3 (MSG-3) \cite{IP180}; predictive performance alone does not establish approval or maintenance credit.
+
+The research question is: \emph{how do explainable sensor-only PHM rules and rules augmented by simulated inspections trade utilised engine life against endpoint events and long-term restoration demand?} Within the broader aim of generating alternative preventive tasks framed by IP-180, the study has three empirical objectives: evaluate the working HI and the incremental decision value of its forecast and margin; assess removal outcomes, explanation fidelity and stability under engine-separated development and confirmation; and compare age-based, PHM and PHM + inspection tasks over a common conditional horizon. The benchmark supports evaluation of these task formulations, while physical safety criteria and industrial applicability require additional engineering evidence.
+
+\Cref{sec:related,sec:method,sec:preliminary} present the literature, framework and results; \cref{sec:pilot-discussion,sec:pilot-conclusion} discuss their implications and conclusions. Full specifications and results of the early pilots are available in the project repository (see Data Availability statement).
+
+% ===========================================================================
+\section{Literature foundations and decision requirements}\label{sec:related}
+% ===========================================================================
+
+
+\subsection{From prognostic information to maintenance decisions}
+
+Wang et al.\ \cite{Wang2015} distinguish scheduling, maintenance and failure thresholds, incorporating planning lead time into a condition-based maintenance policy evaluated by a long-run expected cost rate.
+
+Tseremoglou et al.\ \cite{Tseremoglou2022} integrate support vector regression for RUL distributions with partially observable Monte Carlo planning for aircraft maintenance scheduling, linking prognostic uncertainty to decisions rather than prediction accuracy alone.
+
+Lam and Banjevic \cite{LamBanjevic2015} jointly optimise inspection timing and replacement myopically using a proportional-hazards model, condition-state transitions, inspection and replacement costs, and downtime after failure. Their mining-transporter example distinguishes utilised life from cost per unit time, without establishing global optimality or aircraft applicability. Here, cadence is fixed to examine the contributions of the landmark, margin and simulated findings to endpoint events and restoration demand.
+
+\subsection{Prediction and uncertainty}
+
+Once a forecast enters a removal rule, its uncertainty must be assessed over the cycles in which that rule can act. Xu et al.\ \cite{Xu2022} combine deep learning with nonstationary Gaussian process regression to predict RUL and quantify uncertainty using turbofan engine data. Prediction performance alone does not establish an alternative maintenance task; the review must distinguish the evidence for prognosis from evidence for maintenance decisions.
+
+\subsection{Foundations for empirical HI development}
+
+The forecast also needs a condition representation whose useful lead and transfer can be tested independently of its resemblance to a physical health curve. Baraldi, Bonfanti and Zio \cite{Baraldi2018HI} construct health indicators using feature reconstruction and selection according to monotonicity, trendability and prognosability. Their terminal auto-associative kernel regression (AAKR) measures deviation from patterns near failure. This provides a basis for investigating terminal consistency and a reconstruction comparator. Our nonnegative sensor combination is a separate empirical construction; the comparator adapts the terminal AAKR core rather than reproducing the complete published method.
+
+Algorithm-selection guidelines do not establish a physically valid HI or a failure threshold; the simulator's physical-margin definition \cite{Saxena2008} remains distinct from our empirical formulation.
+
+
+
+\subsection{Scope of the review and requirements for this comparison}
+
+
+
+For a removal task, explanation concerns both sensor contributions and how the forecast and margin produce an action. The comparison distinguishes empirical from physical HI, calibration from policy outcomes, and forecast gains from those of a condition-only control. Inspection assumptions and the common exposure/restoration model are assessed explicitly, including adverse outcomes and domain dependence. Outstanding source checks limit claims of novelty and literature coverage.
+
+% ===========================================================================
+\section{Decision framework and evaluation design}\label{sec:method}
+% ===========================================================================
+
+\subsection{Workflow, data and evidence stages}\label{sec:workflow}
+
+The evaluated chain follows five operations: causal sensor summaries form an empirical HI; its first passage at 0.5 opens prognosis; an HI-to-RUL converter and a held-out margin give a forecast of F; a reserve and execution lead determine the removal; and renewal accounting measures restoration demand. An age limit governs operation without valid monitoring. The inspection arm adds a rejection trigger to the same forecast rule. The following subsections specify these components and the engine-separated confirmation design.
+
+FD001 and FD003 provide exploratory development, with 100 complete training trajectories per subset. FD002 and FD004 provide the subsequent confirmation under changing operating conditions, following protocol freeze. For engine $i$, $T_i$ is the recorded endpoint and the supervised RUL target is $T_i-t$ at cycle $t$. Endpoints supply fitting labels and retrospective outcomes; they do not enter predictors or action triggers. The official truncated test trajectories provide prognosis checks only at observed cycles, because future sensors are unavailable. Their supplied RUL labels score the final observation after model selection. Both the empirical HI and the converters therefore use supervised run-to-failure data.
+
+All observations from an engine remain in one group within a partition. Fitting engines determine the HI, separate engines fit the converter, and a further group calibrates uncertainty before evaluation. Partition sizes for the main rules appear in \cref{sec:margin}; \cref{sec:confirmation-design} describes the distinct configuration and evaluation groups used for confirmation. Repeated partitions reuse engines. The early pilots and their separate layouts are documented in the project repository; they motivate the framework but do not provide independent confirmation.
+
+\subsection{Condition representation and the prediction landmark}
+
+
+\subsubsection{Empirical construction and comparison of HI candidates}
+
+For sensor $j$, the causal summary is $\bar x_{ij,15}(t)=15^{-1}\sum_{u=t-14}^{t}x_{ij}(u)$. Orientations, population scales and fitted coefficients are learned outside the evaluation engines; each engine supplies its own initial sensor reference. P03 investigates sensitivity of the detection assumptions while holding prognostic predictions fixed, together with an initial HI proxy. P04 introduces a tolerance for initial sensor variation. For oriented departure $a_{ij}(t)=d_j[\bar x_{ij,15}(t)-b_{ij}]$, with $b_{ij}=\bar x_{ij,15}(20)$ and $d_j\in\{-1,1\}$ learned from fitting engines, the margin-based candidates take the form
+\[
+\widehat H_i^{\min}(t)=\min_j\operatorname{clip}
+\left(1-\frac{[a_{ij}(t)-A_j]_+}{B_j-A_j},0,1\right),
+\qquad t\geq20.
+\]
+Here $[u]_+=\max(0,u)$, $A_j$ is a statistical initial tolerance and $B_j>A_j$ is an empirical terminal reference learned from fitting engines. Neither is a certified operational limit. For fixed references and channels, the margin reaches zero if and only if $a_{ij}(t)\geq B_j$; increasing $A_j$ alone cannot correct terminal anchoring. The HI is unavailable before its initial reference, and P is not used to impose its shape.
+
+P05 introduces a nonnegative combination of the sensor departures. Let $s_j>0$ be a fitting-sample scale and define
+\[
+\begin{aligned}
+z_{ij}(t)&=\frac{d_j[\bar x_{ij,15}(t)-b_{ij}]}{s_j},\\
+\widehat H_i^{\mathrm{emp}}(t)&=
+\operatorname{clip}\left(1-\left[\sum_j\beta_jz_{ij}(t)\right]_+,0,1\right),
+\quad \beta_j\geq0.
+\end{aligned}
+\]
+The coefficients are estimated from a conventional training reference,
+\[
+\begin{aligned}
+H_i^*(t;\rho,\eta)&=\min\left\{1,\frac{T_i-t}{\rho}\right\}^{\eta},\\
+\mathcal L_k(\boldsymbol\beta)&=
+\sum_{i\in\mathcal F_k}\frac{1}{|\mathcal F_k|n_i}
+\sum_{t\in\mathcal O_i}
+\left[\boldsymbol\beta^\top\mathbf z_i(t)-(1-H_i^*(t;\rho,\eta))\right]^2,\\
+\widehat{\boldsymbol\beta}&=
+\operatorname*{arg\,min}_{\boldsymbol\beta\geq0}
+\left\{\mathcal L_k(\boldsymbol\beta)+\lambda\|\boldsymbol\beta\|_2^2\right\}.
+\end{aligned}
+\]
+In this expression, $\mathcal O_i$ contains available cycles from 20 onwards and $n_i=|\mathcal O_i|$. The candidate values are $\rho\in\{60,100,140\}$ cycles, $\eta\in\{1,2\}$ and $\lambda\in\{0,0.1\}$. The reference is a supervised life scale constructed from $T_i-t$ on complete fitting trajectories, not an observed physical HI. Terminal labels are used only for fitting engines. The terms $\beta_jz_{ij}(t)$ make sensor contributions explicit, but correlated inputs limit causal interpretation.
+
+The terminal-reconstruction comparator uses patterns $\mathcal V_k$ from the final observed cycles of fitting engines. Its reconstruction and residual are
+\[
+\begin{aligned}
+\mathcal K_h(\mathbf z,\mathbf v)
+&=\exp\left[-\frac{1}{2h^2}\sum_j\frac{(z_j-v_j)^2}{\nu_j^2}\right],\\
+\widehat{\mathbf z}_F(\mathbf z)
+&=\frac{\sum_{\mathbf v\in\mathcal V_k}\mathcal K_h(\mathbf z,\mathbf v)\mathbf v}
+{\sum_{\mathbf v\in\mathcal V_k}\mathcal K_h(\mathbf z,\mathbf v)},\qquad
+D_F(\mathbf z)=\|\mathbf z-\widehat{\mathbf z}_F(\mathbf z)\|_2,\\
+\widehat H_i^{\mathrm{AAKR}}(t)
+&=\operatorname{clip}\left(\frac{D_F(\mathbf z_i(t))-c_F}{c_H-c_F},0,1\right),
+\qquad c_H>c_F.
+\end{aligned}
+\]
+The scales $\nu_j$ describe terminal-pattern dispersion. The initial anchor $c_H$ is the residual at the initial reference; $c_F$ is the median fitting-engine endpoint residual obtained while excluding that engine's patterns from reconstruction and metric estimation. Causal summaries and deterministic sensor-subset candidates replace the original study's feature-extraction and evolutionary-search components. Accordingly, the experiment compares an adaptation of terminal AAKR \cite{Baraldi2018HI}, not the complete published method.
+
+All three families use the same calibration procedure for increasing isotonic maps $g_{c,k}$, where $c\in\{\min,\mathrm{emp},\mathrm{AAKR}\}$ indexes the HI construction. Each map is estimated on separate calibration engines to obtain $\widehat r_i(t)=g_{c,k}(\widehat H_i^c(t))$. Configuration selection minimises RUL error on the selection engines at retrospective fractions $0.5$, $0.7$ and $0.9$ of their complete trajectories; these fractions are evaluation locations, not predictor inputs. P05 and P06 assign 40, 20, 20 and 20 engines to fitting, calibration, selection and evaluation within each fold. Final official-test comparisons use 60/20/20 training engines, with choices fixed before scoring the test labels. For a truncated test trajectory ending at $t_i^{\mathrm{last}}$ with supplied label $r_i^{\mathrm{last}}$, evaluation uses $T_i=t_i^{\mathrm{last}}+r_i^{\mathrm{last}}$, without inventing later sensor measurements.
+
+P06 tests the same candidates on FD003, which has one operating condition and two degradation modes, involving the high-pressure compressor and fan. Direct transfer preserves the FD001 parameters and each map $g_{c,k}$; refitting learns them only from FD003 training engines. The lifetime distributions also differ, so this contrast does not isolate the causal effect of the second mechanism. All these rounds remain exploratory, and neither a best official-test result nor an attractive HI trajectory establishes a final formulation.
+
+\subsubsection{Intermediate-condition landmark for predicting F}\label{sec:landmark}
+
+Exact coincidence of observed HI zero and the recorded endpoint is not required to use an empirical condition representation for prognosis. A candidate alternative evaluates prediction of the original F at an intermediate HI level. Define
+\[
+\begin{aligned}
+t_{i,\alpha}&=\inf\{t\geq20:\widehat H_i(t)\leq\alpha\},
+\qquad \alpha=0.5,\\
+\widehat F_i(t)&=t+\widehat r_i(t\mid\mathcal X_i(t)),
+\qquad t\geq t_{i,\alpha},
+\end{aligned}
+\]
+where $\mathcal X_i(t)$ contains only sensor information available through $t$, and a missing crossing remains censored. The crossing is a prediction landmark, not F, a confirmed P, a removal order or an inspection trigger. This analysis is reported in \cref{sec:preliminary}. The original endpoint remains the prediction target, while subsequent estimates may be updated as observations arrive.
+
+The numerical value 0.5 means neither half the remaining life nor 50\% reliability. Even the conventional training target satisfies $H_i^*=0.5$ at $\RUL=\rho\,2^{-1/\eta}$, which depends on the chosen scale. Validation must therefore report landmark availability, time remaining at crossing, error in predicted F, subsequent prediction updates and sensitivity to the HI formulation. Each existing map $g_{c,k}$ depends only on current HI: similar HI values can give similar RUL estimates despite different degradation histories. The value of temporal information and a comparison with forecasts available before the landmark require separate assessment. The criterion for adopting an empirical HI concerns validated condition representation and prognostic utility, rather than merely forcing its terminal value to zero.
+
+\subsection{Forecast-based removal and its controls}\label{sec:removal}
+
+
+\subsubsection{Removal decision from the predicted F}
+
+The removal decision does not require detecting P. In the C-MAPSS simulation, degradation begins at the first recorded cycle and no physical P is recorded, so any detected P depends on the detector (see the early-pilot specification in the repository). The decision instead uses the forecast of the original endpoint. Let $\kappa$ denote the planning reserve: the intended remaining lead at removal. The execution lead $\varepsilon\in\{1,2\}$ is the delay between the removal decision and its execution. Both quantities are measured in cycles. Let $\Delta^{\star}$ be a one-sided margin calibrated on engines held out from fitting, so that the lower forecast $[\widehat r_i(t)-\Delta^{\star}]_+$ covers a stated fraction of trajectories. With $t_{i,\alpha}$ and $\widehat F_i(t)=t+\widehat r_i(t\mid\mathcal X_i(t))$ as defined above, the decision and removal cycles are
+\[
+\delta_i=\inf\left\{t\geq t_{i,\alpha}:\ [\widehat r_i(t)-\Delta^{\star}]_+\leq\kappa+\varepsilon\right\},
+\qquad
+\varrho_i=\delta_i+\varepsilon,
+\]
+where $\inf\varnothing=+\infty$ records no decision before the endpoint. Only observations up to $t$ enter $\delta_i$. Before $t_{i,\alpha}$, no forecast is issued and the engine is treated as far from F; the landmark therefore acts as an observable entry to prognosis, not as P. A removal at $\varrho_i<T_i$ preserves a real reserve $T_i-\varrho_i$. The cases $\varrho_i=T_i$, $\varrho_i>T_i$ and $\delta_i=+\infty$ are reported separately as an exact arrival, a late schedule and an arrival without decision, respectively. An age limit applies only when valid monitoring is unavailable, as defined below.
+
+P enters the study only in two places. First, as an evaluation concept, since the interval between a reference P and F bounds what any monitoring could anticipate. Second, in the simulated inspection generator, through a window of $W$ cycles before F during which damage is detectable; $W$ is an environment parameter and the policy never observes it. The lead that the prognostic route actually delivers is the quantity $T_i-\delta_i$, which may be shorter than the P--F interval and is reported rather than assumed.
+
+This capability is available here because the training trajectories run to the endpoint: the HI weights and the HI-to-RUL map learn the relation between sensors and remaining life from known failures. A fleet without comparable run-to-failure or teardown-verified removals could not learn or validate that relation, and the present results do not show that the decision rule transfers to such data. The evidence on landmark lead, first-opportunity actions and the marginal contribution of the conversion to F is in \cref{sec:preliminary}.
+
+\subsubsection{Held-out calibration of a one-sided margin}\label{sec:margin}
+
+From the held-out calibration rounds onwards, the 100 complete engines of each subset are allocated in each of ten folds to fitting $\mathcal F$ (25 engines), converter fitting $\mathcal C$ (15), uncertainty calibration $\mathcal U$ (50) and evaluation $\mathcal E$ (10). Three seeded repetitions give 30 partitions per subset. The repetitions reuse the same 100 engines and are never pooled as 300 independent engines. The HI is refitted within $\mathcal F$; an isotonic converter $g$ that is nondecreasing from HI to RUL (ISO) and a random forest on HI and its causal slope (RF-slope) are fitted within $\mathcal C$; the margin is calibrated within $\mathcal U$ only.
+
+For a calibration engine $j\in\mathcal U$, let $e_j(t)=\widehat F_j(t)-T_j$ and
+\[
+S_j=\max\Bigl\{0,\ \max_{t\geq t_{j,\alpha}} e_j(t)\Bigr\}.
+\]
+Here $t_{j,\alpha}$ is the landmark defined above, with $\alpha=0.5$. With $n$ scored engines and calibration level $\alpha_{\mathrm c}$, set $\chi=\lceil(n+1)(1-\alpha_{\mathrm c})\rceil$ and let $\Delta^{\star}$ be the $\chi$th ordered score, or $+\infty$ if $\chi>n$ \cite{Lei2018}. The nominal level is $\alpha_{\mathrm c}=0.02$, with $\alpha_{\mathrm c}=0.05$ as a fixed sensitivity. With $n=50$, the 98\% quantile is the largest available score. Each engine contributes one score summarising its largest post-landmark overprediction of F. The finite-sample statement is marginal over engines; it is neither a guarantee for each engine nor a limit on the risk of a removal policy.
+
+\subsubsection{Removal rules, controls and loss decomposition}
+
+All rules act only on information available up to the current cycle. With reserve $\kappa=15$ and execution lead $\varepsilon\in\{1,2\}$, the lower-anchor rules apply the trigger to the lower RUL bound obtained using $\Delta^{\star}$ from the previous subsection. The point-anchor rules set $\Delta^{\star}=0$, so the trigger acts on the central RUL estimate. The HI-marker control acts at the first usable landmark, $\delta_i=\max(39,t_{i,\alpha})$, with $\varrho_i=\delta_i+\varepsilon$, and uses neither the conversion to F nor a margin. The fixed-age control removes an engine at cycle $A_{\mathrm{age}}=\min_{j\in\mathcal F\cup\mathcal C}T_j-1$ and decides $\varepsilon$ cycles earlier. A rule's outcome is classified as an exact arrival ($\varrho_i=T_i$), a late schedule ($\varrho_i>T_i$) or an arrival without decision ($\delta_i=+\infty$). These classes are never merged or excluded, and the target of at most 2\% strict overruns per engine is experimental.
+
+Two diagnostic oracles, which know more than any implementable policy, locate the losses. Oracle $\mathrm O$ knows $T_i$ from the first cycle, and oracle $\mathrm O_{\mathrm s}$ knows it only from the cycle at which the same signal becomes usable. With unused life $U_i^{\pi}=T_i-\min(\varrho_i^{\pi},T_i)$, the excess $\bar U^{\pi}-\bar U^{\mathrm O}$ is split into a part before and a part after that cycle. The post-signal part combines prognosis, uncertainty and decision conservatism. It therefore cannot be interpreted as life recoverable solely by improving prediction accuracy. Held-out selection of a threshold or a waiting time on the HI uses a development set $\mathcal F\cup\mathcal C$ with four internal blocks and never uses $\mathcal U$ or $\mathcal E$.
+
+\subsubsection{Age limit without valid monitoring and extension with valid monitoring}\label{sec:monitoring}
+
+Let $A_{\mathrm L}$ denote a single age limit for operation without valid monitoring.  It is set before opening FD002 and FD004 as the smallest endpoint among the examined subsets minus one cycle. With $n$ examined engines and none having $T_i\leq A_{\mathrm L}$, the one-sided Clopper--Pearson upper bound for $\Pr(T\leq A_{\mathrm L})$ at confidence $\psi$ is $1-(1-\psi)^{1/n}$ \cite{Clopper1934}. This statement is in-sample and describes the mixture of examined subsets, not each operating condition.
+
+Monitoring validity and entry to prognosis are distinct states. With valid monitoring but no HI landmark, sensor observations continue and no prognostic decision is made, even after the age gate. After the landmark, prognosis is active from cycle $\max(39,t_{i,\alpha})$; this entry is retained if the HI subsequently recovers. Valid monitoring with active prognosis need not produce a removal decision before F. Neither absence of a landmark nor absence of a decision denotes invalid monitoring.
+
+At the gate $\delta_0=A_{\mathrm L}-\varepsilon$ (cycle 126 or 125 for execution lead 1 or 2), an engine without an existing decision continues only if monitoring is valid. If invalid at the gate, removal is requested then and executed at $A_{\mathrm L}=127$. If a loss is detected later, removal is requested at once and executed $\varepsilon$ cycles later. With valid monitoring, observations continue without an age cap and the prognostic rule acts once active. The probability $u$ that monitoring is invalid at a cycle is a declared scenario parameter, independent between cycles from the gate onwards and varied on a grid, because C-MAPSS cannot calibrate it. The expectation of every outcome follows exactly from the first cycle at which monitoring is invalid, so no random simulation is used. Undetected invalid data and correlated outages are outside this scenario.
+
+
+
+\subsection{Explanation and stability diagnostics}\label{sec:explanation-method}
+
+
+The coefficient on the oriented, normalised departure is $\beta_j$. The corresponding coefficient on the sensor departure before orientation and normalisation is $w_j=\beta_jd_j/s_j$, so
+\[
+\begin{aligned}
+c_{ij}(t)&=\beta_jz_{ij}(t)
+ =w_j[\bar x_{ij,15}(t)-b_{ij}],\\
+S_i(t)&=\sum_j c_{ij}(t),\qquad
+\widehat H_i(t)=\operatorname{clip}(1-[S_i(t)]_+,0,1).
+\end{aligned}
+\]
+The sum is rectified before the HI is clipped; individual contributions remain signed. For a decomposition of the bounded loss, the radial allocation is $a_{ij}=c_{ij}\operatorname{clip}(S_i,0,1)/S_i$ when $S_i>0$ and zero otherwise, giving $\sum_j a_{ij}=1-\widehat H_i$. Explanations are assessed for their reproduction of the HI, converter and action chain.
+
+Agreement across folds is measured by Spearman correlation of contribution ranks. Responses to perturbations of raw sensor trajectories are assessed with variability parameters learned in $\mathcal F$ only. Perturbation replays are informational; they are not physical interventions. Concordance between ISO and RF is not independent validation, because both share the HI.
+
+Stability of the coefficients is also measured between the folds of each repetition, from the stored models: the Spearman correlation of $\beta_j$, not $w_j$, over the channels retained in both folds, the share of channels with the same orientation, the Jaccard overlap of channels with $\beta_j>10^{-9}$ and the overlap of the three largest $\beta_j$ values. Ties in the latter are resolved by sensor number. This diagnostic differs from the contribution-rank comparison above. Stability is examined by excluding each fitting engine in turn, refitting orientation and coefficients, and recording the shift of the first-passage landmark. Four alternative coefficient formulations were compared on development engines only and then through the full chain; none is adopted.
+
+The empirical-support diagnostic uses consecutive raw sensor increments, not HI values or moving averages. For each fitting engine, let $\Delta\mathbf x_i(t)=\mathbf x_i(t)-\mathbf x_i(t-1)$ and $\mathbf m_i=15^{-1}\sum_{t=6}^{20}\Delta\mathbf x_i(t)$. Pool the residuals $\mathbf r_i(t)=\Delta\mathbf x_i(t)-\mathbf m_i$ over fitting engines and cycles 6--20. Their sample covariance $\mathbf V$ uses denominator $N-1$; retain channels $J=\{j:V_{jj}>10^{-12}\}$, independently of HI channel selection, and set $\nu_j=\sqrt{V_{jj}}$. The standardised fitting residuals are $\mathbf v_i(t)=(r_{ij}(t)/\nu_j)_{j\in J}$. Let $\mathbf R$ be their sample covariance and $\mathbf P$ its inverse restricted to eigenvalues greater than $10^{-12}$. With $Q_{.99}$ denoting the linearly interpolated empirical 0.99 quantile, define
+\[
+ L_M=Q_{.99}\{\mathbf v_i(t)^\top\mathbf P\mathbf v_i(t)\},
+ \qquad L_j=Q_{.99}\{|v_{ij}(t)|\}.
+\]
+For an original or perturbed evaluation trajectory $\mathbf x_i^{(v)}$, the evaluated increment is $\mathbf e_i^{(v)}(t)=([\Delta x_{ij}^{(v)}(t)-\bar m_j]/\nu_j)_{j\in J}$, where $\bar{\mathbf m}$ is the mean of the fitting-engine centres $\mathbf m_i$. Thus fitting residuals are centred per engine, whereas evaluation increments use the common fitting centre. An increment is inside if and only if
+\[
+ I_i^{(v)}(t)=\mathbf1\!\left\{
+ (\mathbf e_i^{(v)})^\top\mathbf P\mathbf e_i^{(v)}\leq L_M,
+ \quad |e_{ij}^{(v)}|\leq L_j\ \text{for every }j\in J\right\}=1.
+\]
+The global perturbation adds a fixed channel-shift vector multiplied by $g(t)=\operatorname{clip}((t-20)/20,0,1)$. The local replay ends at the original decision $C_0$, or $T_i-1$ if no original decision exists, and uses $g(t)=\mathbf1\{t>20\}\operatorname{clip}((t-C_0+19)/19,0,1)$. Both leave the initial reference unchanged. For the global replay, each trajectory's prefix ends at its own decision, or $T_i-1$ without a decision; in the local replay the fallback is $C_0$. A paired replay is wholly inside support only when
+\[
+ \prod_{t=6}^{C_0} I_i^{(0)}(t)
+ \prod_{t=6}^{C_v} I_i^{(v)}(t)=1,
+\]
+where $C_v$ is the perturbed prefix end. Destination cycle 6 and both ends are included; F is excluded. Date-shift summaries require both decisions to exist, whereas decision-presence summaries retain missing decisions. This whole-prefix condition differs from support at individual common sensitivity times. Separate 0.99 cut-offs do not imply 99\% joint or whole-prefix coverage. Exceedance denotes statistical extrapolation relative to initial increments, not physical impossibility; inclusion does not establish physical plausibility.
+
+\subsection{Operating-regime normalisation and confirmation design}\label{sec:confirmation-design}
+
+
+FD001 and FD003 have one operating condition. FD002 and FD004 have six, which change from cycle to cycle and displace sensor values more than degradation does \cite{Saxena2008}. A normalisation is fixed here and tested only on FD001. Standardise the three operating settings with the means and standard deviations of the fitting engines, and fit $K=6$ cluster centres by $K$-means on those engines. The regime $\zeta(t)$ of a cycle is the nearest centre to the settings observed in that cycle. For each sensor and regime, the healthy mean $\mu^{\mathrm{reg}}_{j,\zeta}$ and standard deviation $\sigma^{\mathrm{reg}}_{j,\zeta}$ come from cycles 1--20 of the fitting engines. Then
+\[
+\tilde x_{ij}(t)=\frac{x_{ij}(t)-\mu^{\mathrm{reg}}_{j,\zeta(t)}}{\sigma^{\mathrm{reg}}_{j,\zeta(t)}},
+\]
+and the pipeline above is applied unchanged to $\tilde x$. Clustering diagnostics are reported but do not authorise changing the procedure after results are seen. The procedure removes regime-specific shifts and scales per sensor, but not interaction between regime and degradation.
+
+The protocol was frozen before FD002 and FD004 were opened, and they were then opened once, using the training files only; the truncated official tests are not used. Details that the frozen protocol left open were specified beforehand and recorded as an amendment. In each subset, 80 engines drawn with a fixed seed form a configuration group, in which the parameters of the empirical HI are chosen with the grid and criterion of the earlier HI rounds (twelve candidates; converter RMSE at 50, 70 and 90\% of life); these engines are excluded from evaluation. On the remaining engines (180 in FD002, 169 in FD004), the partitions follow the development layout: 25 fitting, 15 converter and 50 calibration engines, with evaluation blocks covering the rest in ten folds and three repetitions that reuse the same engines. Regime clustering is fitted in each fitting set. The rule set is the declared one: forecast rules with the lower-bound and point anchors, the landmark control and the age limit, with the extension under the monitoring-loss grid.
+
+The age limit is judged compatible with the experimental 2\% target if the one-sided 95\% Clopper--Pearson upper bound for $\Pr(T\leq A_{\mathrm L})$ over the 509 training engines is at most 2\%, which admits at most four such engines; for the mixture of 709 engines, at most seven. Rule performance, including adverse results, is reported without a success threshold, and the procedure is not adjusted after results are seen. The confirmation is a test under domain change, not a replication in the same population.
+
+\subsection{Inspection and long-term restoration demand}
+
+
+\subsubsection{Inspection arm}\label{sec:inspection-method}
+
+Simulated inspections were excluded from the pilots above and executed only after the main experimental protocol was frozen. The arm uses binary inspections every five cycles. The policy observes only the outcome and its cycle, not the HI, the remaining life or the dates of P and F. A rejection can only advance the decision, so that, while monitoring remains valid, the decision cycle is the minimum of the prognostic decision and the first rejection, with the same execution lead. An approval never postpones a removal, and an inspection never authorises continuation after detected monitoring invalidity. Valid monitoring before the HI landmark does not prevent inspection. Inspections end at any decision, and F is not an inspection opportunity. The incremental cost and duration of an inspection are zero, but inspections and rejections are counted.
+
+\paragraph{Borescope inspection interval.}
+The five-cycle interval is a frequent-inspection scenario in simulated time, not an interval derived from an approved engine maintenance programme. EASA AD 2019-0249R1 requires inspections of specified Trent 1000 intermediate-pressure compressor parts within five flight cycles after defined asymmetric-power or depressurisation events \cite{EASA2019_0249R1}. This is an event-triggered compliance deadline, not a repetitive five-cycle inspection interval, and does not calibrate the inspection model used here.
+
+C-MAPSS cycles are not directly equivalent to flight cycles, and the scale bridge used for the 20-year scenario does not establish a physically calibrated inspection cadence. The interval remains fixed at five simulated cycles in the frozen comparison. Its influence has not been assessed by interval sensitivity analysis. Such analysis, together with representative inspection costs and downtime, is needed before interpreting the results operationally. The reported endpoint events, utilised life, inspection counts and restoration demand are conditional on the assumed cadence and rejection model; they do not establish an operational inspection schedule.
+
+At each inspection opportunity, the theoretical probability of rejection is
+\begin{equation}
+  p_{\mathrm{rep}}(t)=p_P+(p_F-p_P)
+  \left[\operatorname{clip}\!\left(
+  \frac{H_P-H_{\mathrm{ref}}(t)}{H_P-H_F},0,1\right)\right]^\gamma,
+  \qquad \gamma>0,
+\end{equation}
+where $H_P>H_F=0$ and $0\leq p_P<p_F\leq1$. The reference condition $H_{\mathrm{ref}}$ belongs to the simulated environment and is distinct from the health estimate of the model under evaluation. It is constructed from the true remaining life over a window of $W$ cycles before F, so that the normalised damage is $q(t)=1-\operatorname{clip}(\mathrm{RUL}(t)/W,0,1)$. This window is an environment parameter with no empirical reference: a search found no published value for the interval between detectable damage and functional failure of a turbofan compressor found by borescope. The grid $W\in\{30,60,80\}$ cycles was chosen to exceed a minimum useful window, the inspection interval plus the reserve and the execution lead ($5+15+2=22$), and to cover scales up to about 39\% of the mean life of FD001. It is a scenario hypothesis. The headline setting is $W=60$, $\gamma=1$, $p_P=0$ and $p_F=1$, with sensitivity on the grid, on $\gamma\in\{0.26,2\}$ and on $p_P=0.02$. Outcomes are independent given the condition, with a latent engine effect as sensitivity.
+
+Because the policy does not observe P, inspections begin at cycle 127 for engines still operating without a decision, rather than at the earlier decision gate $127-\varepsilon$. A separate, idealised reference starts inspections at $T-W$ and uses privileged information. As a rejection only advances a decision, a hybrid arm can never gain life over the forecast rule alone; it can only reduce events at the cost of life. The informative contrasts therefore use the rules that have events, namely the point-anchor rules, and ask how much life they preserve at the event level of the lower-anchor rules. Neither this model nor its parameters have been calibrated against actual borescope findings or rejection decisions. It does not establish instrument detection capability, and operational use requires calibration and validation with representative engineering data. Findings are binary; inconclusive and non-detectable results are outside the scenario. A sensitivity gives each engine a latent visibility, so that inspections of the same engine become dependent: the window is $W_i=60\exp(\sigma z_i)$ with $\sigma\in\{0.25,0.5\}$ or the shape is $\gamma_i=\exp(0.5z_i)$, with $z_i$ standard normal and independent of the HI, integrated by a 21-point Gauss--Hermite rule.
+
+The arm was executed on the archived decisions of the forecast rules for the four subsets, with execution leads 1 and 2. No sensor data are read again. From $127-\varepsilon$ onwards, monitoring may be invalid with probability $u$; the prognostic decision may occur at its archived cycle, or a scheduled inspection may reject with probability $p_{\mathrm{rep}}(t)$. Within a cycle, detected monitoring invalidity takes precedence, then a prognostic decision, then inspection. A coincident prognostic decision therefore prevents an inspection and is not counted as a rejection. Decisions preceding the monitoring gate remain unchanged. The first decision fixes removal $\varepsilon$ cycles later; no subsequent approval reverses it. This process gives exact expectations for each engine's utilised life, strict late schedules, exact arrivals, arrivals without decision, number of inspections and share of decisions caused by a rejection. The comparison is paired against the same rule without inspection, with a bootstrap over engines. The subsets FD002 and FD004 were examined in the confirmation, so every contrast is exploratory.
+
+% ===========================================================================
+\subsubsection{Restoration accounting and a conditional 20-year scenario}\label{sec:renewal-method}
+
+Each life ends in a perfect restoration with a fixed cost. For $n$ lives with utilised cycles $\min(\varrho_i,T_i)$, the restoration rate per simulated cycle is $\varpi^{\pi}=n/\sum_i\min(\varrho_i,T_i)$, and the relative saving against a reference $b$ is $1-\varpi^{\pi}/\varpi^{b}$, with a bootstrap over engines. A renewal simulation draws lives with replacement from the evaluation engines, uses common random sequences across rules and validates against $\varpi^{\pi}$ at a long horizon.
+
+A 20-year scenario requires a scale $\xi$ between flight cycles and simulated cycles. It is set as $\xi=L_{\mathrm{ref}}/\bar T$, where $\bar T$ is the mean endpoint life of the subset and $L_{\mathrm{ref}}$ is the interval between removals attributed to loss of exhaust-gas-temperature margin in published maintenance-cost analyses \cite{AC2003,AC2005,AC2019}. Intervals that those sources attribute to life-limited parts are excluded. The central $L_{\mathrm{ref}}$ is the median of the interval midpoints, 8\,425 flight cycles, with a sensitivity range $4\,000$--$19\,000$. This is a scale hypothesis with sensitivity analysis, not a physical equivalence. The C-MAPSS engine class is 90\,000~lb thrust, whereas the sources concern engines of $19\,500$--$33\,000$~lb. Life-limited parts are represented by an independent flight-cycle counter that degradation restorations do not reset \cite{AC33701}. Utilisation is $1\,400$--$1\,900$ flight cycles per year, the restoration cost is fixed, and partial restoration (later lives at 80\% of the first) is a sensitivity. No maximum number of restorations is imposed, and engine retirement is not modelled. Revenue, availability and company parameters are excluded.
+
+The scenario was extended to the four subsets and to three arms: removal at the age limit, the forecast rules with always-valid monitoring, and the same rules with the inspection arm. Random inspection outcomes give each engine an exact distribution of decision cycles. For each renewed life, the simulator draws an engine and then an outcome from that engine's distribution, using random numbers common to all arms. The full grid of $4\times3\times10\times3\times4\times2\times2=5\,760$ cells was simulated with 2\,000 replicates per cell. Before the results were read, a validation was declared: in a stationary start without life-limited parts, the mean number of visits had to match the renewal rate (maximum $|z|<4.5$), the long-horizon rate had to agree to 1\%, life-limited visits had to be equal across arms, and the simulator with single outcomes had to reproduce the earlier one exactly. A first execution failed the first criterion ($\max|z|=6.15$) because of an error in the weighting of the initial outcome of arms with more than one outcome per engine; it was preserved, the error corrected, a test added, and the grid re-run.
+
+\section{Results}\label{sec:preliminary}
+% ===========================================================================
+
+
+\subsection{Development evidence for the decision chain}\label{sec:development}
+
+
+\subsubsection{Empirical HI development and transfer}
+
+The first HI proxy in P03 used the minimum of normalised sensor departures. A median terminal reference produced zero crossings in 94 engines, with median anticipation of 42.5 cycles; a 0.90-quantile reference reduced anticipation among crossings but left 59 engines without a crossing. P04's initial tolerance reduced departures from the assumed healthy plateau, yet its selected terminal reference still produced anticipations and recoveries (\cref{tab:hi-terminal-development}). These outcomes motivated evaluation of a learned sensor combination and a terminal-reconstruction comparator, rather than further treating the minimum's first zero as an observed F.
+
+\begin{table}[htbp]
+\centering
+\caption{Development diagnostics for empirical HI candidates.}
+\label{tab:hi-terminal-development}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}lXrrrr@{}}
+\toprule
+Pilot/subset & HI & Crossings & Missing & \shortstack{Median\\lead} & Recoveries \\
+\midrule
+P03/FD001 & Minimum, $q=0.50$ & 94 & 6 & 42.5 & 30 \\
+P03/FD001 & Minimum, $q=0.90$ & 41 & 59 & 5.0 & 5 \\
+P04/FD001 & Tolerant minimum & 81 & 19 & 21.0 & 15 \\
+P05/FD001 & Empirical & 71 & 29 & 14.0 & 0 \\
+P05/FD001 & Terminal AAKR & 92 & 8 & 18.5 & 43 \\
+P06/FD003 & Empirical, refitted & 46 & 54 & 5.0 & 0 \\
+P06/FD003 & Terminal AAKR, refitted & 82 & 18 & 18.0 & 52 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Complete outer-evaluation trajectories, with 100 engines per row. Median lead is endpoint minus first HI zero, conditional on a crossing, in cycles. Changes between rounds include selection rules and are not isolated causal effects of representation.}
+\end{table}
+
+P05 compared the candidates through the same separately calibrated HI-to-RUL map. Official FD001 RMSE was 28.85 cycles for the margin control, 27.66 for the empirical combination and 27.57 for adapted terminal AAKR (\cref{tab:hi-prognostic-comparison}). Descriptive paired bootstrap intervals for differences from the control included zero: $[-4.05,1.65]$ cycles for the empirical combination and $[-3.90,1.43]$ for AAKR. These results establish a comparison procedure, not a conclusive winner or accurate reconstruction of physical condition.
+
+\begin{table}[htbp]
+\centering
+\caption{Official-test RUL prediction errors (cycles).}
+\label{tab:hi-prognostic-comparison}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrr@{}}
+\toprule
+Evaluation & Margin control & Empirical & Terminal AAKR \\
+\midrule
+FD001, fitted on FD001 & 28.85 & 27.66 & 27.57 \\
+FD003, FD001 transfer & 38.58 & 79.56 & 80.25 \\
+FD003, fitted on FD003 & 32.41 & 23.40 & 26.41 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Root mean square error at the last observed cycle of each official test engine. Each row evaluates 100 engines. FD003 transfer and refitting use the same target engines; FD001 and FD003 are different populations.
+
+AAKR denotes auto-associative kernel regression, implemented here as a terminal-core adaptation.}
+\end{table}
+
+P06 exposed domain dependence. Refitting on FD003 reduced empirical-combination RMSE from 79.56 to 23.40 cycles and terminal-AAKR RMSE from 80.25 to 26.41. Descriptive paired intervals for refitting minus transfer were $[-68.56,-43.85]$ and $[-66.92,-41.52]$ cycles, respectively. The empirical target selected internally changed from $(\rho,\eta,\lambda)=(100,1,0.1)$ in the final FD001 fit to $(60,2,0)$ in FD003. This supports learning parameters within the target domain, but cannot distinguish the effects of the condition representation and its RUL conversion. Complete lifetime medians also changed from 199 to 220.5 cycles between the subsets, alongside the degradation modes.
+
+Terminal diagnostics remain distinct from prognostic error. After refitting, the empirical HI reached zero in only 46 complete FD003 outer-evaluation trajectories, with median anticipation of five cycles among crossings and median terminal HI of 0.0163. Terminal AAKR crossed zero more often but recovered afterwards in 52 engines. None of these observations establishes a physical F boundary. Conversely, exact terminal zero is not a necessary condition for evaluating a sensor-derived representation as input to a predictor of the original endpoint. The 0.5 landmark changes that evaluation question; its forecasting performance is reported below, and the formulation is retained as a working reference with declared limitations.
+
+\subsubsection{Landmark forecast and calibrated margin}
+
+The HI = 0.5 landmark was reached in all 100 complete trajectories of each subset after refitting in the domain. The median time remaining at the landmark and the RMSE of the forecast of F were 39.5 and 17.85 cycles for FD001, and 33 and 14.84 cycles for FD003. In the official truncated tests the landmark exists in only 29 (FD001) and 22 (FD003) engines, and a model transferred from FD001 reaches it in 56 of 100 complete FD003 engines, so errors conditional on a landmark do not describe the engines without one. Adding causal slope, curvature and variability to the HI lowered the RMSE from 18.69 to 16.98 cycles (FD001) and from 14.85 to 14.05 (FD003), with paired intervals that included zero.
+
+With the held-out calibration, the lower ISO bound covered the whole post-landmark trajectory in 98--99\% of evaluation engines for FD001 and 95--99\% for FD003, with a median lower lead of 13--15.7 and 11--14 cycles, respectively (\cref{tab:landmark-margin}). The lower RF-slope bound collapsed to the current cycle at the landmark in 26--46\% (FD001) and 39--65\% (FD003) of the engines. The lead needed for reserve 15 and execution lead 2 was available at the landmark in only 14--35\% of the FD001 engines and 0--26\% of the FD003 engines. Marginal coverage at a nominal level does not establish a removal risk.
+
+\begin{table}[htbp]
+\centering
+\caption{Landmark forecasts and calibrated one-sided margins.}
+\label{tab:landmark-margin}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrr@{}}
+\toprule
+ & FD001 & FD003 \\
+\midrule
+Landmark reached & 100/100 & 100/100 \\
+Median time remaining at landmark (cycles) & 39.5 & 33 \\
+Forecast RMSE at landmark (cycles) & 17.85 & 14.84 \\
+ISO lower bound, whole-path coverage & 98--99\% & 95--99\% \\
+ISO median lower lead (cycles) & 13--15.7 & 11--14 \\
+RF-slope lower bound collapsed at landmark & 26--46\% & 39--65\% \\
+Lead available for $\kappa+\varepsilon=17$ ($\varepsilon=2$) at landmark & 14--35\% & 0--26\% \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Complete evaluation trajectories. Landmark values are for 100 engines per subset; margin values are ranges over three repetitions of the same 100 engines.
+
+Lead is the cycles between the decision or landmark and F. Availability is the share of engines with lower-bound lead of at least reserve plus execution lead (15+2) at the landmark.}
+\end{table}
+
+\subsubsection{Removal rules, controls and losses}\label{sec:decision-results}
+
+
+\Cref{tab:removal-rules} reports the rules on the held-out evaluation engines. The lower-anchor rules decided for all 100 complete engines in every repetition, with no arrival at the endpoint, whereas the central-anchor rules left 4--20 (FD001) and 5--23 (FD003) engines without a decision per repetition and had exact arrivals. The fixed-age control also reached the endpoint in 1--3 and 1--2 engines per repetition, so the comparisons do not rest on equally admissible rules. Against that control, ISO with lower anchor and reserve 15 lowered the restoration rate per simulated cycle by 20.05--22.85\% (FD001) and 28.95--30.30\% (FD003) for execution lead 1, and by 20.39--23.11\% and 29.29--30.47\% for execution lead 2; these are relative changes in a normalised cost, not a monetary gain.
+
+\begin{table}[htbp]
+\centering
+\caption{Removal-rule outcomes with execution lead 1.}
+\label{tab:removal-rules}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
+\toprule
+Rule & \multicolumn{2}{c}{FD001} & \multicolumn{2}{c}{FD003} \\
+ & Restorations & Utilised & Restorations & Utilised \\
+\midrule
+Fixed-age control & 74.2--76.9 & 130.1--134.7 & 67.3--68.9 & 145.2--148.6 \\
+HI-marker control & 59.5--60.0 & 166.7--168.0 & 47.8--48.8 & 205.0--209.2 \\
+ISO, lower anchor, $\kappa=15$ & 59.3--59.7 & 167.4--168.7 & 47.7--48.6 & 205.7--209.7 \\
+ISO, point anchor, $\kappa=15$ & 51.8--52.3 & 191.1--193.2 & 42.8--43.0 & 232.4--233.5 \\
+\midrule
+Events: age / marker / lower / point & \multicolumn{2}{c}{5 / 0 / 0 / 34} & \multicolumn{2}{c}{5 / 0 / 0 / 42} \\
+\bottomrule
+\end{tabularx}
+\tablenotes{There are 100 evaluation engines per repetition. Restorations per 10\,000 simulated cycles and mean utilised cycles are ranges over three repetitions.
+
+Events are exact arrivals plus arrivals without decision over the 300 lives of the three repetitions, which reuse the same engines. The fixed-age control removes each engine at the partition-specific $A_{\mathrm{age}}$ defined in \cref{sec:method}, not at the single limit $A_{\mathrm L}$.}
+\end{table}
+
+The landmark carries most of the benefit. The HI-marker control already provided 95.9--100\% of the mean-life gain over the age control for the ISO lower-anchor rule, whereas the added conversion to F contributed at most 4.1\%, about 0.21--1.57 cycles in FD001 and 0--0.83 in FD003, and the normalised cost reduction against the marker was 0.12--0.93\% and 0--0.40\%. These are shares of lifetime and not additive shares of monetary saving. The HI is itself supervised by remaining life, so the marker is not free of learned prognostic information. For removal at $T-1$, both oracles gave the same removal cycle, so the decomposition attributed zero loss to signal availability. The ISO lower-anchor rule left 36.08--37.90 (FD001) and 35.99--40.50 (FD003) additional cycles unused, all after the landmark. When a 15-cycle reserve is imposed on the oracle, a late signal affected only 1--3 and 2--3 engines per 100. The losses therefore do not support describing the problem as limited by detection.
+
+A threshold or a waiting time on the HI, selected from development engines alone, added 13.08--15.49 cycles (FD001) and 8.29--12.90 (FD003) to the marker for the threshold, and 8.50--10.00 and 6.90--9.00 for waiting. The selected rules had 0--2 and 0--1 arrivals per 100 engines, and four internal selections were infeasible. No optimum or population risk is claimed from these gains.
+
+\subsection{Explanation and robustness of the learned decision}\label{sec:explanation-results}
+
+The baseline chain reproduced all 9\,600 actions with signed and clipped contributions, demonstrating faithful reconstruction despite variation in the learned inputs across fitting-engine sets. The median Spearman correlation of contribution ranks between folds was 0.728 for FD001 and 0.560 for FD003. At every conservative action, the central prediction alone exceeded the required lead of $\kappa+\varepsilon=16$ cycles (execution lead $\varepsilon=1$), so the margin $\Delta^{\star}$ was necessary for the trigger. Lower ISO bounds were nonzero, whereas RF-slope lower bounds were zero in 26--49\% and 39--66\% of the engines. The longest-lived FD003 engine (engine 55 in the file numbering) had landmarks at 451, 239 and 396 cycles across the three repetitions.
+
+All 9\,600 original action prefixes contained an increment outside initial empirical support. Consequently, no paired prefix met the whole-prefix inclusion condition among the 1\,084\,160 nonzero global replays or the same number of local replays. These are engine--partition--policy--perturbation comparisons, not independent engines. Both decision dates existed in 1\,059\,726 global and 840\,064 local comparisons; none qualified for a support-restricted date-shift estimate. This establishes statistical extrapolation relative to initial increments, not physical implausibility, and does not validate physical robustness.
+
+Excluding single fitting engines flipped the orientation of five sensors simultaneously in 13 of 25 cases for that engine in one repetition and moved the landmark by 204--213 cycles. Refitting only the coefficients shifted it by up to 179 cycles in another repetition, and fixing the orientations alone did not suffice. Full-rank designs and optimality checks do not support a numerical failure. Four alternative formulations lowered internal shifts in development engines but did not transfer favourably to the full chain: the 95th percentile of the between-repetition range of the landmark went from 9.15 to 12.05 cycles (FD001) and from 27.45 to 21.60 (FD003), while new endpoint events appeared in FD003. Because the alternatives did not transfer favourably, the working HI was retained with its instabilities declared as limitations; this decision does not constitute physical validation.
+
+A complementary diagnostic of the stored models includes all four subsets; the FD002 and FD004 models come from the confirmation reported in \cref{sec:confirmation-results}. Between folds of the same repetition, the median Spearman correlation of $\beta_j$ was 0.28--0.35 (FD001), 0.51--0.67 (FD002), 0.47--0.51 (FD003) and 0.39--0.50 (FD004). The orientation was the same in all retained channels for FD001 and FD002, in 94\% for FD004 and in 100\% for FD003 except in the first repetition, where it fell to 67\%. The overlap of channels with $\beta_j>10^{-9}$ was 0.79--0.86, 0.63--0.73, 0.44--0.50 and 0.40--0.46, and the three largest $\beta_j$ values agreed in a third to two thirds. The coefficients are therefore only moderately stable, the less so in the subsets with two fault modes, and an explanation by individual sensor coefficients should be read with that variability. Repetitions reuse the same engines, so these figures are not independent.
+
+\subsection{Age limit and extension under valid monitoring}\label{sec:monitoring-results}
+
+The instability of the landmark was only partly concentrated in long-lived engines, and not enough to justify excluding any engine. The Spearman correlation between life and the between-repetition range of the landmark was 0.171 (FD001; interval including zero) and 0.283 (FD003); relative range did not grow with life, and endpoint events, counted descriptively, were more frequent in short lives. No engine was excluded. A single age limit of $A_{\mathrm L}=127$ cycles was set. None of the 200 examined engines has $T_i\leq127$, so the upper confidence limits for $\Pr(T\leq A_{\mathrm L})$ are 0.80\%, 1.14\% and 1.49\% at confidence 80\%, 90\% and 95\%. For FD001 alone the 95\% limit is 2.95\%. These limits are in-sample.
+
+Using the age as a cap on the forecast rule, a variant examined during development and not detailed here, made the age decide for 87--100\% of the engines, so the combined policy reduced to the age rule (mean life of 126--127 cycles in FD001 against 167--192 for the forecast rules). When the limit instead applies only without valid monitoring and the forecast governs otherwise, the ISO lower-anchor rule extends 89\% (FD001) and 98\% (FD003) of the engines beyond 127 cycles, on average by 41 and 81 cycles. The extension recovers 53\% and 68\% of the headroom $T-127$ and lowers restorations per cycle by 24.5\% and 39.0\% against the limit alone (\cref{tab:extension}). The extension tracks the condition: the Spearman correlation between extension and HI at cycle 127 is 0.95 for FD001 and 0.91 for FD003, and it also correlates with true life (0.95 and 0.96). If monitoring is invalid with probability $u$ per cycle and loss triggers an immediate removal request, the saving falls to 21.6\% and 31.6\% at $u=0.005$ and to 15.5\% and 19.9\% at $u=0.02$, and life never falls below 127 cycles. Undetected invalid data are not modelled. Beyond 127 cycles, safety depends on the late-event rate of the forecast rule, which was zero in 300 lives for the lower-anchor rules but bounds the risk only at 2.95\% (95\%) with 100 distinct engines.
+
+\begin{table}[htbp]
+\centering
+\caption{Extension beyond 127 cycles under valid monitoring.}
+\label{tab:extension}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{FD001} & \multicolumn{2}{c}{FD003} \\
+Rule & Extension & Saving & Extension & Saving \\
+\midrule
+ISO, lower anchor & 41.2 & 24.5\% & 81.2 & 39.0\% \\
+HI-marker control & 40.3 & 24.1\% & 80.7 & 38.8\% \\
+Selected threshold (exploratory contrast) & 55.1 & 30.2\% & 91.8 & 41.9\% \\
+ISO, point anchor & 65.1 & 33.9\% & 106.0 & 45.5\% \\
+\midrule
+ISO lower, $u=0.005$ & & 21.6\% & & 31.6\% \\
+ISO lower, $u=0.02$ & & 15.5\% & & 19.9\% \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Execution lead 1; mean over three repetitions of the 100 evaluation engines. Saving is the relative reduction in restorations per simulated cycle against removal at $A_{\mathrm L}=127$ cycles.
+
+The selected-threshold row is an exploratory contrast outside the main rule set. The last two rows give the ISO lower-anchor saving when monitoring is invalid at each cycle with probability $u$.}
+\end{table}
+
+
+
+\subsection{Confirmation under changing operating conditions}
+
+
+\subsubsection{Operating-regime normalisation in a synthetic test}
+
+With one regime the normalisation reproduced the original FD001 HI and forecasts in all ten folds, with a maximum forecast difference below $10^{-7}$ cycles. In a synthetic test with six regimes injected into FD001, the raw pipeline lost the landmark in 27\% of the engines and increased the landmark RMSE by 66\% (\cref{tab:regime-test}). With the normalisation, performance returned to within 1.4\% of the original. $K$-means recovered the injected regimes without error. This is a necessary and not a sufficient condition, because the regimes were well separated and the effects were additive and multiplicative per sensor. Interaction between regime and degradation is not represented.
+
+\begin{table}[htbp]
+\centering
+\caption{Synthetic multi-regime normalisation test on FD001.}
+\label{tab:regime-test}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrr@{}}
+\toprule
+Variant & Landmark reached & Landmark RMSE & Spearman, HI vs RUL \\
+\midrule
+Original FD001 & 100\% & 16.14 & 0.992 \\
+Synthetic, raw & 73\% & 26.86 & 0.755 \\
+Synthetic, $K$-means normalised & 100\% & 16.36 & 0.992 \\
+Synthetic, true regimes & 100\% & 16.36 & 0.992 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Ten folds of 10 evaluation engines (100 engines). The landmark is the first HI passage at 0.5.}
+\end{table}
+
+\subsubsection{Confirmation in FD002 and FD004}\label{sec:confirmation-results}
+
+None of the 509 training engines of FD002 (260) and FD004 (249) had a life of 127 cycles or less. The one-sided 95\% upper bound for $\Pr(T\leq 127)$ is 0.59\% over the 509 engines, 1.15\% for FD002 and 1.20\% for FD004, and 0.42\% over the 709-engine mixture with FD001 and FD003. The pre-declared criterion is met. This is a statement about the age limit in this benchmark; it is not a population risk and not an authorisation. The configuration groups selected $(\tau,\gamma,\text{ridge})=(60,2,0.1)$ for FD002 and $(60,1,0)$ for FD004. Regime clustering was stable: the silhouette was 0.997 in every fold of both subsets, the smallest cluster held at least 695 fitting rows, and two seeds agreed perfectly (adjusted Rand index 1). The interaction between regime and degradation, which these diagnostics do not address, remains untested.
+
+\Cref{tab:confirmation} gives the outcomes of the rules for execution lead 1. In FD002, the lower-bound rules and the landmark control decided every engine before its endpoint, with no endpoint event in any repetition; in FD004, they had one strict late schedule, one exact arrival and one arrival without decision over the 507 evaluations, the same for all three. The point-anchor rules had more events in both subsets, with strict late schedules and exact arrivals, as in the development subsets. Mean utilised lives and event counts of the lower-bound rules and the landmark control were identical, which is consistent with the lower-bound rules acting at the landmark, so the conversion to F added nothing measurable here. With execution lead 2, FD004 had two strict late schedules for the same rules.
+
+The 98\% margin gave whole-path lower coverage of 97.8--99.4\% (FD002) and 98.2--99.4\% (FD004). In the first FD004 repetition, 10\% of the engines had an infinite margin because some folds scored fewer than 49 calibration engines. An infinite margin sets the lower RUL bound to zero, so the removal trigger is satisfied at the first usable landmark.
+
+The landmark of an engine varied by a median of 6 (FD002) and 9 (FD004) cycles across repetitions, with maxima of 31 and 40, without a range comparable with that of engine 55 of FD003.
+
+\begin{table}[htbp]
+\centering
+\caption{Removal-rule outcomes in the confirmation subsets.}
+\label{tab:confirmation}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}lXrrrrr@{}}
+\toprule
+Subset & Rule & Decided & \shortstack{Strict\\late} & Exact & Arrivals & \shortstack{Saving vs 127\\(\%)} \\
+\midrule
+FD002 & ISO, lower 98\%, reserve 15 & 540 & 0 & 0 & 0 & 24.5--25.3 [22.2, 27.6] \\
+FD002 & RF-slope, lower 98\% & 540 & 0 & 0 & 0 & 24.5--25.3 [22.1, 27.7] \\
+FD002 & Landmark control & 540 & 0 & 0 & 0 & 24.5--25.3 [22.1, 27.7] \\
+FD002 & ISO, point anchor & 520 & 2 & 11 & 33 & 32.7 [30.5, 35.0] \\
+FD002 & RF-slope, point anchor & 522 & 3 & 5 & 26 & 31.8--32.6 [29.7, 34.7] \\
+FD004 & ISO, lower 98\%, reserve 15 & 506 & 1 & 1 & 3 & 40.9--41.2 [38.1, 43.8] \\
+FD004 & RF-slope, lower 98\% & 506 & 1 & 1 & 3 & 40.9--41.2 [38.2, 43.8] \\
+FD004 & Landmark control & 506 & 1 & 1 & 3 & 40.9--41.2 [38.1, 43.9] \\
+FD004 & ISO, point anchor & 428 & 3 & 8 & 90 & 43.5--44.7 [41.0, 47.1] \\
+FD004 & RF-slope, point anchor & 474 & 4 & 6 & 43 & 43.2--43.8 [40.6, 46.2] \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Execution lead 1, over three repetitions that reuse the same 180 (FD002) and 169 (FD004) evaluation engines (540 and 507 evaluations).
+
+Decided counts engines with a decision before the endpoint; arrivals include exact arrivals, strict late schedules and engines without a decision.
+
+Saving is the relative reduction in restorations per simulated cycle against removal at 127 cycles; its range spans repetitions and the bootstrap interval is 95\%.}
+\end{table}
+
+With the extension over the monitoring-loss grid, the lower-bound ISO rule keeps a saving against the 127-cycle limit of 24.5--25.3\% (FD002) and 40.9--41.2\% (FD004) with always-valid monitoring, 21.4--22.1\% and 33.8--34.0\% at $u=0.005$, and 15.1--15.4\% and 21.3--21.5\% at $u=0.02$. The pattern reproduces the development subsets, and the larger saving in FD004 reflects its longer lives.
+
+\subsection{Inspection and restoration demand}
+
+All inspection contrasts use an assumed generator and are exploratory, including those in the previously examined confirmation subsets.
+
+\subsubsection{Borescope inspection arm}\label{sec:inspection-results}
+
+\Cref{tab:inspection} gives the headline scenario (inspections from the 127-cycle gate every five cycles, $W=60$, $\gamma=1$, $p_P=0$, $p_F=1$, always-valid monitoring, execution lead 1). Because a rejection can only advance the decision, the arm cost life in every engine and every subset. For the lower-bound rules, the restoration rate rose by 3.1--3.4\% in FD001, FD002 and FD003 and by 6.7\% in FD004, with 5--7 cycles of life ceded per engine in the first three and 13 in FD004, and inspections rejected in 45--76\% of the decisions. These rules had almost no events, so the arm brought no measurable reduction. For the ISO point-anchor rule, which has events (6--18 expected per 100 engines), the arm lowered them to between 0 and 0.34 per 100 at a cost of 10.8--12.5\% in rate and 18--24 cycles of life per engine, and 89--94\% of decisions came from a rejection. The RF-slope point-anchor rule behaved similarly. Relative to the lower-bound ISO rule without inspection, the point-anchor rule with inspection had a restoration rate 1.5\%, 0.7\% and 0.5\% lower in FD001, FD002 and FD003 and 5.8\% higher in FD004, with expected events of 0.34, 0.03, 0.00 and 0.04 per 100 against 0.00, 0.00, 0.00 and 0.59. Under the assumed process, therefore, the inspection could replace the calibrated margin at similar cost in three subsets and not in FD004, where the margin rule had endpoint events and the hybrid arm paid more life. The rate increases differed by less than one percentage point between the two execution leads.
+
+% The gamma=0.26 sensitivity was converted from the curve in Miranda's ongoing work; the source is not cited pending completion.
+The scenario dominates these results. For the ISO point-anchor rule, the rate increase was 2.1--3.5\% with $W=30$ and 17.7--21.0\% with $W=80$, 5.8--7.7\% with $\gamma=2$ and 16.4--19.9\% with $\gamma=0.26$, and 15.3--24.3\% with a false-rejection probability of 0.02. The idealised entry from $T-W$ gave 11.6--15.6\% at $W=60$, near the observable entry. Even with $W=30$, the point-anchor events fell from 6--18 to below 0.5 per 100 engines. With monitoring that may be invalid, the rate increase of the lower-bound rule fell from 3.1\% to 1.9\% in FD001 as $u$ rose to 0.02, consistent with more engines being governed by the age limit. None of these results is calibrated against borescope findings.
+
+\begin{table}[htbp]
+\centering
+\caption{Borescope inspection outcomes in the headline scenario.}
+\label{tab:inspection}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}lXrrrrr@{}}
+\toprule
+Subset & Rule & \shortstack{Rate change\\(\%)} & \shortstack{Life\\ceded} & \shortstack{Events\\alone} & \shortstack{Events with\\inspection} & \shortstack{Rejection\\share} \\
+\midrule
+FD001 & ISO, lower 98\% & 3.1 (2.3--4.0) & 5.1 & 0.00 & 0.00 & 0.45 \\
+FD001 & ISO, point anchor & 12.5 (10.6--14.5) & 21.3 & 11.33 & 0.34 & 0.92 \\
+FD002 & ISO, lower 98\% & 3.2 (2.5--4.0) & 5.2 & 0.00 & 0.00 & 0.45 \\
+FD002 & ISO, point anchor & 10.8 (9.7--11.9) & 18.4 & 6.11 & 0.03 & 0.89 \\
+FD003 & ISO, lower 98\% & 3.4 (2.6--4.3) & 6.8 & 0.00 & 0.00 & 0.53 \\
+FD003 & ISO, point anchor & 11.4 (10.0--12.9) & 23.8 & 14.00 & 0.00 & 0.94 \\
+FD004 & ISO, lower 98\% & 6.7 (5.7--7.8) & 13.5 & 0.59 & 0.01 & 0.76 \\
+FD004 & ISO, point anchor & 11.7 (9.5--14.0) & 23.9 & 17.75 & 0.04 & 0.91 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Entry at the 127-cycle gate every five cycles, $W=60$, $\gamma=1$, $p_P=0$, $p_F=1$, always-valid monitoring, execution lead 1.
+
+Values are means over three repetitions that reuse the same engines; the rate change is the relative increase in restorations per simulated cycle against the same rule without inspection, with the range of the 95\% bootstrap intervals across repetitions.
+
+Events are expected strict late schedules, exact arrivals and arrivals without decision per 100 engines. Rejection share is the mean probability that the decision comes from a rejection.}
+\end{table}
+
+When the visibility of the damage varies between engines, so that inspections of the same engine are dependent, the cost of the arm rises. With a window varying by $\sigma=0.25$, the rate increase of the lower-bound rule was 3.9\%, 3.9\%, 4.1\% and 7.5\% in FD001 to FD004 (3.1--6.7\% with independent inspections), and with $\sigma=0.5$ it was 5.3\%, 5.5\%, 5.9\% and 9.3\%; for the point-anchor rule it rose from 10.8--12.5\% to 11.4--14.1\%. A latent shape had little effect. The expected events of the point-anchor rule with inspection stayed below 0.4 per 100 engines in every variant. The qualitative conclusion is unchanged, although differences in damage visibility increase the restoration-rate penalty.
+
+\subsubsection{Development of the scale bridge and renewal accounting}\label{sec:scale-results}
+
+The development-stage renewal analysis validates accounting and scale sensitivity in FD001 and FD003 against the partition-specific fixed-age control. Its percentages therefore have a different reference from those of the final three-arm comparison against 127 cycles.
+
+The simulator reproduced the analytic restoration rate in all 96 combinations of subset, repetition and rule, with a maximum relative error of $1.7\times10^{-4}$. With the central scale $\xi=40.8$ (FD001) and $34.1$ (FD003), 1\,600 flight cycles per year and a life-limited counter of 20\,000 flight cycles, the fixed-age control needs 6.64 and 7.25 visits per position in 20 years, and the ISO lower-anchor rule 5.51 and 5.43, a reduction of 17.0\% and 25.1\%. About 1.6 of these visits are forced by life-limited parts and are identical across rules. Without the life-limited counter, the reduction is constant across $\xi$ at 21.3--22.3\% (FD001) and 29.0--29.8\% (FD003), equal to the analytic rate. The sign of the pairwise ordering of rules is stable in most comparisons, but stability is not relevance: ISO lower-anchor against the marker control differs by 0.25--0.53\% of visits and cannot be distinguished in 36\% of the FD003 cells. A direct one-to-one scale would imply 150--240 restorations per position in 20 years, which is implausible and shows the scale cannot be left implicit. All 20-year figures are conditional on $k$, utilisation, the life-limited counter and independent renewal of the evaluation engines.
+
+\subsubsection{Twenty-year scenario in the four subsets and three arms}\label{sec:twenty-results}
+
+
+\Cref{tab:twenty} gives the central scenario (1\,600 flight cycles per year, $L_{\mathrm{ref}}=8\,425$, a life-limited counter of 20\,000 flight cycles, a mature fleet, full restoration and execution lead 1). The simulator passed its declared validation after the correction described above: maximum $|z|$ of 3.90, long-horizon error of at most 0.24\%, equal life-limited visits across arms (about 1.6 per position), and an independent scalar re-simulation of 192 cells with exact agreement.
+
+With the age limit, a position needs 6.8 to 8.2 visits in 20 years. The forecast rule with the lower bound needs 5.2 to 5.5, a reduction of 18.6\% and 19.2\% in FD001 and FD002 and of 33.3\% and 35.5\% in FD003 and FD004, and with the inspection arm 5.5 to 5.7, a reduction of 16.3\% to 31.9\%. The point-anchor rule alone needs the fewest visits (4.9 to 5.0) but has 0.2 to 0.6 arrivals at the endpoint per position, and with the inspection it needs 5.4 to 5.5 and almost none.
+
+Over the whole grid, the median reduction of the lower-bound rule against the age limit was 25\% and 39--41\% without the life-limited counter, and 22--23\% and 35--39\% with it, for FD001/FD002 and FD003/FD004. The sign of the lower-bound rule against the age limit held in 11\,518 of 11\,520 comparisons across the four subsets, the remaining two being indistinguishable, and the hybrid arm against the same rule without inspection held in 11\,519 of 11\,520. These comparisons describe the process for the evaluation engines; they are conditional on the scale, the utilisation, the life-limited counter and independent renewal, and they claim no monetary gain for a company.
+
+\begin{table}[htbp]
+\centering
+\caption{Restoration visits per position over 20 years.}
+\label{tab:twenty}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrrrrrr@{}}
+\toprule
+ & \multicolumn{4}{c}{Visits per position} & \multicolumn{4}{c}{Saving vs 127 (\%)} \\
+\cmidrule(lr){2-5}\cmidrule(lr){6-9}
+Arm & FD001 & FD002 & FD003 & FD004 & FD001 & FD002 & FD003 & FD004 \\
+\midrule
+Age limit 127 & 6.76 & 6.78 & 8.15 & 8.13 & -- & -- & -- & -- \\
+Landmark control & 5.53 & 5.49 & 5.45 & 5.24 & 18.2 & 19.0 & 33.1 & 35.5 \\
+ISO, lower 98\% & 5.50 & 5.48 & 5.44 & 5.24 & 18.6 & 19.2 & 33.3 & 35.5 \\
+ISO, lower 98\% + inspection & 5.66 & 5.65 & 5.60 & 5.54 & 16.3 & 16.7 & 31.3 & 31.9 \\
+ISO, point anchor & 4.92 & 5.01 & 4.94 & 5.01 & 27.2 & 26.1 & 39.4 & 38.4 \\
+ISO, point anchor + inspection & 5.46 & 5.48 & 5.44 & 5.50 & 19.2 & 19.2 & 33.3 & 32.3 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Central scenario, execution lead 1, mean over three repetitions that reuse the same engines.
+
+Arrivals are expected restorations that follow an endpoint event (arrival without decision, exact arrival or strict late schedule) per position. The saving is against removal at 127 cycles.}
+\end{table}
+
+% ===========================================================================
+\section{Discussion and limitations of the evidence}\label{sec:pilot-discussion}
+
+The first usable HI passage through 0.5 supplies at least 95.9\% of the development gain in utilised life; inspection exchanges life for fewer endpoint events. The action-region experiments (documented in the repository) hold predictions fixed and show why calibration comparisons must control where margins can trigger action. Under conservative rules, conversion to F adds little life, although the calibrated margin makes the conservative trigger fire. This capability relies on supervised run-to-failure data; transfer to fleets without failures or teardown-verified removals is not established. P remains an evaluation concept and an inspection-environment window, not a required detection.
+
+\subsection{What explanations establish}
+
+The reconstruction of the sensor--HI--forecast--action chain identifies why a removal was triggered: the central forecast, calibrated margin and reserve can be inspected separately. This is useful for auditing the candidate task, but the stability diagnostics in \cref{sec:explanation-results} qualify reliance on individual sensor contributions.
+
+The instabilities of the HI are retained rather than corrected. Orientation and coefficients respond to the composition of the fitting engines, contributions have only moderate stability across folds, and decision prefixes lie outside the initial empirical support. Four alternative formulations did not transfer favourably to the full chain. The decision to keep the working HI is a methodological choice for progress, not a physical validation, and a longer-lived engine of FD003 shows landmark ranges of hundreds of cycles.
+
+\subsection{Monitoring, safety evidence and transfer}
+
+Single-number age limits are costly for the longer-lived population: a limit set by the shortest FD001 engine applies to FD003, whose shortest life is 145 cycles. The limit is an empirical proxy; a real limit would come from design analysis. Applying it as a cap collapses the policy into the age rule, whereas applying it only without valid monitoring leaves most of the forecast benefit, at the price of relying on the forecast beyond 127 cycles, where engines fail. The zero events observed in 300 lives reuse 100 engines and bound the risk at 2.95\% (95\%), so an experimental 2\% target cannot be supported with the development sample alone. In FD002 and FD004, none of 509 engines had a life of 127 cycles or less, which meets the criterion declared before opening them (upper bound 0.59\%); the criterion concerns the age limit in this benchmark, not the removal rules, which showed endpoint events in FD004. The loss of monitoring is a declared scenario and covers detected loss only; undetected invalid data and correlated outages are not modelled.
+
+\subsection{Candidate maintenance tasks and the scope of IP-180 assessment}\label{sec:task-implications}
+
+Three candidate tasks are evaluated: removal at 127 cycles; sensor-only removal from the landmark, forecast anchor, reserve and execution lead, with the monitoring-loss response in \cref{sec:monitoring}; and the hybrid addition of five-cycle inspections from cycle 127, where rejection can only advance removal. Each specifies entry, trigger, execution lead and conduct on monitoring loss.
+
+
+Within the assessment of alternative tasks framed by IP-180, the present evidence covers the benchmark mechanisms and their declared scenarios. Physical failure limits, representative inspection capability, operational monitoring validity and engineering evidence for task applicability remain to be established. The comparison therefore provides candidate task formulations and identifies the evidence needed for further assessment; it does not complete an IP-180 applicability or approval process.
+
+\subsection{Limitations}
+
+The economic results are conditional on the scale bridge and on independent renewal of the evaluation engines. Without the life-limited counter the savings per cycle are constant in $\xi$; with it, they shrink and become less stable, and finite-horizon effects in short horizons are reported rather than corrected. The ordering of rules is stable in sign but often immaterial. No monetary saving for a company, maintenance credit or operationally optimal removal cycle is claimed.
+
+Because incremental inspection cost and duration are set to zero, restoration demand is not a measure of total maintenance cost. Cost-aware inspection scheduling, as studied by Lam and Banjevic \cite{LamBanjevic2015}, is an extension not evaluated here; its practical benefit cannot be inferred from fewer endpoint events or restorations alone. Their analysis also makes the renewal requirement explicit: external covariates or repairs that do not restore the initial state can invalidate a renewal-reward calculation. The C-MAPSS trajectories do not establish successive independent restored lives, and our partial-restoration sensitivity does not validate an industrial repair model.
+
+The generic execution lead and binary rejection model do not reproduce the component-specific requirements of EASA AD 2019-0249R1 \cite{EASA2019_0249R1}, discussed in \cref{sec:inspection-method}. Neither the directive's compliance deadline nor its findings calibrate the P--F window or detection-probability curve used here.
+
+The physical HI and its operational margins are not supplied in FD001. A statistical alert threshold is not a physical F boundary, and the recorded endpoint is the benchmark reference. The evaluation engines have been reused across all rounds, the official tests have been examined, and bootstrap intervals are descriptive. The results in FD001 and FD003 are therefore exploratory development. FD002 and FD004 were opened once as a test under domain change and are now examined data. The confirmation applied the frozen procedure with six operating conditions, but it does not validate the HI physically, and the interaction between regime and degradation is not tested independently of the benchmark outcomes.
+
+The 20-year figures extend to the four subsets with the same dependence on the scale bridge, and the first simulator run failed a declared validation because of a weighting error, which is why the validation was declared before the results were read. Inspection findings were simulated from an environment condition built from the true remaining life; they are not fused with sensor information and are not calibrated to borescope data, so the comparison with PHM + inspection is conditional on the assumed damage window and curve. Because a rejection can only advance a decision, the hybrid arm cannot extend life, and its value lies in reducing events of rules that have them. IP-180 is an anchor for the assessment, and neither this work nor the simulated inspection model demonstrates compliance with it. The regulatory route also differs between a time-in-service interval extension \cite{AC120113} and the task substitution of IP-180 \cite{IP180,IP197}, and none of the examples in those documents concerns the removal of an engine for degradation.
+
+\section{Conclusions}\label{sec:pilot-conclusion}
+
+The study connects sensor-derived condition information to explicit removal tasks through an empirical HI, a landmark forecast of F, a held-out one-sided margin and an execution lead. Against a conservative age control, these rules reduce restoration demand, but the landmark alone supplies at least 95.9\% of the development gain in mean utilised life. Conversion to F adds little life under the conservative rules; the calibrated margin explains why their trigger acts at the available landmark. The controls locate the source of benefit in the evaluated decision mechanism.
+
+After protocol freeze, the confirmation found no life of 127 cycles or less among 509 FD002/FD004 engines, meeting the declared age-limit criterion with a one-sided 95\% upper bound of 0.59\%. The forecast rules retained restoration-rate reductions of 24.5--25.8\% in FD002 and 40.9--41.4\% in FD004, while FD004 exposed endpoint events under the lower-bound rules and the landmark control. The criterion establishes a benchmark result for the age limit; it does not establish the population risk of the PHM task.
+
+The simulated inspection task reduced the point-anchor endpoint events to almost zero at a cost of 10.8--12.5\% more restorations per simulated cycle in the headline scenario. In the central 20-year setting, the lower-bound PHM rule required 18.6--35.5\% fewer restorations per position than the 127-cycle age task, and its hybrid version 16.3--31.9\% fewer. These comparisons depend on the damage window, inspection curve, scale bridge and renewal assumptions, and do not estimate a company's monetary gain.
+
+The sensor--HI--forecast--action chain can be reconstructed faithfully, but moderate coefficient stability and large landmark shifts in some engines limit the robustness of individual sensor explanations. Together with the supervised run-to-failure requirement, these findings delimit what the candidate tasks can support. Their further assessment under IP-180 requires representative engineering evidence for physical limits, monitoring validity and inspection performance. The present study supplies the task formulations, comparative outcomes and remaining evidence requirements rather than maintenance credit or operational approval.
+
+
+
+\section*{CRediT authorship contribution statement}
+\textbf{Antonio C. P. Mesquita:} Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Writing -- original draft, Writing -- review \& editing, Visualization, Project administration.
+
+\section*{Declaration of competing interest}
+The author declares no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+\section*{Funding}
+This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
+
+\section*{Data availability}
+The C-MAPSS data are public and were obtained from the NASA Prognostics Data Repository. The code, protocols, amendments, hashes of inputs and outputs, and derived results are available at \todo{repository and DOI to be created (Option C: deposit and cite)}.
+
+\section*{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
+During the preparation of this work the author used Claude (Anthropic), through Claude Code, in order to write and test analysis code, run the experiments and draft and edit text. After using this tool, the author reviewed and edited the content as needed and takes full responsibility for the content of the published article.
+
+
+% Appendix content (early-pilot specification, results and information
+% constraints) is available in the project repository (see Data Availability).
+
+\bibliographystyle{elsarticle-num}
+\bibliography{references}
+
+\end{document}

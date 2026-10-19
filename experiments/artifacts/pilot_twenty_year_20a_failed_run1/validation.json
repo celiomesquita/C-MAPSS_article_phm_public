@@ -1,0 +1,9 @@
+{
+  "stationary_cells": 7920,
+  "stationary_max_abs_z": 6.150285141654432,
+  "stationary_pass": false,
+  "llp_equal_max_range": 0.0,
+  "llp_pass": true,
+  "long_horizon_max_abs_rel_error": 0.0024143006775888542,
+  "long_horizon_pass": true
+}

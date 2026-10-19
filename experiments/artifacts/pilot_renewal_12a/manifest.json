@@ -1,0 +1,13 @@
+{
+  "execution_start.json": "32cb90fe548b2b3f2a53eb94751ee7a0f888f80922fa70b978734316c5121c55",
+  "horizon.csv": "56dc4925f4dabf5e2db7e2eb2c5e75935f4080ec0a72e6b6dd96fe30b86bc26e",
+  "horizon_contrasts.csv": "fd92440834e7c84ded57481537c72a3e239cdae2a66217eb63c09a93b0f4461e",
+  "rate_contrasts.csv": "eb203143cb884c467f11e6603279f5de0f7ea01c90e72310875502703b1f9f24",
+  "rates.csv": "7928eee63f19bf47d44e29a3b046adcf400ccf4ebe77e2270ac7b69edbd1a43c",
+  "restorations_vs_horizon.png": "ba92568f37a5358df8b098b081f91b1c0ae0f5885a6611cb4a3972f23f1ea418",
+  "source_pilot_renewal_12a.py": "934022d4330ac7fb49b64056b34fd09c299a66c6062eb8f1151709a12fe7e34e",
+  "source_protocolo_renovacao_12a.md": "7e1b92eb2df93371206fe24edd794a8f14615f9f1d7351b81cdc0aa54cc255eb",
+  "source_test_renewal_12a.py": "19a59c35ab7bae8b50061a4fe3d55cda75425545635a5d02f8150a83bc9f0a5e",
+  "source_verify_renewal_12a.py": "7ae33672dd8434dbb1b67c03d5a4fb50f87299f54881d673035b3188e658e035",
+  "validation.csv": "01fe0c432f72ac9ae86a42d32ec43c1ff3503d34d5a8c9997057f2c4ce6406b5"
+}

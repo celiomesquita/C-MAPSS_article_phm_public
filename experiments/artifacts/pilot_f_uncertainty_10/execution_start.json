@@ -1,0 +1,48 @@
+{
+  "started_utc": "2026-10-17T13:37:03.436167+00:00",
+  "previous_manifests": {
+    "pilot_f_uncertainty_09": "96b7b546d5b6789d38e866b92778f39382334df2587d6652bb546b373d2b17e1",
+    "pilot_fd001_01": "555522ab18fd8822cf747c61450d45e930a0b272cc2940b29ac1d534f7fb3632",
+    "pilot_fd001_02": "8c54d836229d7b04e43e6b05ba02a2a8e0ff90e59a03503be4fcfeb6012f0106",
+    "pilot_fd001_03": "ccbac6a24ecace1610b240f93253a2caf20ea1f77ffe901690d04f9ee3b3fb4a",
+    "pilot_fd001_04": "a1520c7d7324c922ebae1a1c7756ce92f34eb6e631f6537ce4161c854bb211b4",
+    "pilot_fd001_05": "13e5ea213b73d0cc3661d843341887a29cdf387207340c97f01b90c4d82a7b22",
+    "pilot_fd003_06": "8fb95eb95bf9b0f57652cf1e66153b616b9d931402a2ac7c460016cbcf88a7e1",
+    "pilot_hi_landmark_07": "fe97c113e41ef81b6cbdd2c549ffffada2a2cc4cb2f208d2e823f6cfdce6d31f",
+    "pilot_hi_trajectory_08": "b083e8f0f286c0f696601076fa53ee5f6099332f75ecd5a85e8ddf39e20667a5"
+  },
+  "inputs": {
+    "experiments\\protocolo_incerteza_f_10.md": "ef17bdeabdd89f1d9408fae52fe2115e99de27a878eb4fbc084abd13022835e2",
+    "experiments\\pilot_f_uncertainty_10.py": "c715ae5837d280224f8cc57e6ad90a52c3b0e691cbb0cd5f6df2c077ba600d6e",
+    "experiments\\verify_pilot_f_uncertainty_10.py": "25e5ee681017296caf5fe49fb7adbee5af75cea1d96e528c7088ae614c1690b2",
+    "experiments\\test_pilot_f_uncertainty_10.py": "db60b0b54647022e5d69d10278dadaafb3ea45b945a508c7e45a1d2552e7d9bc",
+    "experiments\\pilot_fd001.py": "13d43c091dec1fc4b73900289307909c82f8eb24196030c24f72b4516521fa28",
+    "experiments\\pilot_fd001_04.py": "cef3d4fc702e241a10bb5f35d2cbe4f2ad40a5a8813b3ae8b0b5ad65b70011eb",
+    "experiments\\pilot_fd001_05.py": "54cc6246dac1588b3e885e23f0ff31b95f66c6031eff044e8dcf399f4cab6fc7",
+    "experiments\\pilot_fd003_06.py": "a36d839ceb91b6a1947612a9b4a71a0d4c43e82bcfa7eb85e36a9cc4146545e6",
+    "experiments\\pilot_hi_trajectory_08.py": "3ac7249e644ed5d3d369415c783bbb24c3be5f2a035aa27f45291d33a866288f",
+    "CMAPSSData\\train_FD001.txt": "b26c80e34451ffeb0f80e878a37c078c733539dc43c40283ef3aedb389c113d4",
+    "CMAPSSData\\test_FD001.txt": "df6fbba80b3ad86b89c911faa389faecab99a719f2f8a52a065e01077ab5ee76",
+    "CMAPSSData\\RUL_FD001.txt": "8110d1571bc63a3d071f1a16da4befafcb4274bce76f04167ee827cb60bf8d48",
+    "CMAPSSData\\train_FD003.txt": "b5101e65c0c4eb3cef9a054d61c0a6ff3f993ae704f5ae33dd8b7049dbd15b1d",
+    "CMAPSSData\\test_FD003.txt": "2a49dc09c390e0cbc3f9f5f09ac70d87d9f0bdfa142d0c90f3faafc493a9cdd4",
+    "CMAPSSData\\RUL_FD003.txt": "9bbd9c3b1e2e8325c5dda1fef8671d10f38a0683371ada73dabaf924a9f953ad"
+  },
+  "seeds": [
+    20261017,
+    20261018,
+    20261019
+  ],
+  "configuration": {
+    "FD001": {
+      "tau": 100,
+      "gamma": 1,
+      "ridge": 0.1
+    },
+    "FD003": {
+      "tau": 60,
+      "gamma": 2,
+      "ridge": 0.0
+    }
+  }
+}

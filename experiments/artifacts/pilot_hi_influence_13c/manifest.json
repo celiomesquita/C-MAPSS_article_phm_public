@@ -1,0 +1,20 @@
+{
+  "baseline_markers.csv": "7fd88ac17de0b8bd06695302d57a87e3fba1c226525da0a9c3474c57b4ea48f7",
+  "cases.csv": "6729edd2e7d3227ca254c2f722a91d5cbbbf41b7e3bfa49d80355d7e451fbc04",
+  "case_FD001_83.png": "e35f375d7d666659d1dd5a44d3f0c2dea329aa4cba0cff056f0e33e29c85e406",
+  "case_FD003_55.png": "9133629a347fed23f7a97a6389b30fc94db5bb24022f6a4363d671b6d930827b",
+  "effects.csv": "880c263395029df1abb10b0158c7c478597fba0cfca527b13a237e65d03d90c1",
+  "inputs.json": "40c79daf3dcdff756be4a5aa7777d492c2f21e438584b5c1b41a74f5a815410b",
+  "marker_ranges.csv": "5ffe8f92f7d143ec0414d80bb6e60ed2e6f83067c6774e6887da4b3c905715f1",
+  "refits.csv": "0ed25f8c66350d91772367448692eb1b019f847273a6ed78ea5dfafedd1a61ac",
+  "source_pilot_fd001_04.py": "cef3d4fc702e241a10bb5f35d2cbe4f2ad40a5a8813b3ae8b0b5ad65b70011eb",
+  "source_pilot_fd001_05.py": "54cc6246dac1588b3e885e23f0ff31b95f66c6031eff044e8dcf399f4cab6fc7",
+  "source_pilot_fd003_06.py": "a36d839ceb91b6a1947612a9b4a71a0d4c43e82bcfa7eb85e36a9cc4146545e6",
+  "source_pilot_f_uncertainty_10.py": "2d99ce838a9164282949fb4f88642675b354caead3e50bd316b4d0caae231d92",
+  "source_pilot_hi_influence_13c.py": "9db232855c6ec790880a4b72bad9b26c614177b6dece5a39451ecae43d20e7ad",
+  "source_protocolo_influencia_hi_13c.md": "1c3a634d0015ce1dccbce826fff15faa024b2f3ab34aad7464daa484d680c1da",
+  "source_test_hi_influence_13c.py": "1889de29aacb1541cf927f229b49c54ce5c7f4a0a95c93886f6be69a6a179455",
+  "source_verify_hi_influence_13c.py": "04048825d173cc95af5d664a80f8cf9f567d4dac61977927e0638c3ac3038b64",
+  "spectra.csv": "adb3b5476c665592d988cbdcca08af452a50cec858d2a5058648e4f2c59b615f",
+  "weights.csv": "8a5aa0769781824e8cbe48030d7439fa51a574b29b77b2bee5c437424ba5263d"
+}

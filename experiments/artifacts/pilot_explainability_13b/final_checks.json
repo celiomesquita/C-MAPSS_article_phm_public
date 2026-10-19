@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "trigger_rows_checked": 9600,
+  "linear_identity_points": 9279725,
+  "maximum_linear_error": 1.3866945786089602e-16,
+  "case_engines": 66,
+  "case_policy_rows": 3168,
+  "local_links_checked": true,
+  "original_inputs_and_prior_artifacts_unchanged": true,
+  "current_sources": {
+    "explainability_core_13b.py": "d3db56b33131acd2f03ed8ccf76a08e7be43adedddc00d8076feebad182e53f4",
+    "pilot_explainability_13b.py": "b618a827fc3ea4b2039c26d59fb60711d32891814ebc18e860a0c864b36595f8",
+    "resume_explainability_13b.py": "5cd758a91233d9e39ce8a5788ca0f304e69003c68675e0933a770cac335c50f2",
+    "test_explainability_13b.py": "5959c4f22546f7b1ea2c8e51471dccd1a3676e81faa34c759631447bf85f5f97",
+    "test_explainability_analysis_13b.py": "640379ef0e73e6720e62d9b973b1b11260f1f0932a401f4e3803a44f42155764",
+    "verify_pilot_explainability_13b.py": "9b086148717d699dd65d98c70b84d61562e2e94047caa359028c84029c12e03c",
+    "analyse_explainability_13b.py": "e3c49e2fd4cb2f2136a7d382759ac4512791827f80ced4301a2405f1675c7c99",
+    "verify_explainability_summaries_13b.py": "c7aa982e4cc50681b0924d3b3f14751904a4ac5fa41589f0c17053381eb4e8e1",
+    "report_explainability_13b.py": "edfb8d6b7e500bb270b25349e907686557452bd4173c32091d960de8ae47a3a7",
+    "enrich_explainability_cases_13b.py": "f45d39691f36bae8fcafbf227d7f7880e1c12c636d4ec69c525e1027184bf613",
+    "final_check_explainability_13b.py": "ebe049735b85ee1d13d42f7f3f4f013faf27dd8a06819646ebf3435e386648bc"
+  },
+  "tests_before_initial_execution": 77,
+  "tests_before_resume": 78,
+  "tests_before_statistical_analysis": 82
+}

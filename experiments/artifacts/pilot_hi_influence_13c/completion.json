@@ -1,0 +1,81 @@
+{
+  "completed_at": "2026-10-17T19:32:10.266024+00:00",
+  "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+  "packages": {
+    "numpy": "2.4.0",
+    "pandas": "2.3.3",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.8.0",
+    "joblib": "1.5.3",
+    "matplotlib": "3.10.8",
+    "threadpoolctl": "3.6.0"
+  },
+  "prior_manifests": {
+    "pilot_explainability_13b": {
+      "files": 849,
+      "manifest_sha256": "84e3c86b25a29646beaca8084dee8f1e1821ad45aff934bbf6b0ec2727261fba"
+    },
+    "pilot_f_uncertainty_09": {
+      "files": 142,
+      "manifest_sha256": "96b7b546d5b6789d38e866b92778f39382334df2587d6652bb546b373d2b17e1"
+    },
+    "pilot_f_uncertainty_10": {
+      "files": 278,
+      "manifest_sha256": "a87bc58fc0875da538bf5fc5013095dbfb2cae0d6e719063fe17137296a00fd0"
+    },
+    "pilot_fd001_01": {
+      "files": 13,
+      "manifest_sha256": "555522ab18fd8822cf747c61450d45e930a0b272cc2940b29ac1d534f7fb3632"
+    },
+    "pilot_fd001_02": {
+      "files": 16,
+      "manifest_sha256": "8c54d836229d7b04e43e6b05ba02a2a8e0ff90e59a03503be4fcfeb6012f0106"
+    },
+    "pilot_fd001_03": {
+      "files": 20,
+      "manifest_sha256": "ccbac6a24ecace1610b240f93253a2caf20ea1f77ffe901690d04f9ee3b3fb4a"
+    },
+    "pilot_fd001_04": {
+      "files": 17,
+      "manifest_sha256": "a1520c7d7324c922ebae1a1c7756ce92f34eb6e631f6537ce4161c854bb211b4"
+    },
+    "pilot_fd001_05": {
+      "files": 23,
+      "manifest_sha256": "13e5ea213b73d0cc3661d843341887a29cdf387207340c97f01b90c4d82a7b22"
+    },
+    "pilot_fd003_06": {
+      "files": 24,
+      "manifest_sha256": "8fb95eb95bf9b0f57652cf1e66153b616b9d931402a2ac7c460016cbcf88a7e1"
+    },
+    "pilot_hi_landmark_07": {
+      "files": 11,
+      "manifest_sha256": "fe97c113e41ef81b6cbdd2c549ffffada2a2cc4cb2f208d2e823f6cfdce6d31f"
+    },
+    "pilot_hi_trajectory_08": {
+      "files": 45,
+      "manifest_sha256": "b083e8f0f286c0f696601076fa53ee5f6099332f75ecd5a85e8ddf39e20667a5"
+    },
+    "pilot_landmark_control_11a": {
+      "files": 15,
+      "manifest_sha256": "9d47c2d6a43e67c2e1e345e4ad14ccf5e0b4951914cc6c842b25326cf95f1aad"
+    },
+    "pilot_loss_decomposition_11b": {
+      "files": 20,
+      "manifest_sha256": "ffc99dfc48b914e5ed37e5b04f6d078e1e2d7760a28abd255ff7d1e1bee9a7c4"
+    },
+    "pilot_policy_selection_13a": {
+      "files": 443,
+      "manifest_sha256": "b3cbbd5f903e17a4afbd5c82d0e27157b22533384198072bec9d95dae09b956e"
+    },
+    "pilot_removal_11": {
+      "files": 22,
+      "manifest_sha256": "5967a5b0df93ccc9d0e4324f3dad2bfd0293966a1abd2000531de990373c0ed4"
+    }
+  },
+  "prior_artifacts_verified": 1938,
+  "no_scientific_amendments": true,
+  "postrun_additions": [
+    "deep verifier",
+    "report and terminal-sign diagnostics"
+  ]
+}

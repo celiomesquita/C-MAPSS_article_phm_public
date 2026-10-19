@@ -1,0 +1,17 @@
+{
+  "central_scenario.csv": "194c3f6fae76ec64d41af1a6e53b5e39dba6b9f9ffb6b3d6db6bf9a6c7a952b9",
+  "conclusoes.md": "8e0a15d0d4c058996ed68e2da0770a65eea6fa356b36d80269069824746bc09f",
+  "execution_start.json": "2353e44b5cc0cc5862b1f8f128287d7685c47de27982417a467f5bb4ecdf4204",
+  "hybrid_decisions.csv.gz": "ef274504bae7be2de3367a86f1d41edc06f33a13fd153d075622e3ae315a31ae",
+  "manifest.json": "f9500db7a827df0603dced28a36bc130a379549049adaf88e3b35ebff08b3980",
+  "p15c_execution.log": "7f7d7c3155bf2082e59e0bf485de771ec5659e3e351df0ac76395e0021c72fb2",
+  "p15c_tests.log": "56b6603270ef5731dcd2995a49046023c014bf2eb062ed278c8a53f37407a6ae",
+  "p15c_verification.log": "fe70d6940a1900c43ef664fd0b18ded64ea8a1a1bbf91258b894fd8f39d0753a",
+  "savings.csv": "69a872ab0e0a8b44eb14073244b8628b4ebc83b4a79817e5eff2be86f773a66b",
+  "source_pilot_fallback_15c.py": "225693bac0d242d32710d3808df010d6fe455018ebe4d1b71aeeea620bc83b95",
+  "source_protocolo_reserva_idade_15c.md": "296f261de884c4495d4d0e864a4c16ed272ab9ea59069aa09aaad0915cc592f5",
+  "source_test_fallback_15c.py": "2958367848f1aff28bb84ed98933ca99d1a563088cbde4d3edc1a498ac5e0410",
+  "source_verify_fallback_15c.py": "71d4da86a61c9c56f5b5389aac157e53d9189612dced341cd11730cd2336188e",
+  "summary.csv": "06358cda9ed431758667cf0b477c0f91a2dbc1221c3d61515c5bdab63b439786",
+  "verification.json": "2ee268c0d7d9ce9924a95fd298a5e2accec10ab8403426f26737b26cb22739a9"
+}

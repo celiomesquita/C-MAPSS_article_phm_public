@@ -1,0 +1,11 @@
+{
+  "central_scenario.csv": "194c3f6fae76ec64d41af1a6e53b5e39dba6b9f9ffb6b3d6db6bf9a6c7a952b9",
+  "execution_start.json": "2353e44b5cc0cc5862b1f8f128287d7685c47de27982417a467f5bb4ecdf4204",
+  "hybrid_decisions.csv.gz": "ef274504bae7be2de3367a86f1d41edc06f33a13fd153d075622e3ae315a31ae",
+  "savings.csv": "69a872ab0e0a8b44eb14073244b8628b4ebc83b4a79817e5eff2be86f773a66b",
+  "source_pilot_fallback_15c.py": "225693bac0d242d32710d3808df010d6fe455018ebe4d1b71aeeea620bc83b95",
+  "source_protocolo_reserva_idade_15c.md": "296f261de884c4495d4d0e864a4c16ed272ab9ea59069aa09aaad0915cc592f5",
+  "source_test_fallback_15c.py": "2958367848f1aff28bb84ed98933ca99d1a563088cbde4d3edc1a498ac5e0410",
+  "source_verify_fallback_15c.py": "71d4da86a61c9c56f5b5389aac157e53d9189612dced341cd11730cd2336188e",
+  "summary.csv": "06358cda9ed431758667cf0b477c0f91a2dbc1221c3d61515c5bdab63b439786"
+}

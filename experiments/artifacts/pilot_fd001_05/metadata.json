@@ -1,0 +1,25 @@
+{
+  "timestamp_utc": "2026-10-16T23:42:01.553325+00:00",
+  "seed": 20261016,
+  "source_hashes": {
+    "experiments\\pilot_fd001_05.py": "54cc6246dac1588b3e885e23f0ff31b95f66c6031eff044e8dcf399f4cab6fc7",
+    "experiments\\protocolo_piloto_fd001_05.md": "2f589c8e7f2551df4845a200b4c47564439fcc2137d734de4fd48ee4e692cc00",
+    "experiments\\test_pilot_fd001_05.py": "df546cca1470438f792cc0213299574cba0469ab26328f13d25140ea7401f3b8",
+    "experiments\\pilot_fd001.py": "13d43c091dec1fc4b73900289307909c82f8eb24196030c24f72b4516521fa28",
+    "experiments\\pilot_fd001_04.py": "cef3d4fc702e241a10bb5f35d2cbe4f2ad40a5a8813b3ae8b0b5ad65b70011eb",
+    "experiments\\artifacts\\pilot_fd001_03\\splits.json": "0e714ebecf44bf825e51392d43ac0ac689dbfcff49541623bbf2ad9c0ac97502",
+    "CMAPSSData\\train_FD001.txt": "b26c80e34451ffeb0f80e878a37c078c733539dc43c40283ef3aedb389c113d4",
+    "CMAPSSData\\test_FD001.txt": "df6fbba80b3ad86b89c911faa389faecab99a719f2f8a52a065e01077ab5ee76",
+    "CMAPSSData\\RUL_FD001.txt": "8110d1571bc63a3d071f1a16da4befafcb4274bce76f04167ee827cb60bf8d48"
+  },
+  "versions": {
+    "numpy": "2.4.0",
+    "pandas": "2.3.3",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.8.0",
+    "matplotlib": "3.10.8"
+  },
+  "aakr_source": "https://doi.org/10.1016/j.ymssp.2017.09.013",
+  "aakr_scope": "Terminal reconstruction kernel; adapted features, subset search and normalisation",
+  "official_models_sha256_before_labels": "20c2817c71a8f094d4d3863dfa9ca445f701bbb074d3c136bd54382388870cbf"
+}

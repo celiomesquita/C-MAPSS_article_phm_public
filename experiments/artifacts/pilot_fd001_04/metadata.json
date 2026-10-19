@@ -1,0 +1,46 @@
+{
+  "timestamp_utc": "2026-10-16T23:27:15.329043+00:00",
+  "quantiles": [
+    0.5,
+    0.65,
+    0.75,
+    0.85,
+    0.9,
+    0.95,
+    0.99,
+    1.0
+  ],
+  "multipliers": [
+    0,
+    2,
+    3
+  ],
+  "missing_penalties": [
+    0.25,
+    0.5,
+    1.0,
+    2.0
+  ],
+  "primary": {
+    "multiplier": 2,
+    "missing_penalty": 1
+  },
+  "example_engines": [
+    1,
+    2,
+    3
+  ],
+  "versions": {
+    "numpy": "2.4.0",
+    "pandas": "2.3.3",
+    "matplotlib": "3.10.8"
+  },
+  "source_hashes": {
+    "experiments\\pilot_fd001_04.py": "cef3d4fc702e241a10bb5f35d2cbe4f2ad40a5a8813b3ae8b0b5ad65b70011eb",
+    "experiments\\pilot_fd001.py": "13d43c091dec1fc4b73900289307909c82f8eb24196030c24f72b4516521fa28",
+    "experiments\\protocolo_piloto_fd001_04.md": "6bfff782866cf483bf4fa7da4210b83faf06dbb9392eeb77c972501272634589",
+    "experiments\\artifacts\\pilot_fd001_03\\splits.json": "0e714ebecf44bf825e51392d43ac0ac689dbfcff49541623bbf2ad9c0ac97502",
+    "CMAPSSData\\train_FD001.txt": "b26c80e34451ffeb0f80e878a37c078c733539dc43c40283ef3aedb389c113d4",
+    "experiments\\test_pilot_fd001_04.py": "19c5d41d74cc42f3977f613dcdb0c385a1195f9eb52c8f98f753e45f8b77b575"
+  }
+}

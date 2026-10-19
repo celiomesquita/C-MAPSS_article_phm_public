@@ -1,0 +1,6 @@
+{
+  "reason": "Verifier must handle truncated engines shorter than the feature warm-up; absent forecast group is an empty path.",
+  "data_changed": false,
+  "models_refitted": false,
+  "verifier_sha256": "e533c28ad2340d1043c318b9ac57fa1d9b6fa96fcf5a5af8780939395e434986"
+}

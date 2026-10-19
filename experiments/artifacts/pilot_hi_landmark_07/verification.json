@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "landmark_records": 5400,
+  "observed_landmarks": 3188,
+  "subsequent_forecasts": 154798,
+  "paired_rows": 144,
+  "all_source_manifests_intact": true,
+  "bootstrap_reproduced": true,
+  "verifier_sha256": "0bcc2983175a69a7b27f0c7a20b0f62798cee0197185673b8c8706b4457d8db8"
+}

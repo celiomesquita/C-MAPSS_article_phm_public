@@ -1,0 +1,7 @@
+{
+  "passed": true,
+  "baseline_markers": 600,
+  "refits": 300,
+  "engine_responses": 3000,
+  "weights": 6300
+}

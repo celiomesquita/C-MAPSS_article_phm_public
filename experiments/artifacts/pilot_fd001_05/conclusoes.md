@@ -1,0 +1,11 @@
+# P05 — interpretação dos resultados
+
+O uso correto de RUL_FD001 possibilitou uma avaliação adicional nos 100 motores de teste, com rótulos posteriores ao último ciclo observado e sem sensores futuros. O [relatório](relatorio.md) apresenta a comparação completa; [faixas de RUL](official_rul_bands.csv) separam antecipação e sobrestimação nas diferentes regiões.
+
+O RMSE oficial foi 28,85 ciclos no controle de margens, 27,66 na fórmula empírica e 27,57 na adaptação AAKR. As diferenças relativamente ao controle foram −1,19 e −1,28 ciclos; os intervalos descritivos pareados incluíram zero. A rodada não distingue superioridade conclusiva, e a diferença entre empírico e AAKR é pequena nesta amostra. Não se escolheu um vencedor pelo resultado oficial.
+
+No ajuste final, a fórmula empírica selecionada internamente foi Ĥ=clip[1−max(0,Σ_j w_j d_j(x̄_ij−b_ij)/s_j),0,1], com pesos não negativos e alvo de treino min(1,RUL/100). A penalização dos pesos foi 0,1. Os pesos/direções/escalas e o conversor são os arquivados em models_official.json; o alvo é convencional e não HI físico. As configurações selecionadas variam entre folds, como registrado em selection.csv.
+
+Nas trajetórias completas avaliadas por motor, o HI empírico zerou em 71/100, com antecedência mediana de 14 ciclos e máxima de 49 entre passagens, sem recuperação posterior. A adaptação AAKR zerou em 92/100, com antecedência mediana de 18,5 ciclos, máxima de 64 e 43 recuperações. Esses resultados impedem identificar diretamente o primeiro zero com F. No teste oficial houve zeros antes do truncamento em seis motores com a fórmula empírica e nove com AAKR; todos ainda tinham RUL positiva no último ciclo observado.
+
+A contribuição desta rodada é tornar a formulação empírica estimável e comparável sob referências temporais independentes, identificando seus limites. O próximo protocolo deverá separar a estimação contínua de condição da previsão de primeira passagem e avaliar heterogeneidade terminal/ruído, sem forçar o ponto zero com a vida futura do próprio motor. Uma reprodução integral do estudo publicado requer preservar também seus componentes de extração e busca de atributos; esta rodada avaliou uma adaptação do núcleo terminal. Inspeções continuam adiadas.

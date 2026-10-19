@@ -1,0 +1,17 @@
+{
+  "cells.csv.gz": "93138cab65d5d3649c6fefe7a5ac37dd837d85da3fa2c279c729bab27e3c6a95",
+  "central_scenario.csv": "6e2e9ef9419f66f1be96790c61ce7a63d67541e1687baf626a6cd75669ebaaf3",
+  "execution_start.json": "e72a03ac813e61bb1096b4dce80561d4e300c34351854d8e728279155907a936",
+  "kendall.csv.gz": "f901df745d69963994cbf8169fde9f959563f2fd766e5882e0d8f30839371f8c",
+  "pairs.csv.gz": "48d9edf0ac500c2394934111ff506d5f92f10a31c87a3c614e8b27cf06c4be80",
+  "restorations_20y.png": "5a97eca52f8484a2766f840455c17859dd3a513ccecb4cf9ceb387cec60a5806",
+  "source_pilot_scale_bridge_12b.py": "8341fdc172f59072a91f0c0b38d15103105b3d9cc768938a3c23519385724b25",
+  "source_protocolo_ponte_escala_12b.md": "dc24e2815d96417e01beb9b1f1bc898efa8cc2ac78f8c858ca578e91c1e9879f",
+  "source_test_scale_bridge_12b.py": "e6d5adc8d6568fb8c226fdf9c7c1a17ad8332daafb90ea1654d291a8ec54992d",
+  "source_verify_scale_bridge_12b.py": "c3e98b814cb39599db86aee398bae09828086d49e4dc6c4b2855fee3b0e38722",
+  "stability.csv": "f5d2b40d7169f0eb762ac66aebb93c8c6cbf4150ed20442d06a2fa61fb4ab795",
+  "stability_overall.csv": "ec7963329b43457585d631bcebb9a4fe71488c99d06715ca0b52923c283a8a30",
+  "validation.json": "baf8255817846395c3f1e5ff48ef60b0bd80e6a183da0db67682f50c5edace4c",
+  "validation_long_horizon.csv": "cc424a0434d72da6d6df5072560e5557b220f30e59f17f71babe5c7f736b32d7",
+  "validation_stationary.csv": "2d49e1aadb6640aac7c2213f7762fae02a938cf16d2970267ef8253055ff7eea"
+}

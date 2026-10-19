@@ -1,0 +1,123 @@
+{
+  "timestamp_utc": "2026-10-16T21:51:08.812050+00:00",
+  "seed": 20261016,
+  "python": "3.14.0",
+  "data_sha256": "b26c80e34451ffeb0f80e878a37c078c733539dc43c40283ef3aedb389c113d4",
+  "configs": [
+    [
+      30,
+      5,
+      3
+    ],
+    [
+      30,
+      5,
+      5
+    ],
+    [
+      30,
+      10,
+      3
+    ],
+    [
+      30,
+      10,
+      5
+    ],
+    [
+      30,
+      15,
+      3
+    ],
+    [
+      30,
+      15,
+      5
+    ],
+    [
+      40,
+      5,
+      3
+    ],
+    [
+      40,
+      5,
+      5
+    ],
+    [
+      40,
+      10,
+      3
+    ],
+    [
+      40,
+      10,
+      5
+    ],
+    [
+      40,
+      15,
+      3
+    ],
+    [
+      40,
+      15,
+      5
+    ],
+    [
+      50,
+      5,
+      3
+    ],
+    [
+      50,
+      5,
+      5
+    ],
+    [
+      50,
+      10,
+      3
+    ],
+    [
+      50,
+      10,
+      5
+    ],
+    [
+      50,
+      15,
+      3
+    ],
+    [
+      50,
+      15,
+      5
+    ]
+  ],
+  "example_engines": [
+    1,
+    2,
+    3
+  ],
+  "versions": {
+    "numpy": "2.4.0",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.8.0",
+    "xgboost": "3.2.0",
+    "lightgbm": "4.6.0"
+  },
+  "source_hashes": {
+    "experiments\\pilot_fd001_03.py": "5742aa36aa9660dc8265f5bac09c26bd031e5631fa4191b671d3716afe7571a4",
+    "experiments\\pilot_fd001.py": "13d43c091dec1fc4b73900289307909c82f8eb24196030c24f72b4516521fa28",
+    "experiments\\pilot_fd001_02.py": "87f9148ead5396701270aea8c1abd271426a72616bf6a7e33e2a868473a25a6a",
+    "experiments\\protocolo_piloto_fd001_03.md": "9f03245a6115e4f1fcd79696067c3bb71fe82f68b686b27164acc19f05fbec4a"
+  },
+  "limits": [
+    "No physical P/F labels",
+    "No inspection",
+    "HI reference uses fitting endpoints only",
+    "Forecasts trained from cycle 21; P02/P03 are not a controlled retraining contrast",
+    "No configuration winner chosen from outer results"
+  ]
+}

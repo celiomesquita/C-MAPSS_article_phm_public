@@ -1,0 +1,16 @@
+{
+  "reason": "NameError V in policy record bookkeeping; before first perturbation output",
+  "time_utc": "2026-10-17T18:55:46.014481+00:00",
+  "input_archives": {
+    "experiments/pilot_explainability_13b.py": "runner_initial.py",
+    "experiments/verify_pilot_explainability_13b.py": "verifier_initial.py",
+    "experiments/test_explainability_13b.py": "tests_initial.py"
+  },
+  "retained": "All 60 baseline audits and 9600 original actions; no intervention results existed",
+  "source_hashes": {
+    "pilot_explainability_13b.py": "b618a827fc3ea4b2039c26d59fb60711d32891814ebc18e860a0c864b36595f8",
+    "verify_pilot_explainability_13b.py": "1bb186c7220d9fe7f5726ff7615fca736951afc73e70be1a4c369b0580539636",
+    "test_explainability_13b.py": "5959c4f22546f7b1ea2c8e51471dccd1a3676e81faa34c759631447bf85f5f97",
+    "resume_explainability_13b.py": "5cd758a91233d9e39ce8a5788ca0f304e69003c68675e0933a770cac335c50f2"
+  }
+}

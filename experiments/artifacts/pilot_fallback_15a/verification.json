@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "hybrid_rows_rebuilt": 42000,
+  "summary_rows": 420,
+  "savings_rows_spot_checked": 200,
+  "fallback_ages": 300
+}

@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "events": 43200,
+  "predictions_rebuilt": 1436520,
+  "maximum_prediction_difference": 1.7053025658242404e-13,
+  "contrasts_and_intervals_checked": 432,
+  "importance_permutations_spot_checked": 434,
+  "original_manifests_intact": true,
+  "hi_refitted": false,
+  "verifier_sha256": "01859ae6394c1302b588618532d3fdeafd865bc9215d3845d025c1b1bd865494"
+}

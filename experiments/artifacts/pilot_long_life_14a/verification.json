@@ -1,0 +1,7 @@
+{
+  "status": "passed",
+  "summary_rows_checked": 10,
+  "event_rows_checked": 213,
+  "lifetime_source": "archived endpoint column of P13.5 decisions",
+  "rank_implementation": "own average-rank Pearson"
+}

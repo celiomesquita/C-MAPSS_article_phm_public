@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "internal_fits_checked": 240,
+  "internal_decisions_checked": 57600,
+  "external_selected_checked": 2400,
+  "inherited_references_checked": 7200,
+  "summaries_checked": 96,
+  "contrasts_checked": 48,
+  "verifier_sha256": "525542261a4a1206d05041026ede0133f2bf7af0616a6b0d2a08162ebf279112",
+  "amendment": "CSV index reset only; original verifier and initial log archived; experiment unchanged"
+}

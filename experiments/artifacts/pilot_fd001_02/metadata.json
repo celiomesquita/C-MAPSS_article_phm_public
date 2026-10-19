@@ -1,0 +1,19 @@
+{
+  "timestamp_utc": "2026-10-16T12:45:38.254878+00:00",
+  "python": "3.14.0",
+  "seed": 20261016,
+  "data_sha256": "b26c80e34451ffeb0f80e878a37c078c733539dc43c40283ef3aedb389c113d4",
+  "scripts": {
+    "experiments\\pilot_fd001_02.py": "87f9148ead5396701270aea8c1abd271426a72616bf6a7e33e2a868473a25a6a",
+    "experiments\\pilot_fd001.py": "13d43c091dec1fc4b73900289307909c82f8eb24196030c24f72b4516521fa28",
+    "experiments\\protocolo_piloto_fd001_02.md": "3d973af9912bd834d3f10d102abf96d95b98112743124d3f8dbefb2a9b09efd5"
+  },
+  "versions": {
+    "numpy": "2.4.0",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.8.0",
+    "xgboost": "3.2.0",
+    "lightgbm": "4.6.0"
+  },
+  "scope": "Exploratory refinement; no inspection or physical HI; no untouched confirmatory test"
+}

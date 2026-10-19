@@ -1,0 +1,18 @@
+{
+  "decision_summary.csv": "d5f50e93086a97ceda1ca0221704627bd8eabcd4e6f6039a743d42756dea9099",
+  "decisions_per_engine.csv": "208d647e53a8b990aa8d6832c00edd36f769d75161d7cc883cb29c3dc4f6cd59",
+  "detections.csv": "7182291e9bdfe2490a34307b5f72cd135895c181cf756b7d05e56f68d333a28a",
+  "detector_selection.csv": "e68096c3b6dbad1ccc3275e48b72b37e8c44fd206abfdea9555d4e15a2c9b86b",
+  "detector_summary.csv": "14db6e81d6c18c919587b7ab043900512a59b8b383b96daa2e4e09d2255f0344",
+  "margins.csv": "252bdd02675e9f7c91042b262750c5d93da5a80a0fac6661238c3a3b2c0991b1",
+  "metadata.json": "593a3ef862a995e2ec120895efbcffd2a3bf3fc8d21b350e549124b9cfa1815e",
+  "metrics_per_engine.csv": "c69c607879ad9c6f83e637aad12c7b1b709d0724f56948e81b916b029becf43c",
+  "policy_selection.csv": "3e8cd0f9b7be518ed932db56c30e9334b235381312caef8392e61849979d184b",
+  "policy_tradeoff.png": "13474a55b6cea833fdc1cd42b50166ade35e337d60d493431de8e0de2a426d28",
+  "prediction_summary.csv": "0eacce99cb1de0395e553ca521bfd8af2a9bc2670319c156f75bbf5826664d23",
+  "predictions.csv": "67205813119b2680311e7b667f5d03ab364eca0f87cba407cf3e2369711617cd",
+  "relatorio.md": "bf7cceaa0ec88350211912f5a063da4b0cac00e63cef88955dcb5797e734af17",
+  "selected_policy_summary.csv": "20ce40f4124bb8c35d6ef113ea9f4182103c4666f54f38d974575426a14f265b",
+  "splits.json": "0e714ebecf44bf825e51392d43ac0ac689dbfcff49541623bbf2ad9c0ac97502",
+  "verification.json": "48f54dc36225148b5832d78ffded8170e43c367370227e79a03232cb22d93ba9"
+}

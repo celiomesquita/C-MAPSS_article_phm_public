@@ -1,0 +1,45 @@
+{
+  "started_utc": "2026-10-18T15:17:36.133190+00:00",
+  "previous_manifests": {
+    "pilot_conservative_age_15b": "699b2b5b08b05614862a66f3480326fcc018204a6e4bdfe72ce36352e4880010",
+    "pilot_explainability_13b": "84e3c86b25a29646beaca8084dee8f1e1821ad45aff934bbf6b0ec2727261fba",
+    "pilot_f_uncertainty_09": "96b7b546d5b6789d38e866b92778f39382334df2587d6652bb546b373d2b17e1",
+    "pilot_f_uncertainty_10": "a87bc58fc0875da538bf5fc5013095dbfb2cae0d6e719063fe17137296a00fd0",
+    "pilot_fallback_15a": "98f44331b2b47f633b7b12f32c7b7ea68e940b9df30349369accc9c71378c441",
+    "pilot_fallback_15c": "f9500db7a827df0603dced28a36bc130a379549049adaf88e3b35ebff08b3980",
+    "pilot_fd001_01": "555522ab18fd8822cf747c61450d45e930a0b272cc2940b29ac1d534f7fb3632",
+    "pilot_fd001_02": "8c54d836229d7b04e43e6b05ba02a2a8e0ff90e59a03503be4fcfeb6012f0106",
+    "pilot_fd001_03": "ccbac6a24ecace1610b240f93253a2caf20ea1f77ffe901690d04f9ee3b3fb4a",
+    "pilot_fd001_04": "a1520c7d7324c922ebae1a1c7756ce92f34eb6e631f6537ce4161c854bb211b4",
+    "pilot_fd001_05": "13e5ea213b73d0cc3661d843341887a29cdf387207340c97f01b90c4d82a7b22",
+    "pilot_fd003_06": "8fb95eb95bf9b0f57652cf1e66153b616b9d931402a2ac7c460016cbcf88a7e1",
+    "pilot_hi_chain_13e": "03a04cd108b3979cc9f827d5c24fa8b81ae4de3b37619a789abd99816b27533b",
+    "pilot_hi_influence_13c": "acbeb8a1c2d21ca4eac14241296785bb4d83ce693b8c60d66a84625432c60fd3",
+    "pilot_hi_landmark_07": "fe97c113e41ef81b6cbdd2c549ffffada2a2cc4cb2f208d2e823f6cfdce6d31f",
+    "pilot_hi_stabilization_13d": "31fd63e095ce44a82ba215c0ee41a9c19248885dddea074e3315aa8801bb8dda",
+    "pilot_hi_trajectory_08": "b083e8f0f286c0f696601076fa53ee5f6099332f75ecd5a85e8ddf39e20667a5",
+    "pilot_landmark_control_11a": "9d47c2d6a43e67c2e1e345e4ad14ccf5e0b4951914cc6c842b25326cf95f1aad",
+    "pilot_long_life_14a": "9bdebb892c95ea73e3fee639b605f6539e9901dae3bb6c0d96ac7b5f4838cc67",
+    "pilot_loss_decomposition_11b": "ffc99dfc48b914e5ed37e5b04f6d078e1e2d7760a28abd255ff7d1e1bee9a7c4",
+    "pilot_policy_selection_13a": "b3cbbd5f903e17a4afbd5c82d0e27157b22533384198072bec9d95dae09b956e",
+    "pilot_removal_11": "5967a5b0df93ccc9d0e4324f3dad2bfd0293966a1abd2000531de990373c0ed4",
+    "pilot_renewal_12a": "7f2a627133a509c601fe2e2baa3c0dd21b0de62939593ccfca088d2f91cd8f28",
+    "pilot_scale_bridge_12b": "95535c1e5fd16d03c7b5bd45b2703b8353b0a4a3f18e28a1ebb36e9683275768"
+  },
+  "ages": {
+    "FD001": 127,
+    "FD003": 127
+  },
+  "inputs": {
+    "experiments\\artifacts\\pilot_policy_selection_13a\\decisions.csv": "902e349ce0ebbc2ddb4c841e3601d0d6b1344b185c73636d01c17f3eeb54e7f5",
+    "experiments\\artifacts\\pilot_f_uncertainty_10\\splits.json": "c2bf58840484f5dc464c9ced267463edd9224a2ee6ae1619e8927c5a238a55f5",
+    "CMAPSSData\\train_FD001.txt": "b26c80e34451ffeb0f80e878a37c078c733539dc43c40283ef3aedb389c113d4",
+    "CMAPSSData\\train_FD003.txt": "b5101e65c0c4eb3cef9a054d61c0a6ff3f993ae704f5ae33dd8b7049dbd15b1d"
+  },
+  "sources": {
+    "protocolo_reserva_idade_15d.md": "b52570d4e2b7158babe3f080e68d8e280ce9c4f12bf30eb7bfd3c414f17f7ab6",
+    "pilot_fallback_15d.py": "4d4de934d34b50f5448c74a4bb7529e70868f1e05c319005925ede55c350ee8e",
+    "test_fallback_15d.py": "c538610928e5d3c6073a6a5db8c212b9eda1484f57c2d525315810d4200b3be5",
+    "verify_fallback_15d.py": "291e87c95575da52e2e4da64f705c535f27ee36837ca884665a4b05645624442"
+  }
+}

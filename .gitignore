@@ -1,0 +1,35 @@
+# C-MAPSS benchmark data (NASA dataset — download from NASA Prognostics Repository)
+CMAPSSData/
+
+# Large binary and intermediate result files
+*.npz
+*.npy
+*.pkl
+*.pickle
+
+# Large raw result CSVs (regenerate from scripts)
+*.csv
+
+# LaTeX build artefacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.pdf
+
+# Python caches
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# OS files
+.DS_Store
+Thumbs.db

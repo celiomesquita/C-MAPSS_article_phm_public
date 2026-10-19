@@ -1,0 +1,30 @@
+{
+  "timestamp_utc": "2026-10-16T23:51:50.259399+00:00",
+  "seed": 20261016,
+  "target_subset": "FD003",
+  "source_subset": "FD001",
+  "source_models_sha256": "20c2817c71a8f094d4d3863dfa9ca445f701bbb074d3c136bd54382388870cbf",
+  "target_models_sha256_before_official_labels": "30600ed31344b6cba653bdbe3b5a45ebb21192d247abee4f4b730a87c68da08a",
+  "refitting_grid": "Unchanged P05",
+  "source_hashes": {
+    "experiments\\pilot_fd003_06.py": "a36d839ceb91b6a1947612a9b4a71a0d4c43e82bcfa7eb85e36a9cc4146545e6",
+    "experiments\\protocolo_piloto_fd003_06.md": "a89a2ed17f58c022d444686a290a0c6608dbf4f3e2e0649d61bef108cbc82548",
+    "experiments\\test_pilot_fd003_06.py": "fbe90e27b7da41dcd40495545758148322e488493bdd6c43426f2e59eb5a2e71",
+    "experiments\\pilot_fd001_05.py": "54cc6246dac1588b3e885e23f0ff31b95f66c6031eff044e8dcf399f4cab6fc7",
+    "experiments\\pilot_fd001_04.py": "cef3d4fc702e241a10bb5f35d2cbe4f2ad40a5a8813b3ae8b0b5ad65b70011eb",
+    "experiments\\pilot_fd001.py": "13d43c091dec1fc4b73900289307909c82f8eb24196030c24f72b4516521fa28",
+    "experiments\\artifacts\\pilot_fd001_05\\models_official.json": "20c2817c71a8f094d4d3863dfa9ca445f701bbb074d3c136bd54382388870cbf",
+    "experiments\\artifacts\\pilot_fd001_03\\splits.json": "0e714ebecf44bf825e51392d43ac0ac689dbfcff49541623bbf2ad9c0ac97502",
+    "CMAPSSData\\train_FD003.txt": "b5101e65c0c4eb3cef9a054d61c0a6ff3f993ae704f5ae33dd8b7049dbd15b1d",
+    "CMAPSSData\\test_FD003.txt": "2a49dc09c390e0cbc3f9f5f09ac70d87d9f0bdfa142d0c90f3faafc493a9cdd4",
+    "CMAPSSData\\RUL_FD003.txt": "9bbd9c3b1e2e8325c5dda1fef8671d10f38a0683371ada73dabaf924a9f953ad",
+    "CMAPSSData\\readme.txt": "25c86ca55212a4c7bd4e48e49f6226ae57b95fefadd7b17a4b6d496ff7e070a8"
+  },
+  "versions": {
+    "numpy": "2.4.0",
+    "pandas": "2.3.3",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.8.0",
+    "matplotlib": "3.10.8"
+  }
+}

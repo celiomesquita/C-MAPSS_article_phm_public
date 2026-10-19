@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "P01\u2013P06 manifests",
+    "source hashes",
+    "source and target model freeze hashes",
+    "partitions and engine coverage",
+    "internal selections and converter refits",
+    "all transfer/refit HI and RUL predictions",
+    "per-engine errors and zero events",
+    "aggregate metrics",
+    "paired bootstrap",
+    "official label alignment"
+  ],
+  "maximum_reconstruction_error": 5.684341886080802e-14,
+  "script_sha256": "5de5304693f613be8a0a39f9abf22885cd2093e7c49b6472c4642549245a3e0e",
+  "previous_manifest_sha256": "7e2ef3a5bad989c83e301a18279f3695abdcffe7b698f3b2b10f5051a89cdf3c"
+}

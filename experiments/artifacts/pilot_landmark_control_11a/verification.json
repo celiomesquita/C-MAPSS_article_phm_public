@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "controls_checked": 2400,
+  "inherited_summaries_checked": 312,
+  "contrasts_checked": 156,
+  "decompositions_checked": 144,
+  "previous_artifacts_intact": true,
+  "verifier_sha256": "7d2db688a7eac972aca028af7a29ecf44af95c7d625a47fa4770e96c86b25325"
+}

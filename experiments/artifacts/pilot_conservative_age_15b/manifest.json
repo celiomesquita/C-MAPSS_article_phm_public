@@ -1,0 +1,11 @@
+{
+  "descriptives.csv": "634b6fe38a66d9f8f0298aa413181c85af1381819966e5f04bf68315c1911dd3",
+  "estimates.csv": "fdd8162fcb769d8dca4658def78c9f107f7362b811fd453206da23163ec4c173",
+  "execution_start.json": "fecc87797e980a8a5e27821cb38059b88a68508e13425a69709a28d74e9db1bf",
+  "goodness_of_fit.csv": "0188a912224ecc2febf40defec8de8bb0ece6dc6f286cda5ac4a61746db19c24",
+  "lives_and_ages.png": "b455b2fa080ac20a8a2a2e6e000511f08b85dfffe2dd27690ab04c24777822a8",
+  "source_pilot_conservative_age_15b.py": "148cf1666ee3d7a3838a0329173c6034dc9921137792f746ca2a1e220b9e3c0a",
+  "source_protocolo_idade_conservadora_15b.md": "dfed8e247ec86bdbca9a6bf3530e6b928b458d4bcb5815467f795ee85bbb056d",
+  "source_test_conservative_age_15b.py": "c03ee1a8746d9d7a0224a3f32e1d7ca645f654ead62e8789321fbc5b456bbf7b",
+  "source_verify_conservative_age_15b.py": "1c41cb90e922e5cfc828cf5bf1b70e6e8cc34fbd7de728ebd1022e9651c0d214"
+}

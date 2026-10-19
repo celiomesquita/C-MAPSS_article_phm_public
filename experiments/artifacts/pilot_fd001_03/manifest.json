@@ -1,0 +1,22 @@
+{
+  "decision_summary.csv": "2827d4975c00e501ef4f90a413878a300b49fc184e73849785ee157343683c67",
+  "decisions_per_engine.csv": "e71a3db70ff7088c31120e23919d14c5a50eb69a9c853ec1f3b67dbf9c352610",
+  "detections.csv": "6b2e0c0f9966e16741d2a8a9b2640f759f03cdaca16e6a83e74281d3a814bbef",
+  "detector_selection.csv": "854aa8be0244a3982c43f94f9237bfeddea4d3f84283795fdb75bc7cd6284ae4",
+  "detector_summary.csv": "635426e6518c83e484215036cb18984edbf13486e6c41e97c5edb4682cfe90d2",
+  "HI_examples.png": "ebf699ead6d9bf5b7dc022465044576199a86ffe7e117e4ee1d67faf29cb2fdf",
+  "hi_metrics.csv": "83d308c081f61a784f924b3ad45f970f38ceb0081e1743382a1e70eb39f37d09",
+  "hi_reference.csv": "c4923d496c074a1159cb0fce2d68343a38ac8f65c6461608ecc2880bea12a3ca",
+  "hi_summary.csv": "8bc71fd0bdafcc1fba5769b01c42d8f6307cd09436d7a40d04ea7d401e6403ad",
+  "hi_trajectories.csv": "d6b7000921334d66decda0b186a2296843665ab0dd8ab9598812634e0cbf312b",
+  "margins.csv": "5baffd4e7a0bf971d075fb0d58283fd6f0fb695f9a0996f48e46e076d3020aa1",
+  "metadata.json": "800f9d6edad020b6b901db1ad942a26374aea642de48daf95dc5b76e9ec454d7",
+  "metrics_per_engine.csv": "d6897bbd80b6d77dfb739f90df4eae91201fbf603769d58693301fc1c427782f",
+  "P_robustness.png": "0e8b266c6f4dbc1d6da793693b658d97017425296148c60dfa1c127475497a49",
+  "P_span_per_engine.csv": "e748a19824a050e7fade2e68d919408d0dd97f8c6741bd21ae9c438c04a60137",
+  "policy_ranges.csv": "349ba00b27c3fb71d03d77f3d858455fd87b6ed4305d0849999cb08f39ddf15b",
+  "predictions.csv": "f802c4bb0184895b095a90626a018d45afddc0f4108bbf8fcf758a6bd17c2a98",
+  "relatorio.md": "f7afbf6e1a12e28c66890b072afd2f051e18349a08434ef2b670a6245cef70b0",
+  "splits.json": "0e714ebecf44bf825e51392d43ac0ac689dbfcff49541623bbf2ad9c0ac97502",
+  "verification.json": "ff1c2703c13b6a3c624ba697da9117c1ad17a3e7320098da6487fc9a0fd0e852"
+}

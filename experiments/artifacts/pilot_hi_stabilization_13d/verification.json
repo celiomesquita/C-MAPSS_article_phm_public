@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "internal_solutions": 31200,
+  "reconstructed_responses": 312000,
+  "choices": 60,
+  "maximum_kkt": 6.7307270867900115e-15,
+  "verification_implementation": "independent vectorised raw-row reconstruction; no scientific criterion changed"
+}

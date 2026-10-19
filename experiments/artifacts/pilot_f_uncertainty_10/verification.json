@@ -1,0 +1,12 @@
+{
+  "reserve_rows_checked": 24448,
+  "status": "passed",
+  "prediction_rows_rebuilt": 1494532,
+  "maximum_prediction_difference": 1.7053025658242404e-13,
+  "score_rows_checked": 8400,
+  "quantile_rows_checked": 480,
+  "band_rows_checked": 6112,
+  "paired_contrasts_checked": 60,
+  "prior_manifests_intact": true,
+  "verifier_sha256": "67203ddfdcd490dd0323c64133d230b769edc0b2d052a639685082be7346da3a"
+}

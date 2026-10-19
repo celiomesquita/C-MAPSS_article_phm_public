@@ -1,0 +1,6 @@
+{
+  "command": "py -m unittest discover -s experiments -p test_pilot*.py",
+  "tests": 35,
+  "before_execution": "passed",
+  "after_numeric_amendment": "passed"
+}

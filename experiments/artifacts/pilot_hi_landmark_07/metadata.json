@@ -1,0 +1,57 @@
+{
+  "created_utc": "2026-10-17T00:11:49.529630+00:00",
+  "training": false,
+  "seed": 20261016,
+  "bootstrap": 2000,
+  "levels": [
+    0.4,
+    0.5,
+    0.6
+  ],
+  "offsets": [
+    -10,
+    -5,
+    0,
+    5,
+    10,
+    20
+  ],
+  "source_integrity": {
+    "pilot_fd001_01": {
+      "manifest_sha256": "555522ab18fd8822cf747c61450d45e930a0b272cc2940b29ac1d534f7fb3632",
+      "files": 13
+    },
+    "pilot_fd001_02": {
+      "manifest_sha256": "8c54d836229d7b04e43e6b05ba02a2a8e0ff90e59a03503be4fcfeb6012f0106",
+      "files": 16
+    },
+    "pilot_fd001_03": {
+      "manifest_sha256": "ccbac6a24ecace1610b240f93253a2caf20ea1f77ffe901690d04f9ee3b3fb4a",
+      "files": 20
+    },
+    "pilot_fd001_04": {
+      "manifest_sha256": "a1520c7d7324c922ebae1a1c7756ce92f34eb6e631f6537ce4161c854bb211b4",
+      "files": 17
+    },
+    "pilot_fd001_05": {
+      "manifest_sha256": "13e5ea213b73d0cc3661d843341887a29cdf387207340c97f01b90c4d82a7b22",
+      "files": 23
+    },
+    "pilot_fd003_06": {
+      "manifest_sha256": "8fb95eb95bf9b0f57652cf1e66153b616b9d931402a2ac7c460016cbcf88a7e1",
+      "files": 24
+    }
+  },
+  "python_packages": {
+    "numpy": "2.4.0",
+    "pandas": "2.3.3",
+    "matplotlib": "3.10.8"
+  },
+  "inputs": {
+    "experiments\\protocolo_marco_hi_50.md": "057301891fca163c8d842b3fa78291d2a518d82509ef039fa22c7238c03b2501",
+    "experiments\\pilot_hi_landmark_07.py": "f6b56340baf2c18f2616e5a17ca6002780e9d84f171f28861d97943cb20407e9",
+    "experiments\\test_pilot_hi_landmark_07.py": "3303749cc09e3eab32e1dc6590ecfb33fb9f52b02edb78d1c71955598e54c944",
+    "experiments\\artifacts\\pilot_fd001_05\\predictions.csv": "d2edf9151c7a67db0057d0cd6de2bddc11e102fd4c7c0feca1f524a599eec10a",
+    "experiments\\artifacts\\pilot_fd003_06\\predictions.csv": "82521e6cfc087d367b5fbbbd6e265ea576de17f86345be6b3b30210280068515"
+  }
+}

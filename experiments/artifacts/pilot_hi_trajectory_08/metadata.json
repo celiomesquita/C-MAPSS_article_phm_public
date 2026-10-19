@@ -1,0 +1,51 @@
+{
+  "created_utc": "2026-10-17T00:25:55.075738+00:00",
+  "seed": 20261016,
+  "sources": {
+    "pilot_fd001_01": "555522ab18fd8822cf747c61450d45e930a0b272cc2940b29ac1d534f7fb3632",
+    "pilot_fd001_02": "8c54d836229d7b04e43e6b05ba02a2a8e0ff90e59a03503be4fcfeb6012f0106",
+    "pilot_fd001_03": "ccbac6a24ecace1610b240f93253a2caf20ea1f77ffe901690d04f9ee3b3fb4a",
+    "pilot_fd001_04": "a1520c7d7324c922ebae1a1c7756ce92f34eb6e631f6537ce4161c854bb211b4",
+    "pilot_fd001_05": "13e5ea213b73d0cc3661d843341887a29cdf387207340c97f01b90c4d82a7b22",
+    "pilot_fd003_06": "8fb95eb95bf9b0f57652cf1e66153b616b9d931402a2ac7c460016cbcf88a7e1",
+    "pilot_hi_landmark_07": "fe97c113e41ef81b6cbdd2c549ffffada2a2cc4cb2f208d2e823f6cfdce6d31f"
+  },
+  "window": 20,
+  "hi_refitted": false,
+  "predictive_interval_claim": false,
+  "inputs": {
+    "experiments\\protocolo_trajetoria_hi_08.md": "1abd74d63cb34494c2d5fa2a97436c6c92bf7063cc8d44bcb33a3f30733ad058",
+    "experiments\\pilot_hi_trajectory_08.py": "561884092f44a163f4209fc227fcc15a39a2fef32a867a7107449c0f17440d76",
+    "experiments\\test_pilot_hi_trajectory_08.py": "cf3513e49dc61e7b5aadd38fc2498fade89316e2512a00ee64719d061d75db15",
+    "experiments\\pilot_fd001.py": "13d43c091dec1fc4b73900289307909c82f8eb24196030c24f72b4516521fa28",
+    "experiments\\pilot_fd001_04.py": "cef3d4fc702e241a10bb5f35d2cbe4f2ad40a5a8813b3ae8b0b5ad65b70011eb",
+    "experiments\\pilot_fd001_05.py": "54cc6246dac1588b3e885e23f0ff31b95f66c6031eff044e8dcf399f4cab6fc7",
+    "experiments\\pilot_fd003_06.py": "a36d839ceb91b6a1947612a9b4a71a0d4c43e82bcfa7eb85e36a9cc4146545e6",
+    "CMAPSSData\\train_FD001.txt": "b26c80e34451ffeb0f80e878a37c078c733539dc43c40283ef3aedb389c113d4",
+    "CMAPSSData\\test_FD001.txt": "df6fbba80b3ad86b89c911faa389faecab99a719f2f8a52a065e01077ab5ee76",
+    "CMAPSSData\\RUL_FD001.txt": "8110d1571bc63a3d071f1a16da4befafcb4274bce76f04167ee827cb60bf8d48",
+    "experiments\\artifacts\\pilot_fd001_05\\models_fold1.json": "5d0d8f46864d8b6abe54530bab94dc972ef41d345cb79c25ff38cccbd05f87e8",
+    "experiments\\artifacts\\pilot_fd001_05\\models_fold2.json": "967cf61f0159c340d78c54ec10908527dfe9ac0fd2795ee21633ca33d78ef320",
+    "experiments\\artifacts\\pilot_fd001_05\\models_fold3.json": "e8198e87c00e762e85b497e22d81bfe4930119222c9db29a3d2d117fdd596c80",
+    "experiments\\artifacts\\pilot_fd001_05\\models_fold4.json": "53e75db05ab0daf92d6e6697a38e9c750029a5ab3ff287c88e49f19a17b8f8d4",
+    "experiments\\artifacts\\pilot_fd001_05\\models_fold5.json": "d3db1b8a0b36d03acb6210cde624d15863873d88dda9a8a7c91eb621d937cec8",
+    "experiments\\artifacts\\pilot_fd001_05\\models_official.json": "20c2817c71a8f094d4d3863dfa9ca445f701bbb074d3c136bd54382388870cbf",
+    "experiments\\artifacts\\pilot_fd001_05\\splits.json": "a887cc48f04d3556b2e0d2c240b5a7d40b977781883a9c34d14c3b0fd113d62a",
+    "CMAPSSData\\train_FD003.txt": "b5101e65c0c4eb3cef9a054d61c0a6ff3f993ae704f5ae33dd8b7049dbd15b1d",
+    "CMAPSSData\\test_FD003.txt": "2a49dc09c390e0cbc3f9f5f09ac70d87d9f0bdfa142d0c90f3faafc493a9cdd4",
+    "CMAPSSData\\RUL_FD003.txt": "9bbd9c3b1e2e8325c5dda1fef8671d10f38a0683371ada73dabaf924a9f953ad",
+    "experiments\\artifacts\\pilot_fd003_06\\models_fold1.json": "02c5f4f1c4731c16db7c4fd2852471bdd46683e3ae1a7e3af1b4faf9183331eb",
+    "experiments\\artifacts\\pilot_fd003_06\\models_fold2.json": "f77bf86936748cfecec2979d6355d7b2473c87463da666a75cd0d5b3a888c285",
+    "experiments\\artifacts\\pilot_fd003_06\\models_fold3.json": "96e0e8e3bbc826319ea39170165ab92fef8cf19743666e08f63f378bd278038d",
+    "experiments\\artifacts\\pilot_fd003_06\\models_fold4.json": "303b6a9f8145a9f86dd840a7570cc6dc7edabc602ca1d89fa733de9c1da34142",
+    "experiments\\artifacts\\pilot_fd003_06\\models_fold5.json": "931021d0b63e35f36676795c5533fca147df0a3ecd3486a568ea324e45f5cfa1",
+    "experiments\\artifacts\\pilot_fd003_06\\models_official.json": "30600ed31344b6cba653bdbe3b5a45ebb21192d247abee4f4b730a87c68da08a",
+    "experiments\\artifacts\\pilot_fd003_06\\splits.json": "a887cc48f04d3556b2e0d2c240b5a7d40b977781883a9c34d14c3b0fd113d62a"
+  },
+  "packages": {
+    "numpy": "2.4.0",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.8.0",
+    "joblib": "1.5.3"
+  }
+}

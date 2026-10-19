@@ -1,0 +1,37 @@
+{
+  "started_utc": "2026-10-18T14:11:04.392416+00:00",
+  "previous_manifests": {
+    "pilot_explainability_13b": "84e3c86b25a29646beaca8084dee8f1e1821ad45aff934bbf6b0ec2727261fba",
+    "pilot_f_uncertainty_09": "96b7b546d5b6789d38e866b92778f39382334df2587d6652bb546b373d2b17e1",
+    "pilot_f_uncertainty_10": "a87bc58fc0875da538bf5fc5013095dbfb2cae0d6e719063fe17137296a00fd0",
+    "pilot_fd001_01": "555522ab18fd8822cf747c61450d45e930a0b272cc2940b29ac1d534f7fb3632",
+    "pilot_fd001_02": "8c54d836229d7b04e43e6b05ba02a2a8e0ff90e59a03503be4fcfeb6012f0106",
+    "pilot_fd001_03": "ccbac6a24ecace1610b240f93253a2caf20ea1f77ffe901690d04f9ee3b3fb4a",
+    "pilot_fd001_04": "a1520c7d7324c922ebae1a1c7756ce92f34eb6e631f6537ce4161c854bb211b4",
+    "pilot_fd001_05": "13e5ea213b73d0cc3661d843341887a29cdf387207340c97f01b90c4d82a7b22",
+    "pilot_fd003_06": "8fb95eb95bf9b0f57652cf1e66153b616b9d931402a2ac7c460016cbcf88a7e1",
+    "pilot_hi_chain_13e": "03a04cd108b3979cc9f827d5c24fa8b81ae4de3b37619a789abd99816b27533b",
+    "pilot_hi_influence_13c": "acbeb8a1c2d21ca4eac14241296785bb4d83ce693b8c60d66a84625432c60fd3",
+    "pilot_hi_landmark_07": "fe97c113e41ef81b6cbdd2c549ffffada2a2cc4cb2f208d2e823f6cfdce6d31f",
+    "pilot_hi_stabilization_13d": "31fd63e095ce44a82ba215c0ee41a9c19248885dddea074e3315aa8801bb8dda",
+    "pilot_hi_trajectory_08": "b083e8f0f286c0f696601076fa53ee5f6099332f75ecd5a85e8ddf39e20667a5",
+    "pilot_landmark_control_11a": "9d47c2d6a43e67c2e1e345e4ad14ccf5e0b4951914cc6c842b25326cf95f1aad",
+    "pilot_long_life_14a": "9bdebb892c95ea73e3fee639b605f6539e9901dae3bb6c0d96ac7b5f4838cc67",
+    "pilot_loss_decomposition_11b": "ffc99dfc48b914e5ed37e5b04f6d078e1e2d7760a28abd255ff7d1e1bee9a7c4",
+    "pilot_policy_selection_13a": "b3cbbd5f903e17a4afbd5c82d0e27157b22533384198072bec9d95dae09b956e",
+    "pilot_removal_11": "5967a5b0df93ccc9d0e4324f3dad2bfd0293966a1abd2000531de990373c0ed4",
+    "pilot_renewal_12a": "7f2a627133a509c601fe2e2baa3c0dd21b0de62939593ccfca088d2f91cd8f28"
+  },
+  "inputs": {
+    "experiments\\artifacts\\pilot_policy_selection_13a\\decisions.csv": "902e349ce0ebbc2ddb4c841e3601d0d6b1344b185c73636d01c17f3eeb54e7f5",
+    "references\\cenario_economico_20anos\\intervalos_referencia_k.csv": "f34e2bbd9f1c845b087297cc931043b5059bccd9a2253fadf2bf0d291f43fb8a",
+    "CMAPSSData\\train_FD001.txt": "b26c80e34451ffeb0f80e878a37c078c733539dc43c40283ef3aedb389c113d4",
+    "CMAPSSData\\train_FD003.txt": "b5101e65c0c4eb3cef9a054d61c0a6ff3f993ae704f5ae33dd8b7049dbd15b1d"
+  },
+  "sources": {
+    "protocolo_ponte_escala_12b.md": "dc24e2815d96417e01beb9b1f1bc898efa8cc2ac78f8c858ca578e91c1e9879f",
+    "pilot_scale_bridge_12b.py": "8341fdc172f59072a91f0c0b38d15103105b3d9cc768938a3c23519385724b25",
+    "test_scale_bridge_12b.py": "e6d5adc8d6568fb8c226fdf9c7c1a17ad8332daafb90ea1654d291a8ec54992d",
+    "verify_scale_bridge_12b.py": "c3e98b814cb39599db86aee398bae09828086d49e4dc6c4b2855fee3b0e38722"
+  }
+}

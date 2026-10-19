@@ -1,0 +1,19 @@
+{
+  "timestamp_utc": "2026-10-17T00:30:40.323144+00:00",
+  "reason": "Common-sensor intersection can omit sensors, so Pearson correlation of the original full-set ranks is not always Spearman on the intersection. Re-rank within the common set.",
+  "stage": "after the initial results and full verification; post-processing only",
+  "initial_attempt": "Stopped before mutation because Windows metadata keys use backslashes; path matching corrected.",
+  "hi_refitted": false,
+  "predictions_changed": false,
+  "errors_changed": false,
+  "training_or_selection_changed": false,
+  "correlations_checked": 104,
+  "correlations_changed": 4,
+  "maximum_absolute_change": 0.033492356950117985,
+  "executed_script_sha256": "561884092f44a163f4209fc227fcc15a39a2fef32a867a7107449c0f17440d76",
+  "corrected_script_sha256": "3ac7249e644ed5d3d369415c783bbb24c3be5f2a035aa27f45291d33a866288f",
+  "before_concordance_sha256": "a408fa486c580b145f93309f0a4035fbe0ad4f78c768d6ee055ac1919fbbdae5",
+  "corrected_concordance_sha256": "78e5de14cf12bed9e21925a98bb5cdc19bddd4f994230042725de38cd483e97d",
+  "prior_verification_sha256": "99d06c4eb94340d922f6daf979fc19e87c86216173b2ecf05018e8c8dc394d6a",
+  "correction_script_sha256": "f156b007df5d1c4bacc51b9e1a999b4c261ab316feb412c80abad23a3bf4fa3e"
+}

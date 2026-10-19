@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "cell_policy_rows_replayed": 96,
+  "cells": 46080,
+  "pairs": 40320,
+  "max_abs_stationary_z": 3.9410103495182405,
+  "kendall_rows_checked": 5
+}

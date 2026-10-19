@@ -1,0 +1,21 @@
+{
+  "counts": {
+    "attribution_engines": 12600,
+    "sensor_sensitivity_engines": 25200,
+    "rank_vectors": 5040,
+    "rank_comparisons": 1260,
+    "repeat_dates": 9600,
+    "repeat_contributions": 600,
+    "action_engines": 76800,
+    "action_summary": 768,
+    "action_contrast_engines": 38400,
+    "action_contrasts": 384,
+    "forecast_contrast_engines": 2400,
+    "forecast_contrasts": 24,
+    "mechanism": 600,
+    "support": 68360,
+    "case_inventory": 139,
+    "trigger_explanation": 9600
+  },
+  "source_sha256": "e3c49e2fd4cb2f2136a7d382759ac4512791827f80ced4301a2405f1675c7c99"
+}

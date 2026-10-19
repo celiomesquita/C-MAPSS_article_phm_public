@@ -1,0 +1,308 @@
+% !TEX spellcheck = en_GB
+%% Early-pilot specification, results and information constraints.
+%% This material was part of the manuscript submitted to RESS and is
+%% provided here for reproducibility. It describes the P01/P02 pilots
+%% that motivated the landmark-based framework used in the main article.
+%%
+%% Compile with: pdflatex early_pilots.tex (requires the elsarticle class
+%% or can be adapted to article class by removing the \journal command).
+\documentclass[12pt]{article}
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% Redefine tablenotes for standalone compile
+\newcommand{\tablenotes}[1]{\par\smallskip\footnotesize #1}
+
+\title{Early-pilot specification, results and information constraints\\
+\large Supplementary material for ``Forecast-based removal of turbofan engines\\
+with sensor-only prognostics and simulated borescope inspection''}
+\author{Antonio Celio Pereira de Mesquita}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Early-pilot methods}\label{app:early-methods}
+
+These exploratory pilots preceded the landmark-based framework. They are retained to document the detector, calibration-region and action-region choices that motivated the later comparisons. Their immediate actions and partition-specific controls belong to the initial scenarios.
+
+\subsection{Scope, data and separation by engine}
+
+The initial exploratory pilots, P01 and P02, use only the 100 complete run-to-failure training trajectories of subset FD001. Their sequential policy evaluation excludes the official truncated test trajectories because subsequent sensor measurements are unavailable. For engine $i$, the reference RUL at cycle $t$ is $T_i-t$, where $T_i$ is its recorded endpoint. This endpoint supplies training labels and retrospective evaluation only; it is excluded from predictors and action triggers. P03--P06 subsequently examine sensor-derived HI candidates, including official-test prognosis and FD003 robustness; no physical operational margin is reconstructed.
+
+For complete-trajectory analyses, RUL supervision is derived directly from the recorded training endpoints. The files \texttt{RUL\_FD001.txt} and \texttt{RUL\_FD003.txt} instead provide the remaining life at the last observation of each official truncated test engine. They do not supply training labels. In the official-test comparisons reported here, their labels are used only for retrospective scoring after fitting and internal configuration selection, without entering HI estimation, model fitting or removal triggers. Thus, excluding the official test-label files from training does not make the approach label-free: both the empirical HI and the RUL predictors use supervised targets derived from complete training trajectories.
+
+Let $\mathcal I=\{1,\ldots,100\}$ index engines. For outer fold $k\in\{1,\ldots,5\}$, let $\mathcal F_k$, $\mathcal C_k$, $\mathcal S_k$ and $\mathcal E_k$ denote fitting, calibration, internal-selection and evaluation engines. These sets are disjoint, and
+\[
+\mathcal I=\mathcal F_k\,\dot\cup\,\mathcal C_k\,\dot\cup\,\mathcal S_k\,\dot\cup\,\mathcal E_k,
+\qquad \mathcal I=\mathop{\dot\bigcup}_{k=1}^{5}\mathcal E_k.
+\]
+Their cardinalities are $(60,20,0,20)$ in P01 and $(40,20,20,20)$ in P02. All observations from an engine belong to the same partition. The evaluation sets are reused across pilots; P02 therefore remains exploratory because its design responds to P01 findings. P02 selection uses $\mathcal S_k$, without consulting $\mathcal E_k$ outcomes.
+
+\subsection{Causal detection of a candidate P}
+
+For sensor observation $x_{ij}(t)$, define the initial reference and causal mean as
+\[
+\mu_{ij}=\frac{1}{B}\sum_{u=1}^{B}x_{ij}(u),\qquad
+\bar x_{ij,w}(t)=\frac{1}{w}\sum_{u=t-w+1}^{t}x_{ij}(u),\qquad B=20.
+\]
+Let $\sigma_{j,k,w}$ be the sample standard deviation of $\bar x_{ij,w}(t)-\mu_{ij}$ over $i\in\mathcal F_k$ and $w\leq t\leq B$. Retain $\mathcal J_{k,w}=\{j:\sigma_{j,k,w}>10^{-6}\}$ and set
+\[
+z_{ij,w}(t)=\frac{|\bar x_{ij,w}(t)-\mu_{ij}|}{\sigma_{j,k,w}}.
+\]
+These deviations define statistical alerts, not physical safety margins. Let $z_{i,(h),w}(t)$ denote the $h$th largest retained deviation. With persistence $d$, the score and available alert cycle are
+\[
+\begin{aligned}
+a_i(t;w,h,d)&=\min_{0\leq v<d}z_{i,(h),w}(t-v),\\
+\widehat P_i(\tau)&=\inf\{t\geq B+d:a_i(t;w,h,d)>\tau\},
+\end{aligned}
+\]
+where $\inf\varnothing=+\infty$ denotes no detection. The alert is not backdated. P01 uses $(w,h,d,\tau)=(15,2,3,2)$, with sensitivity sets $w\in\{5,10,15\}$, $h\in\{1,2\}$ and $\tau\in\{2,3\}$, keeping $d=3$. Independent physical P labels are unavailable.
+
+P02 retains $(w,h,d)=(15,2,3)$. Its provisional stable period ends at $B_0=40$. Define
+\[
+\begin{aligned}
+A_{i,k}^{0}&=\max_{B+d\leq t\leq B_0}a_i(t),\quad i\in\mathcal F_k,\\
+\mathcal T_k&=\{2\}\cup
+\left\{\max\!\left(2,Q_q^{+}\{A_{i,k}^{0}\}_{i\in\mathcal F_k}\right):
+q\in\{0.90,0.95,1\}\right\}.
+\end{aligned}
+\]
+Here $Q_q^{+}$ is the empirical quantile using the higher bracketing order statistic. On $\mathcal S_k$, define the early-alert rate, coverage and median positive lead as
+\[
+\begin{split}
+\alpha_k(\tau)&=|\mathcal S_k|^{-1}\sum_{i\in\mathcal S_k}\mathbf1\{\widehat P_i(\tau)\leq B_0\},\\
+c_k(\tau)&=\sum_{i\in\mathcal S_k}\mathbf1\{\widehat P_i(\tau)<T_i\},\\
+\ell_k(\tau)&=\operatorname{median}\{T_i-\widehat P_i(\tau):i\in\mathcal S_k,\ \widehat P_i(\tau)<T_i\}.
+\end{split}
+\]
+For $\mathcal T_k^{0}=\{\tau\in\mathcal T_k:\alpha_k(\tau)\leq0.10\}$, select
+\[
+\tau_k^*=\begin{cases}
+\operatorname*{arg\,min}_{\tau\in\mathcal T_k^{0}}^{\mathrm{lex}}
+(-c_k(\tau),-\ell_k(\tau),\tau),&\mathcal T_k^{0}\ne\varnothing,\\
+\operatorname*{arg\,min}_{\tau\in\mathcal T_k}^{\mathrm{lex}}
+(\alpha_k(\tau),-c_k(\tau),-\ell_k(\tau),\tau),&\text{otherwise}.
+\end{cases}
+\]
+Set $\ell_k(\tau)=0$ when $c_k(\tau)=0$. The second case records infeasibility of the early-alert criterion. Stability through $B_0$ and the 0.10 tolerance are exploratory assumptions, not verified healthy labels or safety requirements.
+
+\subsection{Prognostic models and calibration}
+
+The candidate families are Random Forest (RF), gradient boosting regressor (GBR), extreme gradient boosting (XGBoost; XGB) and light gradient boosting machine (LightGBM; LGBM), indexed by
+\[
+\mathcal M=\{\mathrm{RF},\mathrm{GBR},\mathrm{XGB},\mathrm{LGBM}\}.
+\]
+For $w=15$, each sensor contributes four causal summaries. With $m_{p,ij}(t)=w^{-1}\sum_{u=t-w+1}^{t}(x_{ij}(u)-\bar x_{ij,w}(t))^p$, define
+\[
+\begin{split}
+s_{ij}(t)&=\sqrt{\frac{w}{w-1}m_{2,ij}(t)},\qquad
+v_{ij}(t)=\sqrt{\frac1w\sum_{u=t-w+1}^{t}x_{ij}(u)^2},\\
+g_{ij}(t)&=\frac{\sqrt{w(w-1)}}{w-2}
+\frac{m_{3,ij}(t)}{m_{2,ij}(t)^{3/2}},\\
+\phi_i(t)&=\bigl(\bar x_{ij,w}(t),s_{ij}(t),v_{ij}(t),g_{ij}(t)\bigr)_{j\in\mathcal J_{k,w}}.
+\end{split}
+\]
+Set $g_{ij}(t)=0$ when $m_{2,ij}(t)\leq10^{-24}$. The feature vector excludes identifiers, cycle number, true RUL and endpoint. Let $\mathcal O_{i,k}$ be the cycles with available features at or after $\widehat P_i$. For each family $m$, fit $f_{m,k}$ with fixed family parameters and equal total weight per engine:
+\[
+\begin{split}
+\mathcal L_{m,k}(f)&=\sum_{i\in\mathcal F_k^+}\omega_{i,k}
+\sum_{t\in\mathcal O_{i,k}}\bigl[f(\phi_i(t))-(T_i-t)\bigr]^2,\\
+\widehat f_{m,k}&=\mathcal A_m(\mathcal L_{m,k};\theta_m),\qquad
+\widehat r_{i,m,k}(t)=\max\{0,\widehat f_{m,k}(\phi_i(t))\}.
+\end{split}
+\]
+Here $\mathcal F_k^+=\{i\in\mathcal F_k:|\mathcal O_{i,k}|>0\}$ and
+\[
+N_k=\sum_{i\in\mathcal F_k^+}|\mathcal O_{i,k}|,\qquad
+\omega_{i,k}=\frac{N_k}{|\mathcal F_k^+|\,|\mathcal O_{i,k}|}.
+\]
+Thus, observation weights have mean one and engine totals are equal. The operator $\mathcal A_m$ uses fixed family parameters $\theta_m$. The loss specifies the common weighted fitting criterion; candidate families need not attain its global minimum or have equal capacity. Only these four families are evaluated. Feature-importance diagnostics do not establish explanation fidelity or consensus.
+
+For each model and fold, suppress $m,k$ subscripts where unambiguous. Positive calibration errors and global margins are
+\[
+e_i(t)=[\widehat r_i(t)-(T_i-t)]_+,\quad
+M_i^{G}=\max_{t\in\mathcal O_{i,k}}e_i(t),\quad
+\Delta_G=Q_{0.90}^{+}\{M_i^{G}:i\in\mathcal C_k\},
+\]
+where $[u]_+=\max(0,u)$. For action-region boundary $b=30$, define
+\[
+\begin{aligned}
+\mathcal O_{i,k}^{b}&=\{t\in\mathcal O_{i,k}:\widehat r_i(t)\leq b\},\\
+\mathcal C_k^{b}&=\{i\in\mathcal C_k:\mathcal O_{i,k}^{b}\ne\varnothing\},\\
+\Delta_L&=Q_{0.90}^{+}\left\{\max_{t\in\mathcal O_{i,k}^{b}}e_i(t):i\in\mathcal C_k^{b}\right\}.
+\end{aligned}
+\]
+The local margin is available only if $|\mathcal C_k^{b}|\geq10$; all executed folds have $|\mathcal C_k^{b}|=20$. Eligibility depends on predicted, not true, RUL. These empirical margins provide neither conformal nor aircraft-safety guarantees.
+
+\subsection{Sequential decisions and evaluation}
+
+For trigger $a=10$, the four P02 action indicators are
+\[
+\begin{aligned}
+\pi_0(i,t)&=\mathbf1\{\widehat r_i(t)\leq a\},\\
+\pi_G(i,t)&=\mathbf1\{[\widehat r_i(t)-\Delta_G]_+\leq a\},\\
+\pi_{G,b}(i,t)&=\pi_G(i,t)\mathbf1\{\widehat r_i(t)\leq b\},\\
+\pi_{L,b}(i,t)&=\mathbf1\{[\widehat r_i(t)-\Delta_L]_+\leq a\}
+\mathbf1\{\widehat r_i(t)\leq b\}.
+\end{aligned}
+\]
+The removal time, endpoint event and unused life under policy $\pi$ are
+\[
+\begin{aligned}
+t_i^{\pi}&=\min\left(T_i,\inf\{t\in\mathcal O_{i,k}:\pi(i,t)=1\}\right),\\
+E_i^{\pi}&=\mathbf1\{t_i^{\pi}\geq T_i\},\qquad U_i^{\pi}=T_i-t_i^{\pi}.
+\end{aligned}
+\]
+Actions are immediate in this scenario. If no action occurs, including when detection is absent, $t_i^{\pi}=T_i$. P01 uses $a\in\{0,5,10\}$ for $\pi_0$ and $\pi_G$, together with exploratory age and detection controls $t_i^{\mathrm{age}}=\min(T_i,Q_{0.10}^{-}\{T_j:j\in\mathcal F_k\})$ and $t_i^{P}=\min(T_i,\widehat P_i)$, where $Q^{-}$ uses the lower bracketing order statistic. These are not optimised traditional policies.
+
+Let $\Pi=(\pi_0,\pi_G,\pi_{G,b},\pi_{L,b})$ in the stated tie-breaking order. P02 selects each model's variant internally:
+\[
+\pi_{m,k}^{*}=\operatorname*{arg\,min}_{\pi\in\Pi}^{\mathrm{lex}}
+\left(\sum_{i\in\mathcal S_k}E_i^{\pi},\quad
+\frac1{|\mathcal S_k|}\sum_{i\in\mathcal S_k}U_i^{\pi}\right).
+\]
+All outer variants are reported, without substituting $\pi_{m,k}^{*}$ after examining evaluation outcomes. The mean of engine-level root mean square error (RMSE) and mean unused life on an evaluation set $\mathcal E$ are
+\[
+\overline{\mathrm{RMSE}}=\frac1{|\mathcal E|}\sum_{i\in\mathcal E}
+\sqrt{\frac1{|\mathcal O_{i,k}|}\sum_{t\in\mathcal O_{i,k}}(\widehat r_i(t)-(T_i-t))^2},
+\qquad \bar U^{\pi}=\frac1{|\mathcal E|}\sum_{i\in\mathcal E}U_i^{\pi}.
+\]
+RMSE is defined on engines with available predictions; coverage is reported separately, and all evaluated engines have predictions in these pilots. This differs from last-observation benchmark RMSE. No logistics lead time or operational admissibility level has yet been validated; $a$ is a scenario parameter. Endpoint events are not interpreted as aircraft accidents.
+
+The economic scenario includes a fixed cost per perfect restoration (as good as new), without complementary costs. An exploratory restoration rate is the number of completed lives divided by their total operating exposure. Its interpretation as a long-run renewal cost rate additionally assumes independent, identically distributed restored lives and no restoration downtime, neither established by FD001. Multiplying all restoration costs by the same constant does not change the ranking. Consequently, the pilots report exposure and unused life without claiming a monetary saving or selecting an economically optimal admissible policy.
+
+% -----------------------------------------------------------------------
+\section{Early-pilot results}\label{app:early-results}
+
+These outcomes explain the move from early statistical alerts and global margins towards explicit action opportunities. They provide development evidence rather than confirmation of the main removal rules.
+
+\subsection{Initial pilot: early alerts and excessive anticipation}
+
+Under P01's initial detector, all 100 engines generated an alert by cycle 40, with a median alert at cycle 24. Removing an engine at that alert discarded 181.94 cycles on average. This result shows that an alert from the initial statistical rule is insufficient to justify removal; it does not prove that every early alert is false. Without independent onset labels, the pilot cannot establish whether the rule identifies physical degradation or initial reference variability.
+
+Raw mean engine RMSE ranged from 32.17 to 33.61 cycles. The global margins averaged 86.67--102.64 cycles across folds, depending on the regressor. With the ten-cycle trigger, applying those margins resulted in zero endpoint events but discarded 95.53--130.94 cycles on average. The corresponding raw variants reached the endpoint in one to eight engines and discarded 8.47--9.15 cycles. The contrast motivated P02: a margin calibrated over the entire trajectory may be dominated by overestimation far from the action region and can discard substantial life when applied everywhere.
+
+\subsection{Refined detection and descriptive prediction errors}
+
+All P02 folds internally selected the 0.90-quantile initial-score threshold, giving thresholds between 6.07 and 6.68 in the original standardised score units. The selected detector alerted by cycle 40 in six outer-evaluation engines, compared with all 100 under the fixed threshold. Median alert time shifted from 24 to 69.5 cycles, with detection before the endpoint in every engine (Table~\ref{tab:pilot-detection}). This is evidence that the early-alert behaviour can be controlled under the assumed stable interval; it is not validation of P or proof that the longer delay is operationally preferable. Median available lead to the endpoint decreased from 172.5 to 128 cycles.
+
+\begin{table}[htbp]
+\centering
+\caption{P02 outer-evaluation detection outcomes.}
+\label{tab:pilot-detection}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
+\toprule
+Rule & Detected & Alerts by 40 & Median P & Median lead \\
+\midrule
+Fixed threshold two & 100 & 100 & 24.0 & 172.5 \\
+Internally selected & 100 & 6 & 69.5 & 128.0 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{The fixed rule and internally selected rule use the same fitting partitions. Alerts by cycle 40 are not confirmed false positives.}
+\end{table}
+
+Table~\ref{tab:pilot-prediction} reports descriptive prediction errors and calibration margins. P02 raw RMSE averaged 24.19--25.04 cycles per engine. This cannot be interpreted as an isolated improvement over P01: the detected alert, evaluated cycle set and fitting sample size changed simultaneously. Within P02, mean local margins were 14.11--15.53 cycles, compared with 59.11--69.87 for global margins. Both use the same quantile and calibration engines; they differ in the prediction region from which per-engine maxima are calculated.
+
+\begin{table}[htbp]
+\centering
+\caption{Prediction errors and calibration margins (cycles).}
+\label{tab:pilot-prediction}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
+\toprule
+Model & \shortstack{P01 raw\\RMSE} & \shortstack{P02 raw\\RMSE} & \shortstack{P02 global\\margin} & \shortstack{P02 local\\margin} \\
+\midrule
+GBR & 32.17 & 24.19 & 59.11 & 15.53 \\
+LGBM & 32.98 & 24.91 & 66.58 & 14.11 \\
+RF & 33.61 & 25.04 & 69.72 & 15.10 \\
+XGB & 33.40 & 25.01 & 69.87 & 14.63 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Mean engine root mean square error (RMSE) and mean margins across five folds. P01 and P02 evaluate different post-alert histories; the RMSE columns are descriptive, not a controlled between-pilot comparison.
+
+Model abbreviations: RF, Random Forest; GBR, gradient boosting regressor; XGB, extreme gradient boosting; LGBM, light gradient boosting machine.}
+\end{table}
+
+\subsection{Action region and calibration region have distinct effects}
+
+With identical predictions and the same ten-cycle trigger, the global-margin variant discarded 71.98--91.31 cycles per engine. Restricting action to original predictions of at most 30 cycles reduced this to 28.53--31.32 cycles. Re-estimating the margin within that same region reduced unused life further to 23.83--26.08 cycles (Tables~\ref{tab:pilot-policies} and \ref{tab:pilot-selected}). Thus, a substantial part of the reduction came from specifying when the margin could trigger action, before changing the margin estimate itself. All three margin-based variants recorded zero endpoint events in this sample, which does not establish their safety beyond these trajectories.
+
+\begin{table}[htbp]
+\centering
+\caption{P02 policy outcomes on outer-evaluation engines.}
+\label{tab:pilot-policies}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}lXrrr@{}}
+\toprule
+Model & Variant & Endpoint events & Unused life & Exposure \\
+\midrule
+\multirow{4}{*}{GBR} & $\pi_0$ & 4 & 9.50 & 196.81 \\
+ & $\pi_G$ & 0 & 71.98 & 134.33 \\
+ & $\pi_{G,b}$ & 0 & 30.55 & 175.76 \\
+ & $\pi_{L,b}$ & 0 & 26.08 & 180.23 \\
+\midrule
+\multirow{4}{*}{LGBM} & $\pi_0$ & 0 & 9.60 & 196.71 \\
+ & $\pi_G$ & 0 & 86.89 & 119.42 \\
+ & $\pi_{G,b}$ & 0 & 31.08 & 175.23 \\
+ & $\pi_{L,b}$ & 0 & 24.14 & 182.17 \\
+\midrule
+\multirow{4}{*}{RF} & $\pi_0$ & 1 & 9.47 & 196.84 \\
+ & $\pi_G$ & 0 & 88.52 & 117.79 \\
+ & $\pi_{G,b}$ & 0 & 28.53 & 177.78 \\
+ & $\pi_{L,b}$ & 0 & 23.83 & 182.48 \\
+\midrule
+\multirow{4}{*}{XGB} & $\pi_0$ & 1 & 9.78 & 196.53 \\
+ & $\pi_G$ & 0 & 91.31 & 115.00 \\
+ & $\pi_{G,b}$ & 0 & 31.32 & 174.99 \\
+ & $\pi_{L,b}$ & 0 & 25.09 & 181.22 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{There are 100 outer-evaluation engines per row. Policies $\pi_{G,b}$ and $\pi_{L,b}$ additionally require $\widehat r_i(t)\leq b=30$. Unused life and exposure are mean cycles per engine.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{P02 outcomes after internal policy selection.}
+\label{tab:pilot-selected}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrr@{}}
+\toprule
+Model & Endpoint events & Mean unused life & Mean exposure \\
+\midrule
+GBR & 0 & 26.08 & 180.23 \\
+LGBM & 0 & 9.60 & 196.71 \\
+RF & 1 & 12.18 & 194.13 \\
+XGB & 1 & 12.56 & 193.75 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{The variant is selected internally for each model and fold. Variants may differ across folds; each row aggregates 100 outer-evaluation engines.}
+\end{table}
+
+% -----------------------------------------------------------------------
+\section{Information constraints}\label{app:information}
+
+For the initial decision pilots, let $\mathcal X_i(t)=\sigma\{x_{ij}(u):u\leq t,\ j\in\mathcal J_{k,w}\}$ denote their available sensor information. For $t>B$, $\phi_i(t)$, the alert event $\{\widehat P_i\leq t\}$ and the action $\pi(i,t)$ are measurable with respect to $\mathcal X_i(t)$ and the parameters learned outside $\mathcal E_k$. In particular,
+\[
+\begin{aligned}
+\tau_k^*&=\mathcal T(\mathcal D_{\mathcal F_k},\mathcal D_{\mathcal S_k}),\\
+\widehat f_{m,k}&=\mathcal A_m(\mathcal D_{\mathcal F_k};\tau_k^*,\theta_m),\\
+(\Delta_G,\Delta_L)&=\mathcal B(\widehat f_{m,k},\mathcal D_{\mathcal C_k};\tau_k^*),\\
+\pi_{m,k}^*&=\mathcal S(\widehat f_{m,k},\Delta_G,\Delta_L,\mathcal D_{\mathcal S_k};\tau_k^*).
+\end{aligned}
+\]
+where $\mathcal D_{\mathcal A}$ denotes observations from engines indexed by $\mathcal A$. Evaluation outcomes do not enter these operators within a fold. Reuse of engines across exploratory rounds remains a separate limitation and does not provide confirmatory independence. The later rounds keep the same constraints: fitting, converter, calibration and evaluation outcomes are separated by engine, and evaluation engines do not enter the operators that produce rules, margins or limits.
+
+\end{document}

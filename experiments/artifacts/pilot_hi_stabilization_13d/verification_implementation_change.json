@@ -1,0 +1,8 @@
+{
+  "type": "verification performance implementation only; no scientific amendment",
+  "original_verifier_sha256": "311dec1c4bbe4ad510673f14886bdb5a1c41c93dcd19fa0ae0828e624a0b3db0",
+  "original_partial_log_sha256": "8d4642b86a71bdb9bc859476de68319d595544a91d1d80c49276cefb999c138b",
+  "vectorized_verifier_sha256": "0c9c6116ac5104242a211721cf886ef51530b0b1888e152f4ab57f1f2f5f4976",
+  "execution_sources_unchanged": true,
+  "criteria_unchanged": true
+}

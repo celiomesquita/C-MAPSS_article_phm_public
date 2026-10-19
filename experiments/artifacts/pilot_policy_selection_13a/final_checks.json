@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "frozen_selections_checked": 240,
+  "transfer_rows_checked": 2400,
+  "marker_equivalence_checked": 1200,
+  "python": "3.14.0",
+  "numpy": "2.4.0",
+  "pandas": "2.3.3",
+  "scipy": "1.17.1",
+  "sklearn": "1.8.0",
+  "sources": {
+    "pilot_policy_selection_13a.py": "087f9b1727772f84a37981ab4b0d116ad61379320033fc0c28ff757fdddc9863",
+    "test_pilot_policy_selection_13a.py": "27bb31ac9c0795b7f15db862ecc35d68de845336bd483b6b1e7b8d7daa2ed684",
+    "verify_pilot_policy_selection_13a.py": "525542261a4a1206d05041026ede0133f2bf7af0616a6b0d2a08162ebf279112",
+    "report_pilot_policy_selection_13a.py": "bdd7f39cd98b995a7245c4d7334c04f89e43f9d2b9df35e8bb2dcd4a5016c24e",
+    "final_check_policy_selection_13a.py": "140a1aefa89bc0ba7713cfc6ffe5da9b0f7817a61c9791d8139b0c814b826760"
+  },
+  "amendments": [
+    "CSV index reset in verifier only",
+    "Windows path normalisation for archived verifier hash lookup"
+  ],
+  "original_verifier": "verifier_original.py",
+  "intermediate_verifier": "verifier_index_fix.py"
+}

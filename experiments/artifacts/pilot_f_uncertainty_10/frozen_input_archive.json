@@ -1,0 +1,6 @@
+{
+  "experiments\\pilot_f_uncertainty_10.py": "experiments\\artifacts\\pilot_f_uncertainty_10\\before_numeric_amendment_pilot_f_uncertainty_10.py",
+  "experiments\\verify_pilot_f_uncertainty_10.py": "experiments\\artifacts\\pilot_f_uncertainty_10\\before_numeric_amendment_verify_pilot_f_uncertainty_10.py",
+  "experiments\\test_pilot_f_uncertainty_10.py": "experiments\\artifacts\\pilot_f_uncertainty_10\\before_numeric_amendment_test_pilot_f_uncertainty_10.py",
+  "experiments\\protocolo_incerteza_f_10.md": "experiments\\artifacts\\pilot_f_uncertainty_10\\before_numeric_amendment_protocolo_incerteza_f_10.md"
+}

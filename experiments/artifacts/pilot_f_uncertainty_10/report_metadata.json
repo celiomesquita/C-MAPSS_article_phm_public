@@ -1,0 +1,6 @@
+{
+  "script_sha256": "342699f31a1680b0a6fa6baf69dfb691531de6d3f85e7e78e7d0e35fd160a6c7",
+  "source": "band_summary.csv",
+  "primary_alpha": 0.02,
+  "figure_labels": "repeat, not independent samples"
+}

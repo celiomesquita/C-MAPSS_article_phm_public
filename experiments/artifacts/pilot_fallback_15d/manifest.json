@@ -1,0 +1,12 @@
+{
+  "central_scenario.csv": "0b80001da7fe2759c725b1f28364a0c66e52d822df2f96e445defcc5688faa72",
+  "execution_start.json": "77a822a8a31bd3171496154bd04e1ef68baa79f5aee1b6ffda8f3737054b2ec8",
+  "hybrid_decisions.csv.gz": "40e9b38a7a0bd1030e552f01553ac834287310cfc1d15a5e68d713c2fba306fc",
+  "pooled_bounds.csv": "8e0a2f8ebfad4a6bd63e0a7df7e24ae4a8bb035e42e19385fb644f921b2edd98",
+  "savings.csv": "bc808e0186af9e161694465d922a5eb2f36e30a247c2f6baecacf9d2b85d8dce",
+  "source_pilot_fallback_15d.py": "4d4de934d34b50f5448c74a4bb7529e70868f1e05c319005925ede55c350ee8e",
+  "source_protocolo_reserva_idade_15d.md": "b52570d4e2b7158babe3f080e68d8e280ce9c4f12bf30eb7bfd3c414f17f7ab6",
+  "source_test_fallback_15d.py": "c538610928e5d3c6073a6a5db8c212b9eda1484f57c2d525315810d4200b3be5",
+  "source_verify_fallback_15d.py": "291e87c95575da52e2e4da64f705c535f27ee36837ca884665a4b05645624442",
+  "summary.csv": "b9f3a46231990f923e767f25c9ecacccb0d207f44524425534edd414028c4d72"
+}

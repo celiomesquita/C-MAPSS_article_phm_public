@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "baseline_actions": 9600,
+  "global_actions": 1093760,
+  "local_actions": 1093760,
+  "noise_fits": 60,
+  "global_path_values": 14154217,
+  "previous_artifacts_intact": true,
+  "verifier_sha256": "9b086148717d699dd65d98c70b84d61562e2e94047caa359028c84029c12e03c"
+}

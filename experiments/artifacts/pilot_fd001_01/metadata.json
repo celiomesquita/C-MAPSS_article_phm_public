@@ -1,0 +1,29 @@
+{
+  "timestamp_utc": "2026-10-16T12:35:43.846220+00:00",
+  "python": "3.14.0",
+  "seed": 20261016,
+  "outer_folds": 5,
+  "baseline": 20,
+  "window": 15,
+  "sigma": 2,
+  "persistence": 3,
+  "channels": 2,
+  "margin_quantile": 0.9,
+  "data_sha256": "b26c80e34451ffeb0f80e878a37c078c733539dc43c40283ef3aedb389c113d4",
+  "script_sha256": "13d43c091dec1fc4b73900289307909c82f8eb24196030c24f72b4516521fa28",
+  "versions": {
+    "numpy": "2.4.0",
+    "pandas": "2.3.3",
+    "scikit-learn": "1.8.0",
+    "xgboost": "3.2.0",
+    "lightgbm": "4.6.0",
+    "matplotlib": "3.10.8"
+  },
+  "limits": [
+    "Exploration only; no physical HI, inspection, SHAP, or operational safety claim",
+    "No hyperparameter search; calibration split is not final evaluation",
+    "Causal processing and engine-held-out folds; first 20 cycles assumed healthy",
+    "Endpoint counts are benchmark outcomes, not aircraft accidents",
+    "Renewal exposure ratio is conditional on iid AGAN lives and zero downtime; not validated"
+  ]
+}

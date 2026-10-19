@@ -1,0 +1,11 @@
+{
+  "timestamp_utc": "2026-10-16T23:51:43.332685+00:00",
+  "refit_models_sha256": "30600ed31344b6cba653bdbe3b5a45ebb21192d247abee4f4b730a87c68da08a",
+  "source_models_sha256": "20c2817c71a8f094d4d3863dfa9ca445f701bbb074d3c136bd54382388870cbf",
+  "selected": {
+    "MARGEM": "q0.95",
+    "EMPIRICO": "t60_g2_r0",
+    "AAKR": "top5_L10_h0.5"
+  },
+  "target_official_labels_excluded_from_selection": true
+}

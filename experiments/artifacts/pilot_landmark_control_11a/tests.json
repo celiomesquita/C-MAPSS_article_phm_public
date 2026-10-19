@@ -1,0 +1,6 @@
+{
+  "command": "py -m unittest discover -s experiments -p test_pilot*.py",
+  "tests": 49,
+  "status": "passed",
+  "stage": "before P11.1 execution"
+}

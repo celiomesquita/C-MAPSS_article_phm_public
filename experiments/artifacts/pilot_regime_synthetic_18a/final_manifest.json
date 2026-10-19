@@ -1,0 +1,20 @@
+{
+  "clustering_diagnostics.csv": "9c461c0c51050c4c9b782420101bda4bfe89e7b9d61d8ee1d0ae7cb617d41a8c",
+  "conclusoes.md": "98d7a4011b5fc9771b97ef5f86fe4db7ec1e982043dda336f20f2f903b2d09be",
+  "execution_start.json": "86fb126cf73e8640645a7d5d20a8fedef9f4e027e487c4166ddcf9a0408df60a",
+  "k1_equivalence.csv": "52fb7c39bc4e2de0c16503133636b0b23bb7f55a8a6a966f3949f929cec8ce6d",
+  "manifest.json": "a5ab9b8dff0c9e13f1af0d4b58049e87a1ca6910f43d9d2450746fa70b635611",
+  "p18a_execution.log": "b3224de1a0f1533dc57473a74bd006fd15cfebf4d9725bcb90dffd69d0891135",
+  "p18a_tests.log": "60fc345692d04c3cba1ec002b71c61863705393d4ea08e0bb44ae19af92d7261",
+  "p18a_verification.log": "96b85b00f96e968ae946ca9e40d9a692ee88757632c9ebe2b0a4dad2a8d2aabf",
+  "per_engine.csv": "d55a4a0ae769a94cec1f6dd731432841f0b7062f1761c43690559286034ab78b",
+  "source_pilot_regime_synthetic_18a.py": "c02aeb351148bd1ae72d1703fb2ad65c30233c238b1a7822846ad06588556bd3",
+  "source_protocolo_normalizacao_regimes_18a.md": "9ea65dbec9aba8a688d27327e0123001cf88a009902152bd56264bc443dc38e8",
+  "source_regime_normalisation.py": "e1f63a69c7e87756d52c57f91f5ed776bf396c0c296db447b38371eb1ff86038",
+  "source_test_regime_normalisation_18a.py": "070d131f1614a4bcfe968e6de0e4471248bff816109e680b8bfcfeae9988f0a8",
+  "source_verify_regime_synthetic_18a.py": "460bc24fb33dabefe75e331fc7cf4311be5bd312c524d31e6b5ce046f6cd1b9a",
+  "summary.csv": "7fbf63011fa1f5ea3d0567e61809010f9cca87f40d5eaf38765806dc977a7fca",
+  "synthetic_checksum.json": "9526784723a0c46ae93252a1ac0823b3c2ce0bb58fb27e2a81c6c628c4467579",
+  "synthetic_effects.npz": "b86608348c9fa672953c2da2ccc512ded7be80466569e2a4c39bf91e0cb16a43",
+  "verification.json": "bc2f3960c036180bfd50f24fc2d4e8fb8501636f0510c13a3655a8e31549b96b"
+}

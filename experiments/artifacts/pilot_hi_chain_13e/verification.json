@@ -1,0 +1,14 @@
+{
+  "manifests_intact": true,
+  "official_test_or_rul_inputs": 0,
+  "decision_rows": 12000,
+  "max_hi_slope_abs_difference": 1.3277240418219094e-10,
+  "max_prediction_abs_difference": 9.9333874459262e-11,
+  "max_quantile_abs_difference": 2.842170943040401e-14,
+  "m18_matches_p11_p11a_p11b_rows": 6000,
+  "sel_identical_partitions": 5,
+  "summaries_checked": 120,
+  "ranges_checked": 2000,
+  "range_summaries_checked": 10,
+  "passed": true
+}

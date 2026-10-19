@@ -1,0 +1,18 @@
+{
+  "checks": [
+    "P01\u2013P05 manifests",
+    "source hashes",
+    "frozen official model hash",
+    "partitions",
+    "internal configuration choices",
+    "all saved HI and RUL predictions",
+    "calibration converter refits",
+    "selection losses",
+    "official RUL alignment",
+    "aggregate errors",
+    "paired bootstrap"
+  ],
+  "max_reconstruction_error": 2.842170943040401e-14,
+  "prior_manifest_sha256": "3ae5c928965cecfb908c4eade243ae034f52b9605e9970fc805cec8dc19ee3de",
+  "script_sha256": "f4a92d4f2baa80441148c4f09df6eaeb0a529eaa63fd91bbe6204b59f4481178"
+}

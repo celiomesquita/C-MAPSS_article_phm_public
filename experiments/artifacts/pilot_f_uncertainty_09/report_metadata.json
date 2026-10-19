@@ -1,0 +1,8 @@
+{
+  "script_sha256": "3a61d8ccd95f50719bb3d7a6a6d3b33931fd45be92696bf6a4a4babde094cd45",
+  "markers": {
+    "circle": 1,
+    "square": 2,
+    "triangle": 3
+  }
+}

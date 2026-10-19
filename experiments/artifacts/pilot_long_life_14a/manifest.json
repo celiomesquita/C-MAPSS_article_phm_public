@@ -1,0 +1,14 @@
+{
+  "classification.json": "faf45a230e3f226866e454a822e1548bc707e7601c11ad7548ce7a223d7bedd8",
+  "engines.csv": "cf51ffbfd9e0b2e9e085b6f24d8c8dd079b5f96369e77c2263e74ff9f08a5425",
+  "events_by_tercile.csv": "768df790eaf799bca4c9b9b3e10554e4476aaec6d7f3c70d6d313f54b69587bb",
+  "events_by_unit.csv": "8a57ee203029cc4abdc7bedb845f241886cf2041a7ecb371f5ef1c655e9a9b79",
+  "execution_start.json": "6e80000fcbd5ae8cf1a0be947d31875e6866332877a5b10d99f403d450ef8aa6",
+  "range_vs_life.png": "bc8b22cc18e36e22cfdfcc98dda84bda763e14e786a5ea49854a91b1908c5dfc",
+  "source_pilot_long_life_14a.py": "1b345ac7c8ad2cf239f6b2482a49de15aa7049d840f23bf227e0c6f8cd4ae106",
+  "source_protocolo_vida_longa_14a.md": "d83db4b568b582504e9258ac9c52e1c3e346c75e8f677577b791444919e7a6bd",
+  "source_test_long_life_14a.py": "83ab4a1f663dd263d36e1bbffaa4e631896bcdc6a980bad8b450c568b83614e8",
+  "source_verify_long_life_14a.py": "6bb4b7448626789dae72671ce6eaca90cfa4f7c3b2b47b402d4f5b84e130e1c9",
+  "summary.csv": "d87c10ad26ee6ea98874e89c470837bc8b4cb2fd5b9de2ce7a04b56e68f3a873",
+  "tercile_cuts.csv": "2152ef9b8ba0fe821c00c44b862789d78e9be49da34f9e5715b31fa62683634b"
+}

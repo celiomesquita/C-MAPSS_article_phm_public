@@ -1,0 +1,9 @@
+{
+  "passed": true,
+  "reconstructed_baselines": 600,
+  "checked_spectra": 60,
+  "reconstructed_responses": 3000,
+  "checked_optima": 300,
+  "max_kkt_violation": 5.381735638729235e-15,
+  "note": "KKT conditions check the saved convex nonnegative solutions; this is not a physical validation."
+}

@@ -1,0 +1,15 @@
+{
+  "decision_summary.csv": "c2e2fd9633c04988fc5782936846bd2f9ab8ef6ed0775bba7ed11c0e4a7f2f87",
+  "decisions_per_engine.csv": "dcca68c089d087e688d33c1aa3ff5ba1103d1008ff246c108c90669575f07d4a",
+  "detected_P.csv": "6e133e3611828dfa7fe7dc55d87fdf0a34b5d03b3b1540ca63b36636acb0b573",
+  "detector_sensitivity.csv": "6ddc56929640146afcbddcd9cd0aa8a563bb1fa34dc702feb7f88beabb645024",
+  "detector_sensitivity.png": "9ff7d089e7bf7fde7d6ef3a6ce3feaa7176b0b8461f0b98b87ff84b42dbd571d",
+  "detector_summary.csv": "ba75b12a0fe7df321858e5c80679deca55853e1cdac6c43c832f1b1f82496e48",
+  "impurity_importances.csv": "d6d481ac9cd0c1d1b7efc50e8371cbb2f487e54d0e24f93f26f27e5bc9228476",
+  "metadata.json": "24d349bae67e68286e9509b8932b55489405c25ed320834df2923bddb02162e5",
+  "metrics_per_engine.csv": "0fcf06a1e8a1963db50550910f7b2a8d8648afd85ea6bdc659c6594b41d22c37",
+  "prediction_summary.csv": "b9b5fb902607c9864c66799c7664e592460b4c6d042ee90b917ee3f0b3ef0404",
+  "predictions.csv": "236c411d4741d6c02c31eaa54088d9855958542a902d38b136431f1eef3dda50",
+  "relatorio.md": "86513372f7df398d1e7d67f128bfe67dcbf981544a5730b13ff09cd658caa91f",
+  "splits.json": "9acce5b1891eb0fa82a1b44af65dea88b50fd3b1f711d34b3fbfcef6be05a82a"
+}

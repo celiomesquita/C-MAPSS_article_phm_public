@@ -1,0 +1,17 @@
+[
+  {
+    "stage": "pre-execution test",
+    "change": "test_converter_refit_equals_p10_pipeline: exact equality replaced by atol 1e-9 (protocol tolerance)",
+    "reason": "parallel RF tree averaging changes summation order; max difference 8.53e-14 cycle",
+    "log": "p13e_tests_initial.log",
+    "scientific_change": false
+  },
+  {
+    "stage": "post-execution verifier",
+    "change": "P11.1 controls filtered to dataset==complete before one-to-one merge",
+    "reason": "initial verifier merged truncated control rows; all HI/prediction/quantile/decision reconstructions had already passed",
+    "original_source": "source_verify_hi_chain_13e.py",
+    "log": "verification_initial.log",
+    "scientific_change": false
+  }
+]

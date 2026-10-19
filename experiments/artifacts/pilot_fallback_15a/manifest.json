@@ -1,0 +1,13 @@
+{
+  "central_scenario.csv": "a2e73a2e6314f0c27196be77ccae294e76be5e1e123f01bbcbd6c1e4b53e526d",
+  "execution_start.json": "f72f2fcb775b3f713cba2a046a2adf5dcf56c457ed23684ab67868de7fececd2",
+  "fallback_ages.csv": "e7a8a78e3e0ffcd144301d7e7c8f744d0e63747a53e1f90c38eab631ecb74c6b",
+  "hybrid_decisions.csv.gz": "16e116b7c6a1b5f37bd016d1b18419c667952fa268ef35641381b693cbc02f5c",
+  "life_vs_q.png": "1f7ce6ed196ae6d366f16b9fdadeb186dc31c0690f9a492059e5a644b16412fd",
+  "savings.csv": "ebd2e13be41297c01dde7bda3ad9b5530393377f4ec637364c3e79b5a54bb6dd",
+  "source_pilot_fallback_15a.py": "4f16200392ad93396469b4cbb4409eb8b7e6e13f41e7f7c40f640d32a2ca41ae",
+  "source_protocolo_reserva_idade_15a.md": "820322149bf4538a12cd8d262ccd55f8f24f3a327cffefcbce65fcca3b6b8495",
+  "source_test_fallback_15a.py": "47185c0f9769642955946b7c1625fa854fc1a32a634c5b1fe83ea96bf5779454",
+  "source_verify_fallback_15a.py": "73f8d3679780da5fe7837f951d4695a91ad92ad7727ea07cd2ac66b018806eaf",
+  "summary.csv": "179ec71cdb080b0b2d37c0ddefb95798aeba4c613bdf45547a013533bf842cf0"
+}

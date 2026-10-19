@@ -1,0 +1,13 @@
+{
+  "cells.csv.gz": "7030e077bf80634fb78dc99747d71950cce49d72e139685d527c6aa017bbe291",
+  "execution_start.json": "a1d453ce4db1891487c193f0c1a203c27aeec482a38825539a7f5de3f3854bfc",
+  "metadata.json": "ee5cfee3457dd4a9bf0d283fd4a3464b1a175dcc6c7ea6ef1e6dc1dff1407cf0",
+  "pairs.csv.gz": "f177103d47e5336d044b3ce94477cd880f8eac30df1ec8dd9529a1abc4be3d3f",
+  "source_protocolo_vinte_anos_20a.md": "1195ec73e78a1dd05a0ea1062b81606480ad1b0135b868122c195c71df1ed3a7",
+  "source_test_twenty_year_20a.py": "e33ac9e1300204795c6b25bf639d349d61edf8e31bbd7ce0d2a782ec139ef7d1",
+  "source_twenty_year_20a.py": "0a43496b53730e1ccaa386f3311e9f844d3ca35e0aade7748d68060e8e5b467a",
+  "source_verify_twenty_year_20a.py": "4727e89a98bd48a0fdd84f5d19a791364dca2b89b6c588e63b90b45cba249a0b",
+  "validation.json": "bf0648c3836f0de65dc92a83bbf753dcb7c73e319469d8e27a2d2506029e593e",
+  "validation_long_horizon.csv": "9e79cd6c110ce0c17b9fa8ca495d8dbf510610b66b1d57ab328da6d15893765f",
+  "validation_stationary.csv": "917b16c7d34138841e35f0997e9fcaa66405da906540f8b7cca1d46bdf584350"
+}

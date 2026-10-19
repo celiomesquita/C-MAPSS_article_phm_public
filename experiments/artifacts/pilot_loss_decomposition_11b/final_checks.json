@@ -1,0 +1,19 @@
+{
+  "status": "passed",
+  "tests_before_execution": 69,
+  "links_checked": true,
+  "previous_manifests_unchanged": true,
+  "all_original_inputs_unchanged": true,
+  "independent_verification": {
+    "status": "passed",
+    "real_actions_checked": 9600,
+    "availability_checked": 600,
+    "oracle_rows_checked": 10800,
+    "decompositions_checked": 28800,
+    "summaries_and_bootstrap_checked": 576,
+    "diagnostics_checked": 19200,
+    "previous_artifacts_intact": true,
+    "verifier_sha256": "3d56598efb5d0c4ec211bc14ac8951e7cf5729336e58d34933aae1bfb05696c9"
+  },
+  "report_source_unchanged": true
+}

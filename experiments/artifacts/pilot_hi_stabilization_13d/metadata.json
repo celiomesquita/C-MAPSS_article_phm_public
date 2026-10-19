@@ -1,0 +1,10 @@
+{
+  "completed_utc": "2026-10-17T19:38:19.552013+00:00",
+  "internal_solutions": 31200,
+  "outer_fits": 60,
+  "baseline_responses": 12000,
+  "exclusion_responses": 300000,
+  "maximum_kkt": 3.3306690738754696e-16,
+  "selection_sha256": "44f4d7c1a91884426807536b0af043e5fc0b81a7ee886e0e44c66f3e775fe8ff",
+  "evaluated_groups": "internal V within D=F+C only"
+}

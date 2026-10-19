@@ -1,0 +1,19 @@
+{
+  "candidate_metrics.csv": "dfdc512dd469ac6881fc22ff9335597296e925d6f472ccb38245c45a9438e342",
+  "candidate_summary.csv": "90f3203557d21235d618431e5187cc23a949d3eb8aebf312d973ebaf69d634e7",
+  "HI_examples.png": "db3f2863a8987a2725a1a057671ed46eef9b3052d7a3ac02b0746f443adf5cc3",
+  "metadata.json": "f1a0ce4cc3c1e996374ea3a683b612a587ffbb2ec1e3d1e7adf27fff3cb03818",
+  "reference.csv": "974c8ca0b49e3d66f94f4dd9273a847d70b2ddcf17fceeaae37a209cf749fef3",
+  "relatorio.md": "095cbf201b948e9a45de73a740d74e9b0731401de1007f6748af42f3abe612b6",
+  "selected_fold_summary.csv": "98c0119b2f1a8b2ff8e6aa36d803ad11162cd63fa67d2281e430418bf613cc15",
+  "selected_metrics.csv": "2427de37bd4f105e9daf0c35bd4b6fc57d5d02bbf993ef2c20e198d0c8ffdd07",
+  "selected_summary.csv": "e74950ec7c5e88200de1d021026133d71a21b184be5d45294035e8cd103a638c",
+  "selected_trajectories.csv": "933ada9469183bbf4745bf31af5bdb7f9b9a33acb460ad28d70d1fc0e9a8b4f9",
+  "selection.csv": "edb7faee89c6dda7ec0ebb83c975e474c222c56f0bc709ea5469d062af012d9b",
+  "selection_engines_fold1.csv": "80165077ac7fc61889a9556ae9267c973e8292efdda2698063dcf4f5738f0ca7",
+  "selection_engines_fold2.csv": "ab6af0c7256a1f69be5a794a8c97f60f617b7075d5235c040ee355320d4c08c2",
+  "selection_engines_fold3.csv": "02a2e4103e45ee6e76d93aeea5249d1d86ce7102a7735e071fc39cb63d526fa2",
+  "selection_engines_fold4.csv": "5b2404f6d6568d9d9d9093cca0d78e23089f64e42fed25c19fa6da2543c0bf84",
+  "selection_engines_fold5.csv": "c2756edbe50359369595caf5df5494d1b43b4f819a342331565d0597c7563703",
+  "splits.json": "0e714ebecf44bf825e51392d43ac0ac689dbfcff49541623bbf2ad9c0ac97502"
+}

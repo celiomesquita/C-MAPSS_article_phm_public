@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "final_F25_fits": 60,
+  "maximum_kkt": 3.5735303605122226e-16,
+  "prior_manifests": {
+    "pilot_explainability_13b/manifest.json": 849,
+    "pilot_f_uncertainty_09/manifest.json": 142,
+    "pilot_f_uncertainty_10/manifest.json": 278,
+    "pilot_fd001_01/manifest.json": 13,
+    "pilot_fd001_02/manifest.json": 16,
+    "pilot_fd001_03/manifest.json": 20,
+    "pilot_fd001_04/manifest.json": 17,
+    "pilot_fd001_05/manifest.json": 23,
+    "pilot_fd003_06/manifest.json": 24,
+    "pilot_hi_influence_13c/manifest.json": 18,
+    "pilot_hi_influence_13c/final_manifest.json": 32,
+    "pilot_hi_landmark_07/manifest.json": 11,
+    "pilot_hi_trajectory_08/manifest.json": 45,
+    "pilot_landmark_control_11a/manifest.json": 15,
+    "pilot_loss_decomposition_11b/manifest.json": 20,
+    "pilot_policy_selection_13a/manifest.json": 443,
+    "pilot_removal_11/manifest.json": 22
+  },
+  "evaluated_groups": "F25 optimisation only; no C/U/E scoring"
+}

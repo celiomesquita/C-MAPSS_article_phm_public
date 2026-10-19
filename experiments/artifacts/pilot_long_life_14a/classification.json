@@ -1,0 +1,14 @@
+{
+  "primary": "usable_marker",
+  "label": "parcial",
+  "detail": {
+    "FD001": {
+      "spearman_lo_positive": false,
+      "enrichment_ge_2": true
+    },
+    "FD003": {
+      "spearman_lo_positive": true,
+      "enrichment_ge_2": true
+    }
+  }
+}
