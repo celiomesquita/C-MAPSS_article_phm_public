@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-20",
+  "scope": "Submission-title harmonisation only; no scientific methods, results or inputs changed. Current hashes supersede README/supplement hashes in the preceding release; historical manifests remain unchanged.",
+  "base_public_commit": "6faa513392386c2c20dd888ef79f0d694f21cb17",
+  "previous_manifest": "release_sa3_2026-10-20.json",
+  "hash_method": "SHA-256; text files normalised CRLF to LF, PDFs raw bytes",
+  "title": "Conservative forecast rules can act like health-index landmarks: evidence from simulated turbofan removal",
+  "changed_existing_files": [
+    "README.md",
+    "appendix/supplementary.tex",
+    "appendix/supplementary.pdf"
+  ],
+  "files": {
+    "README.md": "4e8fdc1f1ab686f731d15c4e7c610ee653f9abfa7de21035bb53fa0386bf5087",
+    ".gitignore": "7fdff96b31725ddf59c35c2ceed2fac78a48d09633c987dd37acd099ce456383",
+    "appendix/supplementary.tex": "2bba557b76b9d221b15ca09e33d0d4cb6beb780c94093a00484d2498fa3fb9cc",
+    "appendix/supplementary.pdf": "d20072ec5b053362933c0720128014e862ff364daaf39273f28e14e0b27afa96",
+    "appendix/references.bib": "7912d63693d140b841d436edf293dfd7a8d8b1a2dcaa00ab38a59d8cd45d8d7f",
+    "release_supplement_sync_2026-10-20.json": "56cc6e2a457977b601ae874e677a9948e28582abc6260f5c2ca1ef62b20c5c5e",
+    "experiments/sa3_20261020/evidence_inputs/controls.csv": "f067137f992a404993635b67fc2f7b167bbee0b1efccb4abf4d4cef107c0e599",
+    "experiments/sa3_20261020/evidence_inputs/decisions.csv": "8c9e097f7a35cf30c0d2fa564c8f49077cffdbc6fcad964209a24379abea1627",
+    "experiments/sa3_20261020/evidence_inputs/summary.csv": "7d1fd0a1d20b709dc7ccf7c98943f5202ad99a3d5dc89bf414743cda5a8e61dc",
+    "experiments/sa3_20261020/input_provenance.json": "4876afbbc6391a1dfb6c5068041b001831558b02cc3ec1c8f0abba768687856b",
+    "experiments/sa3_20261020/README.md": "4e486760306324e12b4388395d2dce63257d06386b49bf5c3a7e9e6bdf21c656",
+    "experiments/sa3_20261020/reference/cells.csv": "ef248b4101773cf0fa97c70d1dfecd13812f4c14b210a29fd32062bba54018e6",
+    "experiments/sa3_20261020/reference/contrasts.csv": "4e8110067e8e8a862c8a4a68d90b20252962470a9d0312b1e5f52e1b7c3bba5a",
+    "experiments/sa3_20261020/reference/marker.csv": "6281369e7bc21b8a72a9d59707418fbb8e96c80761a03635810ca17ed827e73f",
+    "experiments/sa3_20261020/reproduce.py": "16fbad0296fbadb5aee4303d5549f890df7f743c22067fa952fa31c807b6c1ea",
+    "experiments/sa3_20261020/source_adaptation.json": "c6834a307c1358ef1cf44d4846f0120b7d587e7eef0d78efce491e196f156f2c",
+    "experiments/sa3_20261020/verify.py": "2c83d64389fd94b489cfb52c2d5aff8fc11a1537f64307e9261bed5f5eb6e0a6",
+    "release_sa3_2026-10-20.json": "d3e584e18ea3bbbb39c0fd7d5ff4af70967e3ede61740bba60454711d586811c"
+  }
+}

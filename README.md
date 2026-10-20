@@ -2,7 +2,7 @@
 
 Companion reproducibility artifacts for the manuscript:
 
-> Antonio C. P. Mesquita, "Incremental value of failure forecasts beyond a health-index landmark in conservative turbofan removal on C-MAPSS", prepared for *Reliability Engineering & System Safety*.
+> Antonio C. P. Mesquita, "Conservative forecast rules can act like health-index landmarks: evidence from simulated turbofan removal", prepared for *Reliability Engineering & System Safety*.
 
 ## Contents
 
@@ -76,7 +76,15 @@ The archived inputs are included; no raw NASA trajectories or fitted models are 
 standard-library analysis, exact reference CSVs and an independent verification
 of the paired contrasts and P10 source-byte reconstruction. See its README.
 Supplementary Sections S7--S9 include the fuller methods, adverse results and
-separate calibration/reserve effects. `release_sa3_2026-10-20.json` identifies the
-current files and supersedes earlier supplement hashes without rewriting them.
+separate calibration/reserve effects. `release_sa3_2026-10-20.json` records that scientific update;
+`release_title_update_2026-10-20.json` identifies the current files after the
+manuscript title was harmonised. Earlier manifests remain historical records.
 The final manuscript identifies this repository version by commit hash; no DOI
 is assigned. Full texts of third-party papers used for local checking are excluded.
+
+## Manuscript title update (20 October 2026)
+
+The supplement and this README use the final submission title. This update
+changes identification only; scientific methods, results and reproducibility
+inputs remain unchanged. The title-update manifest lists the current hashes
+and identifies the preceding release without rewriting historical manifests.
