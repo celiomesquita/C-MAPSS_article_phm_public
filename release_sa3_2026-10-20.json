@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-20",
+  "scope": "Current S1-S9 supplement and reproducible SA3 attribution update. Supersedes supplement hashes in the earlier synchronisation and publication manifests; these remain historical records.",
+  "base_public_commit": "988d531229d5819b8b3c66a3620e2cedd7041aaf",
+  "hash_method": "SHA-256; text files normalised CRLF to LF, PDFs raw bytes",
+  "files": {
+    "README.md": "2d6c29c0b8a60bc1ba834ac9c709a3ace123b48b30a25feaf68b65b1e87a853d",
+    ".gitignore": "7fdff96b31725ddf59c35c2ceed2fac78a48d09633c987dd37acd099ce456383",
+    "appendix/supplementary.tex": "050d6d7264508fa0ffe2d865f4e73f246b6cac77173e3ecda7c6fa3ba14b3f11",
+    "appendix/supplementary.pdf": "2ee32fe944189dd4e50ccfa6a2f1241947ad2489004259b5915f6f157a303b68",
+    "appendix/references.bib": "7912d63693d140b841d436edf293dfd7a8d8b1a2dcaa00ab38a59d8cd45d8d7f",
+    "release_supplement_sync_2026-10-20.json": "56cc6e2a457977b601ae874e677a9948e28582abc6260f5c2ca1ef62b20c5c5e",
+    "experiments/sa3_20261020/evidence_inputs/controls.csv": "f067137f992a404993635b67fc2f7b167bbee0b1efccb4abf4d4cef107c0e599",
+    "experiments/sa3_20261020/evidence_inputs/decisions.csv": "8c9e097f7a35cf30c0d2fa564c8f49077cffdbc6fcad964209a24379abea1627",
+    "experiments/sa3_20261020/evidence_inputs/summary.csv": "7d1fd0a1d20b709dc7ccf7c98943f5202ad99a3d5dc89bf414743cda5a8e61dc",
+    "experiments/sa3_20261020/input_provenance.json": "4876afbbc6391a1dfb6c5068041b001831558b02cc3ec1c8f0abba768687856b",
+    "experiments/sa3_20261020/README.md": "4e486760306324e12b4388395d2dce63257d06386b49bf5c3a7e9e6bdf21c656",
+    "experiments/sa3_20261020/reference/cells.csv": "ef248b4101773cf0fa97c70d1dfecd13812f4c14b210a29fd32062bba54018e6",
+    "experiments/sa3_20261020/reference/contrasts.csv": "4e8110067e8e8a862c8a4a68d90b20252962470a9d0312b1e5f52e1b7c3bba5a",
+    "experiments/sa3_20261020/reference/marker.csv": "6281369e7bc21b8a72a9d59707418fbb8e96c80761a03635810ca17ed827e73f",
+    "experiments/sa3_20261020/reproduce.py": "16fbad0296fbadb5aee4303d5549f890df7f743c22067fa952fa31c807b6c1ea",
+    "experiments/sa3_20261020/source_adaptation.json": "c6834a307c1358ef1cf44d4846f0120b7d587e7eef0d78efce491e196f156f2c",
+    "experiments/sa3_20261020/verify.py": "2c83d64389fd94b489cfb52c2d5aff8fc11a1537f64307e9261bed5f5eb6e0a6"
+  },
+  "validation": {
+    "cells": 48,
+    "contrasts": 72,
+    "exact_reference_csv_files": 3,
+    "p10_historical_hash_reconstructed": true,
+    "raw_data_or_models_required": false,
+    "supplement_pdf_pages": 18,
+    "third_party_full_texts_included": false
+  }
+}

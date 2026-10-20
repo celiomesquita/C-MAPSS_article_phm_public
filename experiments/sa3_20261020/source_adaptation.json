@@ -1,0 +1,6 @@
+{
+  "source": "experiments\\analyse_sa3_02_calibration_reserve.py",
+  "source_sha256": "a3059e97066bb43c97cb0cd4415edd00b8e3f5305519e8a6df5db924d2fecb71",
+  "adaptation": "Portable input/output paths and --output argument only; analysis unchanged",
+  "public_source_sha256": "bf307fccc936d74e1c4e0d1fcb2a038acddbe50bcd6505b11c5f286b2d144039"
+}

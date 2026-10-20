@@ -49,3 +49,8 @@ Thumbs.db
 !experiments/artifacts/pilot_break_even_cost_21b/*.csv
 !experiments/artifacts/pilot_inspection_17b/summary.csv
 !experiments/artifacts/pilot_policy_selection_13a/decisions.csv
+
+# SA3: selected archived inputs and reproducible attribution contrasts
+!experiments/sa3_20261020/evidence_inputs/*.csv
+!experiments/sa3_20261020/reference/*.csv
+experiments/sa3_20261020/reproduced/

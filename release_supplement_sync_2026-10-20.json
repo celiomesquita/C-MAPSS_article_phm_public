@@ -1,0 +1,10 @@
+{
+  "scope": "Supplement synchronised with the private manuscript (S7-S8 added; early-pilot subsection replaced by a pointer to appendix/early_pilots.pdf; Ke2017, Barlow1972 and Mahalanobis1936 added to the bibliography; S9 holds paragraphs and two tables moved from the main text for length). Supersedes the supplement hashes in release_literal_cycles_2026-10-19.json and experiments/results_review_2026-10-19/publication_files_sha256.json, which remain as records of earlier releases.",
+  "date": "2026-10-20",
+  "hash_method": "SHA-256; text files hashed after CRLF->LF normalisation, PDF hashed as raw bytes",
+  "files": {
+    "appendix/supplementary.tex": "aff28421b3b922770d07f162998e2a99c2da3c8045736f07865580a28c96d88a",
+    "appendix/supplementary.pdf": "5ca1d9a75fbe75523153f1edbc5d63e59a848436398ed138e76cae3cfb496a1d",
+    "appendix/references.bib": "7912d63693d140b841d436edf293dfd7a8d8b1a2dcaa00ab38a59d8cd45d8d7f"
+  }
+}

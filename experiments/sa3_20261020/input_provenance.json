@@ -1,0 +1,20 @@
+{
+  "decisions.csv": {
+    "source": "experiments\\artifacts\\pilot_removal_11\\decisions.csv",
+    "source_sha256": "c23e4ef84881ad74ba68f2ec43e5c9eebe35d51f76b038335589fb1751ffb44f",
+    "selected_rows": 4800,
+    "selected_sha256": "5bab01d83f3eb390a540a7f85d5687c708894dff92613be1eef3a5b4f3805581"
+  },
+  "summary.csv": {
+    "source": "experiments\\artifacts\\pilot_removal_11\\summary.csv",
+    "source_sha256": "dd41ab38b34b77539cdd8a2986c3f0e831de45b3245cbd5457d3347171ab7774",
+    "selected_rows": 48,
+    "selected_sha256": "14d616a49a9db51c5490518262f4a71a31ef1a7c4320b548d91d34ba4da8cd7e"
+  },
+  "controls.csv": {
+    "source": "experiments\\artifacts\\pilot_landmark_control_11a\\controls.csv",
+    "source_sha256": "55936c74505b4981c73f220cf3739327be1d4c40eaf19202c230d1e33c2f221b",
+    "selected_rows": 1200,
+    "selected_sha256": "dc3d964599e4eb8a1d693d895e1f0984f4b434b0a5215fb2a262385cbc46cb25"
+  }
+}

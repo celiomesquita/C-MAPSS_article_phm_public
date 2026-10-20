@@ -270,6 +270,233 @@ ISO point + inspection vs lower-98\% & 0.005 & B dom. & B dom. & B dom. & 12.8--
 \par\smallskip\footnotesize B dom.: no $\beta\geq0$ favours A. $^\dagger$: the 95\% interval of the avoided events includes zero in at least one repetition. Inspection time and corrective repair remain zero. $q_I=0$ reproduces the break-even analysis of the main text.
 \end{table}
 
+\section{Development results summarised in the main text}
+This section preserves development results that the main text only summarises: the empirical HI candidates and their transfer, post-landmark updates and temporal features, selected HI thresholds and waiting times, the synthetic multi-regime normalisation test and a pointer to the early immediate-action pilots.
+
+\subsection*{Empirical HI candidates and transfer}
+Minimum-margin HIs exhibited early zero crossings, missing crossings and subsequent recoveries; adding initial tolerance did not resolve terminal anchoring (Table~\ref{tab:hi-terminal-development}); the labels P03--P06 identify the exploratory pilot rounds documented in the project repository. These failures motivated the empirical combination and terminal-reconstruction comparator, without identifying an empirical HI zero with physical F.
+
+\begin{table}[htbp]
+\centering
+\caption{Development diagnostics for empirical HI candidates.}
+\label{tab:hi-terminal-development}
+\footnotesize
+\setlength{\tabcolsep}{3.5pt}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}lXrrrr@{}}
+\toprule
+Pilot/subset & HI & Crossings & Missing & \shortstack{Median\\lead} & Recoveries \\
+\midrule
+P03/FD001 & Minimum, $q=0.50$ & 94 & 6 & 42.5 & 30 \\
+P03/FD001 & Minimum, $q=0.90$ & 41 & 59 & 5.0 & 5 \\
+P04/FD001 & Tolerant minimum & 81 & 19 & 21.0 & 15 \\
+P05/FD001 & Empirical & 71 & 29 & 14.0 & 0 \\
+P05/FD001 & Terminal AAKR & 92 & 8 & 18.5 & 43 \\
+P06/FD003 & Empirical, refitted & 46 & 54 & 5.0 & 0 \\
+P06/FD003 & Terminal AAKR, refitted & 82 & 18 & 18.0 & 52 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Complete outer-evaluation trajectories, with 100 engines per row. Median lead is endpoint minus first HI zero, conditional on a crossing, in cycles. Changes between rounds include selection rules and are not isolated causal effects of representation.}
+\end{table}
+
+P05 compared the candidates through the same separately calibrated HI-to-RUL map. Official FD001 RMSE was 28.85 cycles for the margin control, 27.66 for the empirical combination and 27.57 for adapted terminal AAKR (Table~\ref{tab:hi-prognostic-comparison}). Descriptive paired bootstrap intervals for differences from the control included zero: $[-4.05,1.65]$ cycles for the empirical combination and $[-3.90,1.43]$ for AAKR. These results establish a comparison procedure, not a conclusive winner or accurate reconstruction of physical condition.
+
+\begin{table}[htbp]
+\centering
+\caption{Official-test RUL prediction errors (cycles).}
+\label{tab:hi-prognostic-comparison}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrr@{}}
+\toprule
+Evaluation & Margin control & Empirical & Terminal AAKR \\
+\midrule
+FD001, fitted on FD001 & 28.85 & 27.66 & 27.57 \\
+FD003, FD001 transfer & 38.58 & 79.56 & 80.25 \\
+FD003, fitted on FD003 & 32.41 & 23.40 & 26.41 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Root mean square error at the last observed cycle of each official test engine. Each row evaluates 100 engines. FD003 transfer and refitting use the same target engines; FD001 and FD003 are different populations.
+
+AAKR denotes auto-associative kernel regression, implemented here as a terminal-core adaptation.}
+\end{table}
+
+Refitting on FD003 reduced empirical-combination RMSE from 79.56 to 23.40 cycles and terminal-AAKR RMSE from 80.25 to 26.41, with paired differences $[-68.56,-43.85]$ and $[-66.92,-41.52]$ cycles. The selected empirical target changed from $(\rho,\eta,\lambda)=(100,1,0.1)$ to $(60,2,0)$. Refitting changed both HI and converter, while median life changed from 199 to 220.5 cycles; their effects cannot be separated.
+
+Against the refitted margin control, the empirical and AAKR RMSE differences were $-9.00$ cycles ($[-14.11,-3.63]$) and $-6.00$ ($[-10.97,-0.89]$), respectively. These descriptive paired intervals favour the alternatives in the official FD003 test, without establishing superiority beyond those implementations.
+
+After refitting, the empirical HI reached zero in 46 complete FD003 evaluation trajectories, with median anticipation of five cycles and median terminal HI 0.0163. AAKR crossed more often but recovered in 52 engines. Neither validates physical F.
+
+\subsection*{Post-landmark updates and temporal features}
+Updating five cycles after the landmark reduced empirical-HI forecast RMSE from 17.85 to 17.11 cycles in FD001 and from 14.84 to 14.31 in FD003. However, comparisons at family-specific landmarks mix representation and timing: synchronising the margin and empirical HIs reduced their FD003 RMSE difference to $-1.05$ cycles, with interval $[-2.96,0.69]$. With RF in FD003, temporal sensor statistics reduced RMSE from 16.44 to 14.40 in 100 complete engines ($-2.04$; $[-3.63,-0.42]$) and from 15.69 to 11.21 in the 22 truncated engines with a landmark ($-4.48$; $[-8.23,-1.98]$). These gains were local to the evaluated states: HI-history gains did not persist at the last official observation, Ridge did not improve, and slope alone matched or slightly improved on the full HI history. All contrasts remain exploratory.
+
+\subsection*{Selected HI thresholds and waiting times}
+A threshold or a waiting time on the HI, selected from development engines alone, added 13.08--15.49 cycles (FD001) and 8.29--12.90 (FD003) to the marker for the threshold, and 8.50--10.00 and 6.90--9.00 for waiting, across repetitions and both execution leads. Threshold rules had 0--2 endpoint events per 100 engines in each subset, and waiting-time rules 0--1; four of the 240 internal selections were infeasible. These controls recover more life than immediate landmark removal, but neither their gains nor those of the point-anchor forecast establish a preferable policy under a common validated risk constraint.
+
+\subsection*{Synthetic multi-regime normalisation test}
+With one regime the normalisation reproduced the original FD001 HI and forecasts in all ten folds, with a maximum forecast difference below $10^{-7}$ cycles. In a synthetic test with six regimes injected into FD001, the raw pipeline lost the landmark in 27\% of the engines and increased the landmark RMSE by 66\% (Table~\ref{tab:regime-test}). With the normalisation, performance returned to within 1.4\% of the original. $K$-means recovered the injected regimes without error. This is a necessary and not a sufficient condition, because the regimes were well separated and the effects were additive and multiplicative per sensor. Interaction between regime and degradation is not represented.
+
+\begin{table}[htbp]
+\centering
+\caption{Synthetic multi-regime normalisation test on FD001.}
+\label{tab:regime-test}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrr@{}}
+\toprule
+Variant & Landmark reached & Landmark RMSE & Spearman, HI vs RUL \\
+\midrule
+Original FD001 & 100\% & 16.14 & 0.992 \\
+Synthetic, raw & 73\% & 26.86 & 0.755 \\
+Synthetic, $K$-means normalised & 100\% & 16.36 & 0.992 \\
+Synthetic, true regimes & 100\% & 16.36 & 0.992 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Ten folds of 10 evaluation engines (100 engines). The landmark is the first HI passage at 0.5.}
+\end{table}
+
+\subsection*{Early immediate-action pilots}
+The immediate-action pilots P01 and P02, including the local and global margin calibrations and the internally selected LightGBM regressor \cite{Ke2017} cited in the main text, are specified and reported in full in the companion document \texttt{early\_pilots.pdf} of this repository; Section~S3 summarises their gains and limitations.
+
+\section{Further method and result details}
+The following paragraphs are retained in full from earlier versions of the main text, which now summarises them.
+
+All 9\,600 original action prefixes contained an increment outside initial empirical support. Consequently, no paired prefix met the whole-prefix inclusion condition among the 1\,084\,160 nonzero global replays or the same number of local replays. These are engine--partition--policy--perturbation comparisons, not independent engines. Both decision dates existed in 1\,059\,726 global and 840\,064 local comparisons; none qualified for a support-restricted date-shift estimate. This establishes statistical extrapolation relative to initial increments, not physical implausibility, and does not validate physical robustness.
+
+Excluding single fitting engines flipped five sensor orientations in 13 of 25 cases in one repetition and moved the landmark by 204--213 cycles. Coefficient refitting alone shifted it by up to 179; optimality checks did not indicate numerical failure. Internal stabilisation reduced the median partition p95 shift from five to three cycles and the largest shift from 223 to 45 in FD003, but worsened maxima in 8/30 FD001 and 3/30 FD003 partitions. In the full-chain evaluation, selected variants gained 1.30--1.96 mean cycles in FD001 and 2.29--4.74 in FD003 for conservative ISO, with positive paired intervals. Landmark RMSE improved in 11 of 12 contrasts, partly with later prediction times. Between-repetition p95 landmark range changed from 9.15 to 12.05 cycles in FD001 and from 27.45 to 21.60 in FD003, and FD003 gained endpoint events. These mixed results failed the pre-specified transfer criterion; the working HI was retained.
+
+A post-confirmation descriptive check of the archived ISO decisions separated finite and infinite margins without refitting. Across repetitions and both execution leads, the finite-margin rule acted at its first usable opportunity in 55--86\% of FD001 evaluations, 72--100\% in FD003 and 90.6--100\% in FD002. The corresponding incremental mean life over the marker was 0.21--1.57, 0--0.83 and 0--0.29 cycles. In FD004, first-opportunity actions accounted for 99.3--100\% of finite-margin evaluations; all 17 infinite-margin evaluations per execution lead acted immediately, and both groups had zero incremental life. The denominator includes engines without a decision. Thus, the limited gain also occurs with finite margins; infinite margins enforce landmark removal for part of FD004 but do not alone explain the finding. This analysis describes the tested entry rule, reserve and calibration rather than the value of forecasts under other policies.
+
+When the visibility of the damage varies between engines, so that inspections of the same engine are dependent, the cost of the arm rises. With a window varying by $\sigma=0.25$, the rate increase of the lower-bound rule was 3.9\%, 3.9\%, 4.1\% and 7.5\% in FD001 to FD004 (3.1--6.7\% with independent inspections), and with $\sigma=0.5$ it was 5.3\%, 5.5\%, 5.9\% and 9.3\%; for the point-anchor rule it rose from 10.8--12.5\% to 11.4--14.1\%. A latent shape had little effect. The expected events of the point-anchor rule with inspection stayed below 0.4 per 100 engines in every variant. The qualitative conclusion is unchanged, although differences in damage visibility increase the restoration-rate penalty.
+
+The five-cycle interval is a frequent-inspection scenario in simulated time, not an interval derived from an approved engine maintenance programme. European Union Aviation Safety Agency (EASA) airworthiness directive (AD) 2019-0249R1 requires inspections of specified Trent 1000 intermediate-pressure compressor parts within five flight cycles after defined asymmetric-power or depressurisation events \cite{EASA2019_0249R1}. This is an event-triggered compliance deadline, not a repetitive five-cycle inspection interval, and does not calibrate the inspection model used here. By contrast, EASA AD 2025-0206R1 imposes repetitive borescope inspections of specified Trent 1000 high-pressure turbine blades at no more than 50 flight cycles, reduced to ten after defined crack findings \cite{EASA2025AD0206R1}. The five-flight cadence therefore lies below the documented repetitive range and represents a favourable inspection-capability scenario rather than a representative interval; its admissibility rests on the declared damage window, since five cycles plus the reserve and execution lead remain below the smallest window tested.
+
+The one-cycle-per-flight assumption used for the illustrative 20-year totals does not physically calibrate the inspection cadence. The interval remains fixed at five benchmark cycles in the frozen comparison, interpreted as five flights in the literal scenario. Its influence has not been assessed by interval sensitivity analysis, which, with representative inspection costs and downtime, would be needed before operational interpretation. The reported events, utilised life, inspection counts and restoration demand are conditional on the assumed cadence and rejection model and do not establish an operational inspection schedule.
+
+\section{Details moved from the main text for length}
+The paragraphs and tables below are retained in full from the version of the main text that preceded the length reduction for submission.
+
+Each HI family uses an increasing isotonic converter \cite{Barlow1972} fitted on separate engines, $\widehat r_i(t)=g_{c,k}(\widehat H_i^c(t))$, with $c\in\{\min,\mathrm{emp},\mathrm{AAKR}\}$. Development selection minimises RUL error at $50\%$, $70\%$ and $90\%$ of each complete trajectory. The three retrospective locations span horizons from an earlier prognostic opportunity to near the recorded endpoint, without tying the choice to one instant. Sampling is confined to complete development trajectories: the fractions are not physical degradation boundaries, and operational prediction and removal do not use the eventual lifetime. The development folds use 40 fitting, 20 converter, 20 selection and 20 evaluation engines. Final official-test comparisons use 60/20/20 training engines, with choices fixed before test scoring. Test labels score only the last observed cycle, without reconstructing future sensors.
+
+FD003 has one operating condition and two degradation modes, involving the high-pressure compressor and fan. Direct transfer preserves FD001 parameters and converters; refitting learns them from FD003 training engines. Lifetime distributions also differ, so this exploratory contrast does not isolate the effect of the second mechanism.
+
+$\alpha=0.5$ was set at the exploratory midpoint of the bounded empirical scale, between $\mathrm{HI}=1$ and $\mathrm{HI}=0$, so that forecasting could start from a reproducible intermediate condition. P, which is capability-dependent and is not identified in C-MAPSS, need not be estimated for that choice. The value is the numerical midpoint of the index, not the temporal midpoint of the P--F interval, half the remaining useful life, a reliability of $50\%$, or a physically validated degradation threshold. Even the conventional training target satisfies $H_i^*=0.5$ at $\RUL=\rho\,2^{-1/\eta}$, which depends on the chosen scale. Adequacy is read from landmark availability, remaining lead to the recorded endpoint, error in predicted F, later prediction updates, sensitivity to the HI formulation and the removal outcomes that follow.
+
+The sum is rectified before the HI is clipped; individual contributions remain signed. For a decomposition of the bounded loss, the radial allocation is $a_{ij}=c_{ij}\operatorname{clip}(S_i,0,1)/S_i$ when $S_i>0$ and zero otherwise, giving $\sum_j a_{ij}=1-\widehat H_i$. Explanations are assessed for their reproduction of the HI, converter and action chain.
+
+Coefficient stability uses foldwise ranks, orientation agreement, active-channel overlap and the three largest coefficients; leave-one-engine-out refits assess landmark shifts. Supplementary Material S2 gives the exact metrics. Alternatives were selected in development before full-chain evaluation.
+
+The empirical-support diagnostic compares consecutive raw sensor increments with the initial fitting-engine increment distribution, using simultaneous Mahalanobis \cite{Mahalanobis1936} and channelwise limits. A paired perturbation is classified as wholly inside only if every increment in both original and perturbed decision prefixes passes both limits. Supplementary Material S2 gives the centring, covariance, cut-offs and replay definitions. These are empirical extrapolation diagnostics; inclusion does not establish physical plausibility, and separate 0.99 cut-offs do not imply 99\% whole-prefix coverage.
+
+A 20-year horizon is used only to illustrate repeated exposure. With one cycle per flight ($\xi=1$, not calibrated), 1\,600 flights per year and an independent LLP counter of 20\,000 flights \cite{AC33701}, each position accumulates 32\,000 cycles; the simulation, its validation and the earlier scaled scenarios, which use $\xi=L_{\mathrm{ref}}/\bar T$ with a reference interval of 8\,425 flight cycles from maintenance-cost analyses \cite{AC2003,AC2005,AC2019}, are in Supplementary Material S4 and S5.
+
+For illustration only, at one cycle per flight and 1\,600 flights per year, removal at 127 flights implies about 253 restorations per position in 20 years against 149--191 for the conservative ISO rule, and 159--197 with inspection added (Supplementary Material S5). These totals follow arithmetically from the rates, depend on the cycle mapping and are implausibly high for real engines; only the comparisons between arms are interpreted.
+
+In the earlier uncertainty experiment, adding slope improved RF over current HI in each FD003 repetition, with descriptive paired intervals excluding zero, but did not consistently outperform ISO. For nominal 90\% bilateral bands, calibrating the maximum error along the trajectory increased FD003 RF-slope whole-path coverage from 60--82\% to 86--90\%, at the cost of wider bands, with no evidence on removal risk.
+
+A complementary diagnostic of the stored models includes all four subsets; the FD002 and FD004 models come from the confirmation reported in the main text. Between folds of the same repetition, the median Spearman correlation of $\beta_j$ was 0.28--0.35 (FD001), 0.51--0.67 (FD002), 0.47--0.51 (FD003) and 0.39--0.50 (FD004). The orientation was the same in all retained channels for FD001 and FD002, in 94\% for FD004 and in 100\% for FD003 except in the first repetition, where it fell to 67\%. The overlap of channels with $\beta_j>10^{-9}$ was 0.79--0.86, 0.63--0.73, 0.44--0.50 and 0.40--0.46, and the three largest $\beta_j$ values agreed in a third to two thirds. The coefficients are therefore only moderately stable, the less so in the subsets with two fault modes, and an explanation by individual sensor coefficients should be read with that variability. Repetitions reuse the same engines, so these figures are not independent.
+
+The instability of the landmark was only partly concentrated in long-lived engines, and not enough to justify excluding any engine. The Spearman correlation between life and the between-repetition range of the landmark was 0.171 (FD001; interval including zero) and 0.283 (FD003); relative range did not grow with life, and endpoint events, counted descriptively, were more frequent in short lives. No engine was excluded. A single age limit of $A_{\mathrm L}=127$ cycles was set. None of the 200 examined engines has $T_i\leq127$, so the upper confidence limits for $\Pr(T\leq A_{\mathrm L})$ are 0.80\%, 1.14\% and 1.49\% at confidence 80\%, 90\% and 95\%. For FD001 alone the 95\% limit is 2.95\%. These limits are in-sample.
+
+The landmark of an engine varied by a median of 6 (FD002) and 9 (FD004) cycles across repetitions, with maxima of 31 and 40, without a range comparable with that of engine 55 of FD003.
+
+Fixed reserve-12 and nominal-95\% sensitivities increased utilised life in development without observed endpoint events (the main text). In FD002 they added only small gains; in FD004 conservative ISO lives and events were unchanged. These sensitivities were not selected as replacements for the main rules; Supplementary Material S3 and the public contrast tables retain them.
+
+With the extension over the monitoring-loss grid, the lower-bound ISO rule keeps a saving against the 127-cycle limit of 24.5--25.3\% (FD002) and 40.9--41.2\% (FD004) with always-valid monitoring, 21.4--22.1\% and 33.8--34.0\% at $u=0.005$, and 15.1--15.4\% and 21.3--21.5\% at $u=0.02$. The pattern reproduces the development subsets, and the larger saving in FD004 reflects its longer lives.
+
+Three candidate tasks are evaluated: removal at 127 cycles; sensor-only removal from the landmark, forecast anchor, reserve and execution lead, with the monitoring-loss response in the main text; and the hybrid addition of five-flight inspections from flight 127 under the literal mapping, where rejection can only advance removal. Each specifies entry, trigger, execution lead and conduct on monitoring loss.
+
+Within the assessment of alternative tasks framed by IP-180, the present evidence covers the benchmark mechanisms and their declared scenarios. IP-180 limits AHM use to tasks that are not safety-related and do not cover certification maintenance requirements, and excludes AHM-supported evolution of Maintenance Review Board Report (MRBR) task intervals \cite{IP180}; Issue Paper 197 (IP-197) assigns certification to on-aircraft features and validation of ground processing to the operator's authority \cite{IP197}. Because the C-MAPSS endpoint represents exhaustion of operability margins, the failure-effect category of the removal task, and hence its eligibility under IP-180, remains undetermined. Physical failure limits, representative inspection capability, operational monitoring validity and engineering evidence for task applicability also remain to be established. The comparison therefore provides candidate task formulations and identifies the evidence needed for further assessment; it does not complete an IP-180 applicability or approval process.
+
+
+\subsection*{Separate calibration and reserve contrasts}
+An exploratory paired analysis of archived ISO decisions separates nominal calibration
+(98\% versus 95\%) and reserve (15 versus 12), with the same engines, folds,
+landmarks and execution leads. Table~\ref{tab:calibration-reserve} spans three
+repetitions and both leads; the ranges are estimates, not confidence intervals.
+All four combinations had zero strict late schedules, exact arrivals and absent
+decisions in the evaluated FD001 and FD003 engines. Both factors increased life,
+with a positive interaction; this does not certify population-risk equivalence.
+The joint change added 2.4--7.0 mean cycles over the HI marker across both leads.
+The portable analysis and per-repetition contrasts are in
+\texttt{experiments/sa3\_20261020/}.
+
+\begin{table}[htbp]
+\centering
+\caption{Separate effects of calibration and reserve in development: A minus B.}
+\label{tab:calibration-reserve}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
+\toprule
+Contrast & \multicolumn{2}{c}{Mean-life change} & \multicolumn{2}{c}{Restoration-rate change} \\
+ & FD001 & FD003 & FD001 & FD003 \\
+\midrule
+95\%--98\%, reserve 15 & 0.73--1.81 & 0.51--1.55 & $-0.639$ to $-0.254$ & $-0.350$ to $-0.119$ \\
+95\%--98\%, reserve 12 & 1.90--3.25 & 1.28--2.58 & $-1.093$ to $-0.648$ & $-0.577$ to $-0.296$ \\
+Reserve 12--15, 98\% & 0.50--2.65 & 0.49--1.82 & $-0.931$ to $-0.174$ & $-0.412$ to $-0.111$ \\
+Reserve 12--15, 95\% & 2.23--4.04 & 1.52--2.27 & $-1.377$ to $-0.758$ & $-0.503$ to $-0.338$ \\
+Joint: 95\%/12--98\%/15 & 3.39--5.39 & 2.39--3.30 & $-1.836$ to $-1.160$ & $-0.735$ to $-0.535$ \\
+Life interaction & 0.66--1.92 & 0.33--1.43 & & \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Life is measured in simulated cycles and restoration rate per 10\,000 cycles.
+The interaction is the calibration effect at reserve 12 minus that at reserve 15.
+Ranges must not be added across different repetitions or leads.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Extension beyond 127 cycles under valid monitoring.}
+\label{tab:extension}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}Xrrrr@{}}
+\toprule
+ & \multicolumn{2}{c}{FD001} & \multicolumn{2}{c}{FD003} \\
+Rule & Extension & Saving & Extension & Saving \\
+\midrule
+ISO, lower anchor & 41.2 & 24.5\% & 81.2 & 39.0\% \\
+HI-marker control & 40.3 & 24.1\% & 80.7 & 38.8\% \\
+Selected threshold (exploratory contrast) & 55.1 & 30.2\% & 91.8 & 41.9\% \\
+ISO, point anchor & 65.1 & 33.9\% & 106.0 & 45.5\% \\
+\midrule
+ISO lower, $u=0.005$ & & 21.6\% & & 31.6\% \\
+ISO lower, $u=0.02$ & & 15.5\% & & 19.9\% \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Execution lead 1; mean over three repetitions of the 100 evaluation engines. Saving is the relative reduction in restorations per simulated cycle against removal at $A_{\mathrm L}=127$ cycles.
+
+The selected-threshold row is an exploratory contrast outside the main rule set. The last two rows give the ISO lower-anchor saving when monitoring is invalid at each cycle with probability $u$.}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Borescope inspection outcomes in the headline scenario.}
+\label{tab:inspection}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{@{}lXrrrrr@{}}
+\toprule
+Subset & Rule & \shortstack{Rate change\\(\%)} & \shortstack{Life\\ceded} & \shortstack{Events\\alone} & \shortstack{Events with\\inspection} & \shortstack{Rejection\\share} \\
+\midrule
+FD001 & ISO, lower 98\% & 3.1 (2.3--4.0) & 5.1 & 0.00 & 0.00 & 0.45 \\
+FD001 & ISO, point anchor & 12.5 (10.6--14.5) & 21.3 & 11.33 & 0.34 & 0.92 \\
+FD002 & ISO, lower 98\% & 3.2 (2.5--4.0) & 5.2 & 0.00 & 0.00 & 0.45 \\
+FD002 & ISO, point anchor & 10.8 (9.7--11.9) & 18.4 & 6.11 & 0.03 & 0.89 \\
+FD003 & ISO, lower 98\% & 3.4 (2.6--4.3) & 6.8 & 0.00 & 0.00 & 0.53 \\
+FD003 & ISO, point anchor & 11.4 (10.0--12.9) & 23.8 & 14.00 & 0.00 & 0.94 \\
+FD004 & ISO, lower 98\% & 6.7 (5.7--7.8) & 13.5 & 0.59 & 0.01 & 0.76 \\
+FD004 & ISO, point anchor & 11.7 (9.5--14.0) & 23.9 & 17.75 & 0.04 & 0.91 \\
+\bottomrule
+\end{tabularx}
+\tablenotes{Entry at the 127-cycle gate every five cycles, $W=60$, $\gamma=1$, $p_P=0$, $p_F=1$, always-valid monitoring, execution lead 1.
+
+Values are means over three repetitions that reuse the same engines; the rate change is the relative increase in restorations per simulated cycle against the same rule without inspection, with the range of the 95\% bootstrap intervals across repetitions.
+
+Events are expected strict late schedules, exact arrivals and arrivals without decision per 100 engines. Rejection share is the mean probability that the decision comes from a rejection.}
+\end{table}
+
 \bibliographystyle{elsarticle-num}
 \bibliography{references}
 \end{document}

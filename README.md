@@ -69,3 +69,14 @@ python experiments/verify_break_even_cost_21b.py
 ```
 
 The archived inputs are included; no raw NASA trajectories or fitted models are needed. See `experiments/BREAK_EVEN_README.md` for definitions, scope and limitations. This repository has no DOI; the version used for the paper is identified by its commit hash.
+
+## Calibration/reserve attribution and source provenance (20 October 2026)
+
+`experiments/sa3_20261020/` provides selected archived inputs, the portable
+standard-library analysis, exact reference CSVs and an independent verification
+of the paired contrasts and P10 source-byte reconstruction. See its README.
+Supplementary Sections S7--S9 include the fuller methods, adverse results and
+separate calibration/reserve effects. `release_sa3_2026-10-20.json` identifies the
+current files and supersedes earlier supplement hashes without rewriting them.
+The final manuscript identifies this repository version by commit hash; no DOI
+is assigned. Full texts of third-party papers used for local checking are excluded.
